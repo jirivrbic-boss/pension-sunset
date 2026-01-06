@@ -508,6 +508,58 @@
     <!-- Firebase SDK -->
     <script type="module" src="assets/js/firebase.js"></script>
     <script type="module" src="assets/js/main.js"></script>
+    
+    <!-- Fallback: If modules fail, try to load gallery anyway -->
+    <script>
+        // Fallback gallery initialization if ES6 modules fail
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initGalleryFallback);
+        } else {
+            initGalleryFallback();
+        }
+        
+        function initGalleryFallback() {
+            // Wait a bit for main.js to load, then check if gallery is empty
+            setTimeout(() => {
+                const galleryGrid = document.getElementById('galleryGrid');
+                if (galleryGrid && galleryGrid.children.length === 0) {
+                    console.warn('Gallery not loaded by main.js, using fallback');
+                    const imageFiles = [
+                        '107276708.jpg', '119300806.jpg', '129898529.jpg', '129898757.jpg',
+                        '129899039.jpg', '130040998.jpg', '130644941.jpg', '130645994.jpg',
+                        '130646422.jpg', '143146327.jpg', '143147259.jpg', '143148468.jpg',
+                        '144696148.jpg', '144696484.jpg', '144699058.jpg', '178478261.jpg',
+                        '178479648.jpg', '178479759.jpg', '178480294.jpg', '178480560.jpg',
+                        '178480866.jpg', '178481221.jpg', '178482126.jpg', '178482932.jpg',
+                        '178483119.jpg', '178484544.jpg', '53954045.jpg', '61598806.jpg',
+                        '73269680.jpg', '73269716.jpg', '73269987.jpg', '74401789.jpg',
+                        '88051428.jpg', '88282651.jpg', '96204493.jpg'
+                    ];
+                    
+                    imageFiles.forEach((imageFile, index) => {
+                        const item = document.createElement('div');
+                        item.className = 'gallery-item';
+                        const img = document.createElement('img');
+                        img.src = '/fotky/' + imageFile;
+                        img.alt = 'Galerie ' + (index + 1);
+                        img.loading = 'lazy';
+                        item.appendChild(img);
+                        item.addEventListener('click', function() {
+                            // Simple lightbox
+                            const lightbox = document.getElementById('lightbox');
+                            const lightboxImg = document.getElementById('lightboxImage');
+                            if (lightbox && lightboxImg) {
+                                lightboxImg.src = img.src;
+                                lightbox.classList.add('active');
+                                document.body.style.overflow = 'hidden';
+                            }
+                        });
+                        galleryGrid.appendChild(item);
+                    });
+                }
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
 

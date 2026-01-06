@@ -271,7 +271,15 @@ function initGallery() {
     ];
     
     const galleryGrid = document.getElementById('galleryGrid');
-    if (!galleryGrid) return;
+    if (!galleryGrid) {
+        console.error('Gallery grid element not found!');
+        return;
+    }
+    
+    // Clear any existing content
+    galleryGrid.innerHTML = '';
+    
+    console.log('Initializing gallery with', imageFiles.length, 'images');
     
     imageFiles.forEach((imageFile, index) => {
         const item = document.createElement('div');
@@ -279,15 +287,28 @@ function initGallery() {
         item.dataset.index = index;
         
         const img = document.createElement('img');
-        img.src = `fotky/${imageFile}`;
+        // Use path relative to root (works on both local and Vercel)
+        img.src = `/fotky/${imageFile}`;
         img.alt = `Galerie ${index + 1}`;
         img.loading = 'lazy';
+        
+        // Error handling for images
+        img.onerror = function() {
+            console.error('Failed to load image:', img.src);
+            this.style.display = 'none';
+        };
+        
+        img.onload = function() {
+            console.log('Image loaded:', img.src);
+        };
         
         item.appendChild(img);
         item.addEventListener('click', () => openLightbox(index, imageFiles));
         
         galleryGrid.appendChild(item);
     });
+    
+    console.log('Gallery initialized with', galleryGrid.children.length, 'items');
 }
 
 function openLightbox(index, imageFiles) {
@@ -302,7 +323,7 @@ function openLightbox(index, imageFiles) {
     let currentIndex = index;
     
     function showImage() {
-        lightboxImage.src = `fotky/${imageFiles[currentIndex]}`;
+        lightboxImage.src = `/fotky/${imageFiles[currentIndex]}`;
         lightboxImage.alt = `Galerie ${currentIndex + 1}`;
     }
     
