@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pension Sunset Mezirolí - Klid, harmonie a relax u Karlových Varů</title>
+    <meta name="description" content="Pension Sunset Mezirolí - prémiové ubytování s wellness, Feng Shui designem a výjimečným servisem u Karlových Varů">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Pension Sunset</h1>
+                    <span class="logo-subtitle">Mezirolí</span>
+                </div>
+                
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="#uvod" class="nav-link">Úvod</a></li>
+                        <li><a href="#pokoje" class="nav-link">Pokoje</a></li>
+                        <li><a href="#wellness" class="nav-link">Wellness</a></li>
+                        <li><a href="#okoli" class="nav-link">Okolí</a></li>
+                        <li><a href="#sluzby" class="nav-link">Služby</a></li>
+                        <li><a href="#galerie" class="nav-link">Galerie</a></li>
+                        <li><a href="#kontakt" class="nav-link">Kontakt</a></li>
+                        <li><a href="#rezervace" class="nav-link btn-cta">Rezervace</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="cs">CZ</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="de">DE</button>
+                </div>
+                
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="uvod">
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('fotky/178484544.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('fotky/144699058.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('fotky/178480294.jpg');"></div>
+        </div>
+        
+        <div class="hero-overlay"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">Klid, harmonie a relax u Karlových Varů</h2>
+                <p class="hero-subtitle">Prémiové ubytování s wellness a Feng Shui designem</p>
+                
+                <!-- Booking Form -->
+                <div class="booking-form" id="bookingForm">
+                    <form class="booking-form-content" id="bookingFormContent">
+                        <div class="form-group">
+                            <label for="checkin">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Check-in</span>
+                            </label>
+                            <input type="date" id="checkin" name="checkin" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="checkout">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Check-out</span>
+                            </label>
+                            <input type="date" id="checkout" name="checkout" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guests">
+                                <i class="fas fa-users"></i>
+                                <span>Hosté</span>
+                            </label>
+                            <select id="guests" name="guests" required>
+                                <option value="1">1 host</option>
+                                <option value="2" selected>2 hosté</option>
+                                <option value="3">3 hosté</option>
+                                <option value="4">4 hosté</option>
+                                <option value="5">5+ hostů</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="rooms">
+                                <i class="fas fa-bed"></i>
+                                <span>Pokoje</span>
+                            </label>
+                            <select id="rooms" name="rooms" required>
+                                <option value="1" selected>1 pokoj</option>
+                                <option value="2">2 pokoje</option>
+                                <option value="3">3 pokoje</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <span>Zobrazit dostupnost</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-scroll">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- O penzionu -->
+    <section class="about" id="o-penzionu">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">O penzionu</h2>
+                <p class="section-subtitle">Vítejte v místě klidu a harmonie</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="lead">
+                        Pension Sunset Mezirolí se nachází v klidné lokalitě nedaleko Karlových Varů, 
+                        obklopen přírodou a harmonickým prostředím.
+                    </p>
+                    
+                    <p>
+                        Každý pokoj je navržen podle principů Feng Shui, s pečlivě vybranými barvami 
+                        a uspořádáním, které podporují relaxaci a regeneraci. Naše pokoje jsou navrženy 
+                        tak, aby vytvářely harmonii a pozitivní energii pro každého hosta.
+                    </p>
+                    
+                    <p>
+                        Wellness centrum nabízí hydromasážní vířivku s hudbou a osvětlením, kde můžete 
+                        relaxovat po náročném dni. Naše relaxační místnost je ideálním místem pro 
+                        odpočinek a meditaci.
+                    </p>
+                    
+                    <p>
+                        Majitelka penzionu má bohaté zkušenosti v cestovním ruchu a je připravena 
+                        vám poskytnout výjimečný servis. Jsme jazykově vybaveni v češtině, angličtině, 
+                        němčině, ruštině a slovenštině, abychom vám mohli poskytnout co nejlepší služby.
+                    </p>
+                </div>
+                
+                <div class="about-image">
+                    <img src="fotky/178480560.jpg" alt="Pension Sunset">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pokoje -->
+    <section class="rooms" id="pokoje">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Naše pokoje</h2>
+                <p class="section-subtitle">Komfortní ubytování s Feng Shui designem</p>
+            </div>
+            
+            <div class="rooms-grid" id="roomsGrid">
+                <!-- Pokoje se načtou dynamicky z Firestore -->
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Načítání pokojů...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wellness -->
+    <section class="wellness" id="wellness">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Wellness</h2>
+                <p class="section-subtitle">Relaxace a regenerace</p>
+            </div>
+            
+            <div class="wellness-grid">
+                <div class="wellness-card">
+                    <div class="wellness-icon">
+                        <i class="fas fa-hot-tub"></i>
+                    </div>
+                    <h3>Hydromasážní vířivka</h3>
+                    <p>Relaxujte v naší vířivce s hudbou a osvětlením. Ideální pro uvolnění po celém dni.</p>
+                </div>
+                
+                <div class="wellness-card">
+                    <div class="wellness-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Relaxační místnost</h3>
+                    <p>Klidné prostředí pro meditaci a odpočinek. Navrženo podle principů Feng Shui.</p>
+                </div>
+                
+                <div class="wellness-card">
+                    <div class="wellness-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Wellness služby</h3>
+                    <p>Různé wellness procedury a masáže na objednávku. Kontaktujte nás pro více informací.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Okolí -->
+    <section class="surroundings" id="okoli">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Okolí</h2>
+                <p class="section-subtitle">Objevte krásy Karlovarského kraje</p>
+            </div>
+            
+            <div class="surroundings-grid">
+                <div class="surroundings-category">
+                    <h3><i class="fas fa-mountain"></i> Turistické atrakce</h3>
+                    <ul>
+                        <li>Karlovy Vary - 8 km</li>
+                        <li>Loket - 12 km</li>
+                        <li>Bečov nad Teplou - 25 km</li>
+                        <li>Mariánské Lázně - 45 km</li>
+                    </ul>
+                </div>
+                
+                <div class="surroundings-category">
+                    <h3><i class="fas fa-tree"></i> Příroda</h3>
+                    <ul>
+                        <li>Krušné hory - 15 km</li>
+                        <li>Přírodní rezervace - 5 km</li>
+                        <li>Turistické stezky - přímo z penzionu</li>
+                        <li>Cyklostezky - v okolí</li>
+                    </ul>
+                </div>
+                
+                <div class="surroundings-category">
+                    <h3><i class="fas fa-utensils"></i> Restaurace</h3>
+                    <ul>
+                        <li>Restaurace v Mezirolí - 200 m</li>
+                        <li>Restaurace v Karlových Varech - 8 km</li>
+                        <li>Hospůdky v okolí - 1-3 km</li>
+                    </ul>
+                </div>
+                
+                <div class="surroundings-category">
+                    <h3><i class="fas fa-car"></i> Doprava</h3>
+                    <ul>
+                        <li>Autobusová zastávka - 300 m</li>
+                        <li>Vlakové nádraží - 10 km</li>
+                        <li>Parkování zdarma - u penzionu</li>
+                    </ul>
+                </div>
+                
+                <div class="surroundings-category">
+                    <h3><i class="fas fa-plane"></i> Letiště</h3>
+                    <ul>
+                        <li>Letiště Karlovy Vary - 15 km</li>
+                        <li>Letiště Praha - 120 km</li>
+                        <li>Letiště Norimberk - 180 km</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vybavení -->
+    <section class="amenities" id="sluzby">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Vybavení a služby</h2>
+                <p class="section-subtitle">Vše, co potřebujete pro pohodlný pobyt</p>
+            </div>
+            
+            <div class="amenities-grid">
+                <div class="amenity-item">
+                    <i class="fas fa-wifi"></i>
+                    <span>Wi-Fi zdarma</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-parking"></i>
+                    <span>Parkování zdarma</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-hot-tub"></i>
+                    <span>Wellness</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-users"></i>
+                    <span>Rodinné pokoje</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-paw"></i>
+                    <span>Domácí mazlíčci</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-coffee"></i>
+                    <span>Snídaně</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-shuttle-van"></i>
+                    <span>Letištní transfer</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span>24/7 recepce</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-tshirt"></i>
+                    <span>Praní prádla</span>
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-bicycle"></i>
+                    <span>Půjčovna kol</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galerie -->
+    <section class="gallery" id="galerie">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Galerie</h2>
+                <p class="section-subtitle">Prohlédněte si naše prostory</p>
+            </div>
+            
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Obrázky se načtou dynamicky -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-prev" id="lightboxPrev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-next" id="lightboxNext">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <img src="" alt="" id="lightboxImage">
+    </div>
+
+    <!-- Kontakt -->
+    <section class="contact" id="kontakt">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Kontakt</h2>
+                <p class="section-subtitle">Jsme tu pro vás</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Adresa</h3>
+                            <p>Mezirolí, Karlovarský kraj<br>Česká republika</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Telefon</h3>
+                            <p>+420 XXX XXX XXX</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@pensionsunset.cz</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Recepce</h3>
+                            <p>24/7</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactName">Jméno *</label>
+                                <input type="text" id="contactName" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Email *</label>
+                                <input type="email" id="contactEmail" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactSubject">Předmět</label>
+                            <input type="text" id="contactSubject" name="subject">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactMessage">Zpráva *</label>
+                            <textarea id="contactMessage" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <span>Odeslat zprávu</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="contact-map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2560.1234567890!2d12.3456789!3d50.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDA3JzI0LjQiTiAxMsKwMjAnNDQuNCJF!5e0!3m2!1scs!2scz!4v1234567890123!5m2!1scs!2scz"
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Pension Sunset</h3>
+                    <p>Klid, harmonie a relax u Karlových Varů</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Rychlé odkazy</h4>
+                    <ul>
+                        <li><a href="#uvod">Úvod</a></li>
+                        <li><a href="#pokoje">Pokoje</a></li>
+                        <li><a href="#wellness">Wellness</a></li>
+                        <li><a href="#okoli">Okolí</a></li>
+                        <li><a href="#galerie">Galerie</a></li>
+                        <li><a href="#kontakt">Kontakt</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Služby</h4>
+                    <ul>
+                        <li><a href="#sluzby">Vybavení</a></li>
+                        <li><a href="#rezervace">Rezervace</a></li>
+                        <li><a href="#wellness">Wellness</a></li>
+                        <li><a href="#okoli">Okolí</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Jazyky</h4>
+                    <div class="footer-languages">
+                        <a href="#" data-lang="cs">Čeština</a>
+                        <a href="#" data-lang="en">English</a>
+                        <a href="#" data-lang="de">Deutsch</a>
+                        <a href="#" data-lang="ru">Русский</a>
+                        <a href="#" data-lang="sk">Slovenčina</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pension Sunset Mezirolí. Všechna práva vyhrazena.</p>
+                <p><a href="admin.html" class="admin-link">Admin</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module" src="assets/js/firebase.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+</body>
+</html>
+

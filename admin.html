@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Pension Sunset</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-container">
+            <div class="login-card">
+                <h1><i class="fas fa-lock"></i> Admin přihlášení</h1>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" name="email" required autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Heslo</label>
+                        <input type="password" id="loginPassword" name="password" required autocomplete="current-password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Přihlásit se</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <div class="error-message" id="loginError"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <h1><i class="fas fa-home"></i> Pension Sunset - Admin</h1>
+                <div class="admin-header-actions">
+                    <span class="admin-user" id="adminUser"></span>
+                    <button class="btn btn-secondary" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Odhlásit se
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-container">
+                <!-- Rooms Management -->
+                <section class="admin-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-bed"></i> Správa pokojů</h2>
+                        <button class="btn btn-primary" id="addRoomBtn">
+                            <i class="fas fa-plus"></i> Přidat pokoj
+                        </button>
+                    </div>
+
+                    <!-- Rooms Table -->
+                    <div class="table-wrapper">
+                        <table class="admin-table" id="roomsTable">
+                            <thead>
+                                <tr>
+                                    <th>Název</th>
+                                    <th>Cena/noc</th>
+                                    <th>Kapacita</th>
+                                    <th>Popis</th>
+                                    <th>Fotka</th>
+                                    <th>Akce</th>
+                                </tr>
+                            </thead>
+                            <tbody id="roomsTableBody">
+                                <tr>
+                                    <td colspan="6" class="loading">Načítání pokojů...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Room Modal -->
+    <div class="modal" id="roomModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Přidat pokoj</h2>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="roomForm">
+                <input type="hidden" id="roomId" name="roomId">
+                
+                <div class="form-group">
+                    <label for="roomName">Název pokoje *</label>
+                    <input type="text" id="roomName" name="name" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="roomPrice">Cena za noc (Kč) *</label>
+                        <input type="number" id="roomPrice" name="price" min="0" step="100" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="roomCapacity">Kapacita (osob) *</label>
+                        <input type="number" id="roomCapacity" name="capacity" min="1" max="10" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="roomDescription">Popis *</label>
+                    <textarea id="roomDescription" name="description" rows="4" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="roomImage">Fotka (název souboru ze složky fotky/)</label>
+                    <input type="text" id="roomImage" name="image" placeholder="např. 178484544.jpg">
+                    <small>Dostupné fotky: <span id="availableImages"></span></small>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Zrušit</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span id="submitBtnText">Přidat pokoj</span>
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+                
+                <div class="error-message" id="formError"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module" src="assets/js/firebase.js"></script>
+    <script type="module" src="assets/js/admin.js"></script>
+</body>
+</html>
+

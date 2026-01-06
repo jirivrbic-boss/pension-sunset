@@ -1,0 +1,77 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ============================================
+    // ROOMS COLLECTION
+    // ============================================
+    // Veřejné čtení - kdokoli může číst pokoje
+    // Zápis pouze pro autentizované uživatele
+    match /rooms/{roomId} {
+      // Čtení: povoleno všem
+      allow read: if true;
+      
+      // Zápis: pouze autentizovaní uživatelé
+      allow create, update, delete: if request.auth != null;
+    }
+    
+    // ============================================
+    // BOOKINGS COLLECTION (pro budoucí použití)
+    // ============================================
+    match /bookings/{bookingId} {
+      // Čtení: pouze autentizovaní uživatelé
+      allow read: if request.auth != null;
+      
+      // Vytvoření: kdokoli (pro rezervace)
+      allow create: if true;
+      
+      // Aktualizace a mazání: pouze autentizovaní uživatelé
+      allow update, delete: if request.auth != null;
+    }
+    
+    // ============================================
+    // CONTACTS COLLECTION (pro kontaktní formulář)
+    // ============================================
+    match /contacts/{contactId} {
+      // Vytvoření: kdokoli (pro odeslání zprávy)
+      allow create: if true;
+      
+      // Čtení, aktualizace, mazání: pouze autentizovaní uživatelé
+      allow read, update, delete: if request.auth != null;
+    }
+    
+    // ============================================
+    // USERS COLLECTION (pro správu uživatelů)
+    // ============================================
+    match /users/{userId} {
+      // Uživatel může číst pouze svá vlastní data
+      allow read: if request.auth != null && request.auth.uid == userId;
+      
+      // Vytvoření: kdokoli může vytvořit svůj vlastní záznam
+      allow create: if request.auth != null && request.auth.uid == userId;
+      
+      // Aktualizace: pouze vlastní záznam
+      allow update: if request.auth != null && request.auth.uid == userId;
+      
+      // Mazání: pouze vlastní záznam
+      allow delete: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // ============================================
+    // ADMIN COLLECTION (pro admin nastavení)
+    // ============================================
+    match /admin/{document=**} {
+      // Pouze autentizovaní uživatelé
+      allow read, write: if request.auth != null;
+    }
+    
+    // ============================================
+    // DEFAULT: Odepřít přístup ke všem ostatním kolekcím
+    // ============================================
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
