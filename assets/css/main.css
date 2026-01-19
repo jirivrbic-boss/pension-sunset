@@ -711,7 +711,8 @@ body.menu-open {
     background-color: var(--bg-white);
     z-index: 2000;
     transition: right 0.4s ease-in-out;
-    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
+    border: none;
 }
 
 .side-menu.active {
