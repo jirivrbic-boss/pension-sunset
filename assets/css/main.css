@@ -393,18 +393,21 @@ body.menu-open .backdrop {
     }
     
     /* Scale down and center the content vertically */
+    body.menu-open {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
     body.menu-open .app {
-        transform: translateX(var(--menu-translate-x)) translateY(-50%) scale(0.85);
+        transform: translateX(calc(var(--menu-translate-x) / 0.85)) scale(0.85);
         transform-origin: center center;
         border-radius: 12px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         overflow: hidden;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-left: calc((100% - var(--menu-width)) / 2);
-        margin-top: 0;
-        max-width: calc(100% - var(--menu-width));
+        max-width: calc((100% - var(--menu-width)) / 0.85);
+        width: calc((100% - var(--menu-width)) / 0.85);
+        margin-left: var(--menu-translate-x);
     }
 }
 
@@ -1438,6 +1441,348 @@ body.menu-open {
 .mt-2 { margin-top: var(--spacing-md); }
 .mb-1 { margin-bottom: var(--spacing-sm); }
 .mb-2 { margin-bottom: var(--spacing-md); }
+
+/* ============================================
+   TRIPS PAGE - Výlety do okolí
+   ============================================ */
+
+/* Trips Hero */
+.trips-hero {
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    color: var(--bg-white);
+    margin-top: 0;
+}
+
+.trips-hero .section-title {
+    color: var(--bg-white);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.trips-hero .section-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Trips Filters */
+.trips-filters {
+    padding: var(--spacing-md) 0;
+    background-color: var(--bg-light);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background-color: rgba(248, 248, 248, 0.95);
+}
+
+.filters-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-group label {
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.filter-select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    background-color: var(--bg-white);
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+}
+
+.filter-select:hover {
+    border-color: var(--accent-color);
+}
+
+#resetFilters {
+    padding: 0.75rem 1.5rem;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .filters-wrapper {
+        flex-direction: column;
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+    
+    #resetFilters {
+        width: 100%;
+    }
+}
+
+/* Trips Grid Section */
+.trips-grid-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-white);
+}
+
+.trips-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.trip-card {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    background-color: var(--bg-white);
+}
+
+.trip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.trip-card-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 500px;
+    position: relative;
+}
+
+/* Trip Image Side */
+.trip-image-side {
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.trip-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.trip-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: var(--transition);
+}
+
+.trip-card:hover .trip-image-wrapper img {
+    transform: scale(1.05);
+}
+
+/* Blur efekt v polovině s přechodem do barvy */
+.trip-image-gradient {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Blur maska - efekt blur v polovině (od 40% do 60%) */
+.trip-image-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    z-index: 1;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    mask-image: linear-gradient(to right, transparent 0%, transparent 30%, black 40%, black 60%, transparent 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 30%, black 40%, black 60%, transparent 70%, transparent 100%);
+}
+
+.trip-image-left .trip-image-wrapper::after {
+    right: 0;
+}
+
+.trip-image-right .trip-image-wrapper::after {
+    left: 0;
+    mask-image: linear-gradient(to left, transparent 0%, transparent 30%, black 40%, black 60%, transparent 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to left, transparent 0%, transparent 30%, black 40%, black 60%, transparent 70%, transparent 100%);
+}
+
+/* Gradient přechod z průhledné do barvy */
+.trip-gradient-left {
+    right: 0;
+}
+
+.trip-gradient-right {
+    left: 0;
+}
+
+/* Trip Content Side */
+.trip-content-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    color: var(--bg-white);
+    position: relative;
+}
+
+.trip-content-wrapper {
+    max-width: 500px;
+    width: 100%;
+}
+
+.trip-name {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--bg-white);
+    line-height: 1.2;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.trip-description {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: var(--spacing-lg);
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 300;
+}
+
+.trip-maps-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 1rem 2rem;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--bg-white);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    font-family: var(--font-body);
+}
+
+.trip-maps-link:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.trip-maps-link i {
+    font-size: 1.1rem;
+}
+
+.trip-maps-link i:last-child {
+    font-size: 0.875rem;
+    margin-left: auto;
+}
+
+.no-results {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--text-light);
+    font-size: 1.125rem;
+    grid-column: 1 / -1;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .trip-card-inner {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+    
+    .trip-image-side {
+        min-height: 350px;
+        order: 1;
+    }
+    
+    .trip-content-side {
+        order: 2;
+        min-height: 350px;
+    }
+    
+    /* Na mobilu: blur a gradient zespoda */
+    .trip-image-wrapper::after {
+        width: 100%;
+        height: 50%;
+        bottom: 0;
+        top: auto;
+    }
+    
+    .trip-image-gradient {
+        width: 100%;
+        height: 50%;
+        bottom: 0;
+        top: auto;
+    }
+    
+    .trip-name {
+        font-size: 2rem;
+    }
+    
+    .trip-description {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .trip-name {
+        font-size: 1.75rem;
+    }
+    
+    .trip-content-side {
+        padding: var(--spacing-md);
+        min-height: 300px;
+    }
+    
+    .trip-image-side {
+        min-height: 300px;
+    }
+    
+    .trip-maps-link {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Menu Active State */
+.menu-link.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}
 
 /* ============================================
    TRIPS PAGE - Výlety do okolí
