@@ -66,23 +66,36 @@ function initSideMenu() {
     const firstFocusable = focusableElements[0];
     const lastFocusable = focusableElements[focusableElements.length - 1];
     
-    function openMenu() {
+    function openMenu(e) {
+        // Prevent default behavior (if called from link/button)
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
         isMenuOpen = true;
         
         // Save current scroll position BEFORE any changes
         savedScrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
         
-        // Add classes
-        document.documentElement.classList.add('menu-open');
-        body.classList.add('menu-open');
+        // Store scroll position in dataset for later use
+        body.dataset.scrollY = savedScrollPosition.toString();
         
-        // Apply scroll position to body and app to maintain viewport
+        // Lock scroll position BEFORE adding classes to prevent jump
+        // This must happen synchronously before any layout changes
+        body.style.position = 'fixed';
         body.style.top = `-${savedScrollPosition}px`;
+        body.style.width = '100%';
+        body.style.overflow = 'hidden';
         
         const app = document.getElementById('app');
         if (app) {
             app.style.top = `-${savedScrollPosition}px`;
         }
+        
+        // Now add classes (this won't cause scroll jump because body is already fixed)
+        document.documentElement.classList.add('menu-open');
+        body.classList.add('menu-open');
         
         menuToggle.setAttribute('aria-expanded', 'true');
         backdrop.setAttribute('aria-hidden', 'false');
@@ -90,75 +103,134 @@ function initSideMenu() {
         // Save current focus
         previousFocus = document.activeElement;
         
-        // Focus first menu item
-        setTimeout(() => {
+        // Focus first menu item WITHOUT scrolling
+        requestAnimationFrame(() => {
             if (firstFocusable) {
-                firstFocusable.focus();
+                // Try preventScroll, fallback to manual scroll save/restore
+                if (firstFocusable.focus && typeof firstFocusable.focus === 'function') {
+                    try {
+                        firstFocusable.focus({ preventScroll: true });
+                    } catch (err) {
+                        // Fallback for browsers that don't support preventScroll
+                        const currentScroll = window.scrollY;
+                        firstFocusable.focus();
+                        if (window.scrollY !== currentScroll) {
+                            window.scrollTo(0, currentScroll);
+                        }
+                    }
+                }
             }
-        }, 100);
+        });
     }
     
-    function closeMenu() {
+    function closeMenu(e) {
+        // Prevent default behavior (if called from link/button)
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
         isMenuOpen = false;
         
-        // Remove classes with smooth transition
+        // Get saved scroll position from dataset
+        const savedY = parseInt(body.dataset.scrollY || savedScrollPosition.toString(), 10);
+        
+        // Remove classes first (CSS transition will handle animation)
         document.documentElement.classList.remove('menu-open');
         body.classList.remove('menu-open');
         
         // Wait for CSS transition to complete before restoring scroll
         const app = document.getElementById('app');
-        if (app) {
-            // Remove inline styles after transition
-            app.addEventListener('transitionend', function restoreScroll() {
-                app.removeEventListener('transitionend', restoreScroll);
-                
-                // Remove inline styles
-                body.style.top = '';
+        const restoreScroll = () => {
+            // Remove inline styles
+            body.style.position = '';
+            body.style.top = '';
+            body.style.width = '';
+            body.style.overflow = '';
+            
+            if (app) {
                 app.style.top = '';
-                
-                // Restore scroll position smoothly
+            }
+            
+            // Restore scroll position instantly (no smooth scroll to avoid visual jump)
+            requestAnimationFrame(() => {
+                window.scrollTo(0, savedY);
+                // Double-check after a frame to ensure scroll is restored
                 requestAnimationFrame(() => {
-                    window.scrollTo({
-                        top: savedScrollPosition,
-                        behavior: 'auto' // Instant scroll to saved position
-                    });
+                    if (Math.abs(window.scrollY - savedY) > 1) {
+                        window.scrollTo(0, savedY);
+                    }
                 });
+            });
+        };
+        
+        if (app) {
+            // Listen for transition end on app element
+            app.addEventListener('transitionend', function onTransitionEnd(event) {
+                // Only restore if this is the transform transition (not a child element)
+                if (event.target === app && event.propertyName === 'transform') {
+                    app.removeEventListener('transitionend', onTransitionEnd);
+                    restoreScroll();
+                }
             }, { once: true });
+            
+            // Fallback timeout in case transitionend doesn't fire
+            setTimeout(() => {
+                restoreScroll();
+            }, 600); // Slightly longer than transition duration
         } else {
             // Fallback if app element not found
-            setTimeout(() => {
-                body.style.top = '';
-                window.scrollTo({
-                    top: savedScrollPosition,
-                    behavior: 'auto'
-                });
-            }, 500); // Wait for transition duration
+            setTimeout(restoreScroll, 500);
         }
         
         menuToggle.setAttribute('aria-expanded', 'false');
         backdrop.setAttribute('aria-hidden', 'true');
         
-        // Return focus to previous element or hamburger button
-        if (previousFocus) {
-            previousFocus.focus();
-        } else {
-            menuToggle.focus();
-        }
+        // Return focus to previous element or hamburger button WITHOUT scrolling
+        requestAnimationFrame(() => {
+            const targetFocus = previousFocus || menuToggle;
+            if (targetFocus && targetFocus.focus) {
+                try {
+                    targetFocus.focus({ preventScroll: true });
+                } catch (err) {
+                    // Fallback: save scroll, focus, restore scroll
+                    const currentScroll = window.scrollY;
+                    targetFocus.focus();
+                    if (window.scrollY !== currentScroll) {
+                        window.scrollTo(0, currentScroll);
+                    }
+                }
+            }
+        });
     }
     
-    function toggleMenu() {
+    function toggleMenu(e) {
+        // Always prevent default to avoid any navigation
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
         if (isMenuOpen) {
-            closeMenu();
+            closeMenu(e);
         } else {
-            openMenu();
+            openMenu(e);
         }
     }
     
-    // Hamburger button click
-    menuToggle.addEventListener('click', toggleMenu);
+    // Hamburger button click - prevent default to avoid any navigation
+    menuToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu(e);
+    });
     
-    // Backdrop click
-    backdrop.addEventListener('click', closeMenu);
+    // Backdrop click - prevent default
+    backdrop.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeMenu(e);
+    });
     
     // ESC key to close
     document.addEventListener('keydown', (e) => {
@@ -189,35 +261,43 @@ function initSideMenu() {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
             
+            // Always prevent default first to avoid any navigation
+            e.preventDefault();
+            e.stopPropagation();
+            
             // If it's an anchor link (starts with #)
             if (href && href.startsWith('#')) {
-                e.preventDefault();
+                const targetId = href.substring(1);
                 
-                // Close menu first
-                closeMenu();
+                // Close menu first (this will restore scroll position)
+                closeMenu(e);
                 
-                // Wait for menu to close, then scroll to section
+                // Wait for menu to close and scroll to be restored, then scroll to target
                 setTimeout(() => {
-                    const targetId = href.substring(1);
                     const targetElement = document.getElementById(targetId);
                     
                     if (targetElement) {
+                        // Use scrollIntoView with smooth behavior
                         targetElement.scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
                         });
-                    } else if (targetId === 'uvod') {
-                        // Special case for home - scroll to top
+                    } else if (targetId === 'uvod' || targetId === '') {
+                        // Special case for home - scroll to top smoothly
                         window.scrollTo({
                             top: 0,
                             behavior: 'smooth'
                         });
                     }
-                }, 300); // Wait for menu close animation
+                }, 350); // Wait for menu close animation + scroll restore
             } else if (href && !href.startsWith('#')) {
-                // External link or different page - close menu and navigate
-                closeMenu();
-                // Navigation will happen naturally via href
+                // External link or different page - close menu first, then navigate
+                closeMenu(e);
+                
+                // Small delay to allow menu to close, then navigate
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 100);
             }
         });
     });

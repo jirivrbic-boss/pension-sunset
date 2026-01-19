@@ -524,10 +524,11 @@ body.menu-open .backdrop {
 }
 
 /* Prevent body scroll when menu is open */
+/* Note: position: fixed is set via inline style in JS to prevent scroll jump */
 body.menu-open {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
+    /* overflow: hidden is set via inline style */
+    /* position: fixed is set via inline style */
+    /* width: 100% is set via inline style */
     height: 100%;
 }
 
