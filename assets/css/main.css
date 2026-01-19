@@ -215,7 +215,7 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     top: 2rem;
     right: 2rem;
-    z-index: 1001;
+    z-index: 1002;
     background-color: var(--secondary-color);
     color: var(--primary-color);
     text-decoration: none;
@@ -228,6 +228,8 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    pointer-events: auto;
+    transform: none !important;
 }
 
 .btn-reservation-top:hover {
