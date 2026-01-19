@@ -2,38 +2,43 @@
 // MAIN JAVASCRIPT - PUBLIC WEBSITE
 // ============================================
 
-// Try to import Firebase, but don't fail if it doesn't work
+// Firebase will be loaded asynchronously
 let db = null;
-try {
-    const firebaseModule = await import('./firebase.js');
-    db = firebaseModule.db;
-    const { collection, getDocs, query, orderBy } = await import('firebase/firestore');
-    window.firestore = { collection, getDocs, query, orderBy };
-} catch (error) {
-    console.warn('Firebase modules not available:', error);
-}
+let firestore = null;
 
 // ============================================
 // INITIALIZATION
 // ============================================
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Always initialize menu first (critical)
+document.addEventListener('DOMContentLoaded', async () => {
+    // Always initialize menu first (critical - must work even without Firebase)
     initSideMenu();
     
-    // Initialize other features
+    // Initialize other features that don't need Firebase
     initNavigation();
     initGallery();
-    
-    // Only load rooms if Firebase is available
-    if (db && window.firestore) {
-        loadRooms();
-    } else {
-        console.warn('Firebase not available, skipping rooms load');
-    }
-    
     initLanguageSwitcher();
     initScrollAnimations();
+    
+    // Try to load Firebase modules
+    try {
+        const firebaseModule = await import('./firebase.js');
+        db = firebaseModule.db;
+        const firestoreModule = await import('firebase/firestore');
+        firestore = {
+            collection: firestoreModule.collection,
+            getDocs: firestoreModule.getDocs,
+            query: firestoreModule.query,
+            orderBy: firestoreModule.orderBy
+        };
+        
+        // Load rooms if Firebase is available
+        if (db && firestore) {
+            loadRooms();
+        }
+    } catch (error) {
+        console.warn('Firebase modules not available, continuing without Firebase:', error);
+    }
 });
 
 // ============================================
@@ -178,13 +183,13 @@ async function loadRooms() {
     const roomsGrid = document.getElementById('roomsGrid');
     if (!roomsGrid) return;
     
-    if (!db || !window.firestore) {
+    if (!db || !firestore) {
         console.warn('Firebase not available, cannot load rooms');
         return;
     }
     
     try {
-        const { collection, getDocs, query, orderBy } = window.firestore;
+        const { collection, getDocs, query, orderBy } = firestore;
         const roomsRef = collection(db, 'rooms');
         const q = query(roomsRef, orderBy('name', 'asc'));
         const querySnapshot = await getDocs(q);
