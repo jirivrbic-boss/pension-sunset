@@ -156,16 +156,18 @@ function initSideMenu() {
         // Get saved scroll position from dataset (always use the saved value)
         const savedY = parseInt(body.dataset.scrollY || savedScrollPosition.toString(), 10) || 0;
         
-        // Remove classes first (CSS transition will handle animation)
+        const app = document.getElementById('app');
+        
+        // CRITICAL: Remove classes FIRST to trigger CSS transition BACK
+        // The CSS transition will animate transform back to normal (scale(1) rotateY(0deg))
+        // We keep the inline styles (body fixed, app top) until AFTER the transition completes
         document.documentElement.classList.remove('menu-open');
         body.classList.remove('menu-open');
         
-        const app = document.getElementById('app');
-        
-        // Function to restore scroll position
+        // Function to restore scroll position - called AFTER CSS transition completes
         const restoreScroll = () => {
-            // CRITICAL: Remove inline styles FIRST (from openMenu)
-            // This was used to maintain position during scroll lock
+            // NOW remove inline styles that lock scroll
+            // This happens AFTER the transform animation completes
             if (app) {
                 app.style.top = '';
                 app.style.transform = '';
@@ -202,39 +204,48 @@ function initSideMenu() {
         };
         
         // Listen for transition end on app element
+        // This ensures the CSS transform animation completes BEFORE we restore scroll
         if (app) {
             let transitionEnded = false;
             
             const onTransitionEnd = function(event) {
-                // Only restore if this is the transform transition (not a child element)
-                if (event.target === app && (event.propertyName === 'transform' || event.propertyName === 'all')) {
+                // Listen for transform, width, or max-width transitions ending
+                // These are the properties that change when menu closes
+                if (event.target === app && 
+                    (event.propertyName === 'transform' || 
+                     event.propertyName === 'width' || 
+                     event.propertyName === 'max-width' ||
+                     event.propertyName === 'all')) {
                     if (!transitionEnded) {
                         transitionEnded = true;
                         app.removeEventListener('transitionend', onTransitionEnd);
+                        // Now that animation is complete, restore scroll
                         restoreScroll();
                     }
                 }
             };
             
-            app.addEventListener('transitionend', onTransitionEnd, { once: true });
+            app.addEventListener('transitionend', onTransitionEnd, { once: false });
             
             // Fallback timeout in case transitionend doesn't fire
+            // Use a timeout slightly longer than the CSS transition duration
             setTimeout(() => {
                 if (!transitionEnded) {
                     transitionEnded = true;
+                    app.removeEventListener('transitionend', onTransitionEnd);
                     restoreScroll();
                 }
-            }, 600); // Slightly longer than transition duration
+            }, 650); // Slightly longer than transition duration (500ms + buffer)
         } else {
             // Fallback if app element not found
-            setTimeout(restoreScroll, 500);
+            setTimeout(restoreScroll, 600);
         }
         
         menuToggle.setAttribute('aria-expanded', 'false');
         backdrop.setAttribute('aria-hidden', 'true');
         
         // Return focus to previous element or hamburger button WITHOUT scrolling
-        // Use requestAnimationFrame to ensure scroll is restored first
+        // Use setTimeout to ensure scroll is restored first
         setTimeout(() => {
             const targetFocus = previousFocus || menuToggle;
             if (targetFocus && targetFocus.focus) {
