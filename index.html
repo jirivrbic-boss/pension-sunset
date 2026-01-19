@@ -19,14 +19,14 @@
 </head>
 <body>
     <!-- Hamburger Menu Button -->
-    <button class="menu-toggle" id="menuToggle" aria-controls="offCanvasMenu" aria-expanded="false" aria-label="Otevřít menu">
+    <button class="menu-toggle" id="menuToggle" aria-controls="sideMenu" aria-expanded="false" aria-label="Otevřít menu">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
     </button>
 
-    <!-- 3D Off-Canvas Menu -->
-    <aside class="off-canvas-menu" id="offCanvasMenu" role="navigation" aria-label="Hlavní navigace">
+    <!-- Side Menu -->
+    <aside class="side-menu" id="sideMenu" role="navigation" aria-label="Hlavní navigace">
         <div class="menu-content">
             <div class="menu-logo">
                 <h2>Pension Sunset</h2>
@@ -57,11 +57,11 @@
         </div>
     </aside>
 
-    <!-- Overlay -->
-    <div class="menu-overlay" id="menuOverlay" role="button" aria-label="Zavřít menu" tabindex="-1"></div>
+    <!-- Backdrop Overlay -->
+    <button class="backdrop" id="backdrop" aria-hidden="true" aria-label="Zavřít menu"></button>
 
-    <!-- Main Content Wrapper (will be transformed in 3D) -->
-    <div class="page-wrapper" id="pageWrapper">
+    <!-- App Wrapper - ALL content goes here, will be transformed in 3D -->
+    <div class="app" id="app">
 
     <!-- Hero Section -->
     <section class="hero" id="uvod">
@@ -474,7 +474,7 @@
     </footer>
 
     </div>
-    <!-- End Page Wrapper -->
+    <!-- End App Wrapper -->
 
     <!-- Firebase SDK -->
     <script type="module" src="assets/js/firebase.js"></script>
@@ -485,11 +485,11 @@
         // Ensure menu works even if ES6 modules fail
         (function() {
             const menuToggle = document.getElementById('menuToggle');
-            const menu = document.getElementById('offCanvasMenu');
-            const overlay = document.getElementById('menuOverlay');
+            const menu = document.getElementById('sideMenu');
+            const backdrop = document.getElementById('backdrop');
             const body = document.body;
             
-            if (!menuToggle || !menu || !overlay) {
+            if (!menuToggle || !menu || !backdrop) {
                 console.error('Menu elements not found');
                 return;
             }
@@ -498,19 +498,19 @@
             
             function toggleMenu() {
                 isMenuOpen = !isMenuOpen;
-                body.classList.toggle('has-menu-open', isMenuOpen);
+                body.classList.toggle('menu-open', isMenuOpen);
                 menuToggle.setAttribute('aria-expanded', isMenuOpen);
             }
             
             function closeMenu() {
                 isMenuOpen = false;
-                body.classList.remove('has-menu-open');
+                body.classList.remove('menu-open');
                 menuToggle.setAttribute('aria-expanded', 'false');
             }
             
             // Add event listeners
             menuToggle.addEventListener('click', toggleMenu);
-            overlay.addEventListener('click', closeMenu);
+            backdrop.addEventListener('click', closeMenu);
             
             // ESC key
             document.addEventListener('keydown', (e) => {

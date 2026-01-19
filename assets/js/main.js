@@ -47,11 +47,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function initSideMenu() {
     const menuToggle = document.getElementById('menuToggle');
-    const menu = document.getElementById('offCanvasMenu');
-    const overlay = document.getElementById('menuOverlay');
-    const pageWrapper = document.getElementById('pageWrapper');
+    const menu = document.getElementById('sideMenu');
+    const backdrop = document.getElementById('backdrop');
     const body = document.body;
     const menuLinks = document.querySelectorAll('.menu-link');
+    
+    if (!menuToggle || !menu || !backdrop) {
+        console.warn('Menu elements not found');
+        return;
+    }
     
     let isMenuOpen = false;
     let previousFocus = null;
@@ -65,8 +69,9 @@ function initSideMenu() {
     
     function openMenu() {
         isMenuOpen = true;
-        body.classList.add('has-menu-open');
+        body.classList.add('menu-open');
         menuToggle.setAttribute('aria-expanded', 'true');
+        backdrop.setAttribute('aria-hidden', 'false');
         
         // Save current focus
         previousFocus = document.activeElement;
@@ -81,8 +86,9 @@ function initSideMenu() {
     
     function closeMenu() {
         isMenuOpen = false;
-        body.classList.remove('has-menu-open');
+        body.classList.remove('menu-open');
         menuToggle.setAttribute('aria-expanded', 'false');
+        backdrop.setAttribute('aria-hidden', 'true');
         
         // Return focus to previous element or hamburger button
         if (previousFocus) {
@@ -101,14 +107,10 @@ function initSideMenu() {
     }
     
     // Hamburger button click
-    if (menuToggle) {
-        menuToggle.addEventListener('click', toggleMenu);
-    }
+    menuToggle.addEventListener('click', toggleMenu);
     
-    // Overlay click
-    if (overlay) {
-        overlay.addEventListener('click', closeMenu);
-    }
+    // Backdrop click
+    backdrop.addEventListener('click', closeMenu);
     
     // ESC key to close
     document.addEventListener('keydown', (e) => {

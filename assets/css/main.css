@@ -190,20 +190,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Hamburger animation when menu is open */
-body.has-menu-open .hamburger-line:nth-child(1) {
+body.menu-open .hamburger-line:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
 }
 
-body.has-menu-open .hamburger-line:nth-child(2) {
+body.menu-open .hamburger-line:nth-child(2) {
     opacity: 0;
 }
 
-body.has-menu-open .hamburger-line:nth-child(3) {
+body.menu-open .hamburger-line:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Off-Canvas Menu */
-.off-canvas-menu {
+/* Side Menu */
+.side-menu {
     position: fixed;
     top: 0;
     left: 0;
@@ -217,7 +217,7 @@ body.has-menu-open .hamburger-line:nth-child(3) {
     overflow-y: auto;
 }
 
-body.has-menu-open .off-canvas-menu {
+body.menu-open .side-menu {
     transform: translateX(0);
 }
 
@@ -340,8 +340,8 @@ body.has-menu-open .off-canvas-menu {
     outline: none;
 }
 
-/* Overlay */
-.menu-overlay {
+/* Backdrop Overlay */
+.backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -355,63 +355,62 @@ body.has-menu-open .off-canvas-menu {
     transition: opacity var(--menu-animation-duration) var(--menu-animation-easing),
                 visibility var(--menu-animation-duration) var(--menu-animation-easing);
     cursor: pointer;
+    border: none;
+    padding: 0;
     backdrop-filter: blur(2px);
 }
 
-body.has-menu-open .menu-overlay {
+body.menu-open .backdrop {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
 }
 
-/* Page Wrapper - 3D Transform */
-.page-wrapper {
+/* App Wrapper - ALL content, will be transformed in 3D */
+.app {
     min-height: 100vh;
-    transition: transform var(--menu-animation-duration) var(--menu-animation-easing);
-    transform-origin: left center;
     background-color: var(--bg-white);
     position: relative;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition: transform var(--menu-animation-duration) var(--menu-animation-easing);
     will-change: transform;
 }
 
 /* 3D Transform when menu is open (Desktop only) */
 @media (min-width: 769px) {
-    /* Add perspective to body for proper 3D effect */
-    body.has-menu-open {
+    /* Perspective on body for proper 3D effect */
+    body.menu-open {
         perspective: var(--menu-perspective);
         perspective-origin: left center;
         overflow: hidden;
     }
     
-    body.has-menu-open .page-wrapper {
+    body.menu-open .app {
         transform: translateX(var(--menu-translate-x)) 
-                   translateZ(var(--menu-translate-z))
                    rotateY(var(--menu-rotate-y)) 
                    scale(var(--menu-scale));
-        border-radius: 12px;
-        box-shadow: -10px 0 50px rgba(0, 0, 0, 0.4),
-                    0 0 0 1px rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
         overflow: hidden;
-        backface-visibility: hidden;
     }
 }
 
 /* Mobile: simpler transform without 3D */
 @media (max-width: 768px) {
-    body.has-menu-open .page-wrapper {
+    body.menu-open .app {
         transform: translateX(var(--menu-width));
     }
     
     :root {
-        --menu-rotate-y: 0deg;
-        --menu-scale: 1;
-        --menu-perspective: 0;
-        --menu-translate-z: 0;
+        --menu-rotate-y: -6deg;
+        --menu-scale: 0.98;
     }
 }
 
 /* Prevent body scroll when menu is open */
-body.has-menu-open {
+body.menu-open {
     overflow: hidden;
 }
 
