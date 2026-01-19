@@ -598,45 +598,71 @@ function createRoomCard(room) {
 // GALLERY
 // ============================================
 
+// Proměnné pro galerii (globální, aby byly dostupné pro resize listener)
+const allGalleryImages = [
+    '107276708.jpg',
+    '119300806.jpg',
+    '129898529.jpg',
+    '129898757.jpg',
+    '129899039.jpg',
+    '130040998.jpg',
+    '130644941.jpg',
+    '130645994.jpg',
+    '130646422.jpg',
+    '143146327.jpg',
+    '143147259.jpg',
+    '143148468.jpg',
+    '144696148.jpg',
+    '144696484.jpg',
+    '144699058.jpg',
+    '178478261.jpg',
+    '178479648.jpg',
+    '178479759.jpg',
+    '178480294.jpg',
+    '178480560.jpg',
+    '178480866.jpg',
+    '178481221.jpg',
+    '178482126.jpg',
+    '178482932.jpg',
+    '178483119.jpg',
+    '178484544.jpg',
+    '53954045.jpg',
+    '61598806.jpg',
+    '73269680.jpg',
+    '73269716.jpg',
+    '73269987.jpg',
+    '74401789.jpg',
+    '88051428.jpg',
+    '88282651.jpg',
+    '96204493.jpg'
+];
+
+// Vyznačené fotky pro mobil (12 kusů)
+const mobileGalleryImages = [
+    '73269680.jpg',
+    '130040998.jpg',
+    '130645994.jpg',
+    '129898529.jpg',
+    '178478261.jpg',
+    '178479648.jpg',
+    '178479759.jpg',
+    '178480294.jpg',
+    '178480560.jpg',
+    '178481221.jpg',
+    '178482126.jpg',
+    '178482932.jpg'
+];
+
 function initGallery() {
     // Get all images from fotky folder (seřazeno podle názvu)
-    const imageFiles = [
-        '107276708.jpg',
-        '119300806.jpg',
-        '129898529.jpg',
-        '129898757.jpg',
-        '129899039.jpg',
-        '130040998.jpg',
-        '130644941.jpg',
-        '130645994.jpg',
-        '130646422.jpg',
-        '143146327.jpg',
-        '143147259.jpg',
-        '143148468.jpg',
-        '144696148.jpg',
-        '144696484.jpg',
-        '144699058.jpg',
-        '178478261.jpg',
-        '178479648.jpg',
-        '178479759.jpg',
-        '178480294.jpg',
-        '178480560.jpg',
-        '178480866.jpg',
-        '178481221.jpg',
-        '178482126.jpg',
-        '178482932.jpg',
-        '178483119.jpg',
-        '178484544.jpg',
-        '53954045.jpg',
-        '61598806.jpg',
-        '73269680.jpg',
-        '73269716.jpg',
-        '73269987.jpg',
-        '74401789.jpg',
-        '88051428.jpg',
-        '88282651.jpg',
-        '96204493.jpg'
-    ];
+    // Pro PC: všechny fotky kromě posledních 3
+    
+    // Pro PC: odeber poslední 3 fotky
+    const desktopImages = allGalleryImages.slice(0, -3);
+    
+    // Detekce mobilu (šířka menší než 768px)
+    const isMobile = window.innerWidth < 768;
+    const imageFiles = isMobile ? mobileGalleryImages : desktopImages;
     
     const galleryGrid = document.getElementById('galleryGrid');
     if (!galleryGrid) {
@@ -647,7 +673,7 @@ function initGallery() {
     // Clear any existing content
     galleryGrid.innerHTML = '';
     
-    console.log('Initializing gallery with', imageFiles.length, 'images');
+    console.log('Initializing gallery with', imageFiles.length, 'images', isMobile ? '(mobile)' : '(desktop)');
     
     imageFiles.forEach((imageFile, index) => {
         const item = document.createElement('div');
@@ -671,6 +697,7 @@ function initGallery() {
         };
         
         item.appendChild(img);
+        // Pro lightbox použijeme aktuální seznam obrázků
         item.addEventListener('click', () => openLightbox(index, imageFiles));
         
         galleryGrid.appendChild(item);
@@ -678,6 +705,29 @@ function initGallery() {
     
     console.log('Gallery initialized with', galleryGrid.children.length, 'items');
 }
+
+// Přepočítání galerie při změně velikosti okna
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        const galleryGrid = document.getElementById('galleryGrid');
+        if (galleryGrid && galleryGrid.children.length > 0) {
+            const currentIsMobile = window.innerWidth < 768;
+            const galleryItems = galleryGrid.querySelectorAll('.gallery-item');
+            const firstImage = galleryItems[0]?.querySelector('img');
+            if (firstImage) {
+                const currentSrc = firstImage.src.split('/').pop();
+                const wasMobile = mobileGalleryImages.includes(currentSrc);
+                
+                // Pokud se změnila kategorie (mobile/desktop), reinicializuj galerii
+                if (currentIsMobile !== wasMobile) {
+                    initGallery();
+                }
+            }
+        }
+    }, 250); // Debounce 250ms
+});
 
 function openLightbox(index, imageFiles) {
     const lightbox = document.getElementById('lightbox');
