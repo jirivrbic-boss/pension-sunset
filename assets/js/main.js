@@ -101,22 +101,39 @@ function initSideMenu() {
     function closeMenu() {
         isMenuOpen = false;
         
-        // Remove classes first
+        // Remove classes with smooth transition
         document.documentElement.classList.remove('menu-open');
         body.classList.remove('menu-open');
         
-        // Remove inline styles
-        body.style.top = '';
-        
+        // Wait for CSS transition to complete before restoring scroll
         const app = document.getElementById('app');
         if (app) {
-            app.style.top = '';
+            // Remove inline styles after transition
+            app.addEventListener('transitionend', function restoreScroll() {
+                app.removeEventListener('transitionend', restoreScroll);
+                
+                // Remove inline styles
+                body.style.top = '';
+                app.style.top = '';
+                
+                // Restore scroll position smoothly
+                requestAnimationFrame(() => {
+                    window.scrollTo({
+                        top: savedScrollPosition,
+                        behavior: 'auto' // Instant scroll to saved position
+                    });
+                });
+            }, { once: true });
+        } else {
+            // Fallback if app element not found
+            setTimeout(() => {
+                body.style.top = '';
+                window.scrollTo({
+                    top: savedScrollPosition,
+                    behavior: 'auto'
+                });
+            }, 500); // Wait for transition duration
         }
-        
-        // Restore scroll position AFTER removing fixed positioning
-        requestAnimationFrame(() => {
-            window.scrollTo(0, savedScrollPosition);
-        });
         
         menuToggle.setAttribute('aria-expanded', 'false');
         backdrop.setAttribute('aria-hidden', 'true');

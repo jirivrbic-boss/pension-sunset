@@ -378,9 +378,12 @@ body.menu-open .backdrop {
     background-color: var(--bg-white);
     position: relative;
     transform-origin: center center;
-    transition: transform var(--menu-animation-duration) var(--menu-animation-easing);
+    transition: transform var(--menu-animation-duration) var(--menu-animation-easing),
+                width var(--menu-animation-duration) var(--menu-animation-easing),
+                max-width var(--menu-animation-duration) var(--menu-animation-easing),
+                height var(--menu-animation-duration) var(--menu-animation-easing),
+                right var(--menu-animation-duration) var(--menu-animation-easing);
     will-change: transform;
-
 }
 
 /* Transform when menu is open - scale and center */
