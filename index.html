@@ -18,15 +18,16 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-    <!-- Header - Static Top Menu -->
-    <header class="header-static">
-        <div class="header-container">
+    <!-- Main Layout with Left Sidebar -->
+    <div class="main-layout">
+        <!-- Left Sidebar - Fixed Menu -->
+        <aside class="left-sidebar">
             <div class="logo">
                 <h1>Pension Sunset</h1>
                 <span class="logo-subtitle">Mezirolí</span>
             </div>
             
-            <nav class="main-nav">
+            <nav class="sidebar-nav">
                 <ul>
                     <li><a href="#uvod">Úvod</a></li>
                     <li><a href="#o-penzionu">O penzionu</a></li>
@@ -38,20 +39,18 @@
                 </ul>
             </nav>
             
-            <div class="header-right">
+            <div class="sidebar-footer">
                 <div class="language-switcher">
                     <button class="lang-btn active" data-lang="cs">CS</button>
                 </div>
                 <a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="btn-reservation">
                     Rezervovat
-                    <i class="fas fa-arrow-up-right"></i>
                 </a>
             </div>
-        </div>
-    </header>
+        </aside>
 
-    <!-- Main Content -->
-    <main class="main-content">
+        <!-- Right Content Area -->
+        <main class="right-content">
 
     <!-- Hero Section -->
     <section class="hero" id="uvod">
@@ -463,8 +462,10 @@
         </div>
     </footer>
 
-    </main>
-    <!-- End Main Content -->
+        </main>
+        <!-- End Right Content -->
+    </div>
+    <!-- End Main Layout -->
 
     <!-- Firebase SDK -->
     <script type="module" src="assets/js/firebase.js"></script>

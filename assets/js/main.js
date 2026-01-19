@@ -19,27 +19,25 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
-// HEADER SCROLL EFFECT
+// SIDEBAR MENU (Mobile Toggle)
 // ============================================
 
 function initSideMenu() {
-    const header = document.querySelector('.header-static');
-    
-    if (header) {
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
+    // Mobile menu toggle - only needed on mobile
+    if (window.innerWidth <= 768) {
+        // Add hamburger button for mobile
+        const sidebar = document.querySelector('.left-sidebar');
+        if (sidebar && !document.querySelector('.mobile-menu-btn')) {
+            const btn = document.createElement('button');
+            btn.className = 'mobile-menu-btn';
+            btn.innerHTML = '<i class="fas fa-bars"></i>';
+            btn.style.cssText = 'position: fixed; top: 20px; left: 20px; z-index: 1000; background: white; border: none; padding: 10px; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);';
+            document.body.appendChild(btn);
             
-            if (currentScroll > 100) {
-                header.style.backgroundColor = 'rgba(26, 26, 26, 0.98)';
-                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
-            } else {
-                header.style.backgroundColor = 'rgba(26, 26, 26, 0.95)';
-                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-            }
-            
-            lastScroll = currentScroll;
-        });
+            btn.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+        }
     }
 }
 
