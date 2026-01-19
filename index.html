@@ -18,28 +18,35 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-    <!-- Main Layout with Left Sidebar -->
-    <div class="main-layout">
-        <!-- Left Sidebar - Fixed Menu -->
-        <aside class="left-sidebar">
-            <div class="logo">
-                <h1>Pension Sunset</h1>
-                <span class="logo-subtitle">Mezirolí</span>
+    <!-- Hamburger Menu Button -->
+    <button class="menu-toggle" id="menuToggle" aria-controls="offCanvasMenu" aria-expanded="false" aria-label="Otevřít menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+
+    <!-- 3D Off-Canvas Menu -->
+    <aside class="off-canvas-menu" id="offCanvasMenu" role="navigation" aria-label="Hlavní navigace">
+        <div class="menu-content">
+            <div class="menu-logo">
+                <h2>Pension Sunset</h2>
+                <span class="menu-subtitle">Mezirolí</span>
             </div>
             
-            <nav class="sidebar-nav">
+            <nav class="menu-nav">
                 <ul>
-                    <li><a href="#uvod">Úvod</a></li>
-                    <li><a href="#o-penzionu">O penzionu</a></li>
-                    <li><a href="#pokoje">Pokoje</a></li>
-                    <li><a href="#wellness">Wellness</a></li>
-                    <li><a href="#okoli">Okolí</a></li>
-                    <li><a href="#galerie">Galerie</a></li>
-                    <li><a href="#kontakt">Kontakt</a></li>
+                    <li><a href="#uvod" class="menu-link">ÚVOD</a></li>
+                    <li><a href="#o-penzionu" class="menu-link">O PENZIONU</a></li>
+                    <li><a href="#pokoje" class="menu-link">POKOJE</a></li>
+                    <li><a href="#wellness" class="menu-link">WELLNESS</a></li>
+                    <li><a href="#okoli" class="menu-link">OKOLÍ</a></li>
+                    <li><a href="#sluzby" class="menu-link">SLUŽBY</a></li>
+                    <li><a href="#galerie" class="menu-link">GALERIE</a></li>
+                    <li><a href="#kontakt" class="menu-link">KONTAKT</a></li>
                 </ul>
             </nav>
             
-            <div class="sidebar-footer">
+            <div class="menu-footer">
                 <div class="language-switcher">
                     <button class="lang-btn active" data-lang="cs">CS</button>
                 </div>
@@ -47,10 +54,14 @@
                     Rezervovat
                 </a>
             </div>
-        </aside>
+        </div>
+    </aside>
 
-        <!-- Right Content Area -->
-        <main class="right-content">
+    <!-- Overlay -->
+    <div class="menu-overlay" id="menuOverlay" role="button" aria-label="Zavřít menu" tabindex="-1"></div>
+
+    <!-- Main Content Wrapper (will be transformed in 3D) -->
+    <div class="page-wrapper" id="pageWrapper">
 
     <!-- Hero Section -->
     <section class="hero" id="uvod">
@@ -462,10 +473,8 @@
         </div>
     </footer>
 
-        </main>
-        <!-- End Right Content -->
     </div>
-    <!-- End Main Layout -->
+    <!-- End Page Wrapper -->
 
     <!-- Firebase SDK -->
     <script type="module" src="assets/js/firebase.js"></script>

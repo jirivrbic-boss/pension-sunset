@@ -19,26 +19,105 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
-// SIDEBAR MENU (Mobile Toggle)
+// 3D OFF-CANVAS MENU
 // ============================================
 
 function initSideMenu() {
-    // Mobile menu toggle - only needed on mobile
-    if (window.innerWidth <= 768) {
-        // Add hamburger button for mobile
-        const sidebar = document.querySelector('.left-sidebar');
-        if (sidebar && !document.querySelector('.mobile-menu-btn')) {
-            const btn = document.createElement('button');
-            btn.className = 'mobile-menu-btn';
-            btn.innerHTML = '<i class="fas fa-bars"></i>';
-            btn.style.cssText = 'position: fixed; top: 20px; left: 20px; z-index: 1000; background: white; border: none; padding: 10px; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);';
-            document.body.appendChild(btn);
-            
-            btn.addEventListener('click', () => {
-                sidebar.classList.toggle('open');
-            });
+    const menuToggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('offCanvasMenu');
+    const overlay = document.getElementById('menuOverlay');
+    const pageWrapper = document.getElementById('pageWrapper');
+    const body = document.body;
+    const menuLinks = document.querySelectorAll('.menu-link');
+    
+    let isMenuOpen = false;
+    let previousFocus = null;
+    
+    // Focus trap elements
+    const focusableElements = menu.querySelectorAll(
+        'a, button, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstFocusable = focusableElements[0];
+    const lastFocusable = focusableElements[focusableElements.length - 1];
+    
+    function openMenu() {
+        isMenuOpen = true;
+        body.classList.add('has-menu-open');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        
+        // Save current focus
+        previousFocus = document.activeElement;
+        
+        // Focus first menu item
+        setTimeout(() => {
+            if (firstFocusable) {
+                firstFocusable.focus();
+            }
+        }, 100);
+    }
+    
+    function closeMenu() {
+        isMenuOpen = false;
+        body.classList.remove('has-menu-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        
+        // Return focus to previous element or hamburger button
+        if (previousFocus) {
+            previousFocus.focus();
+        } else {
+            menuToggle.focus();
         }
     }
+    
+    function toggleMenu() {
+        if (isMenuOpen) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    }
+    
+    // Hamburger button click
+    if (menuToggle) {
+        menuToggle.addEventListener('click', toggleMenu);
+    }
+    
+    // Overlay click
+    if (overlay) {
+        overlay.addEventListener('click', closeMenu);
+    }
+    
+    // ESC key to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isMenuOpen) {
+            closeMenu();
+        }
+        
+        // Focus trap - Tab key handling
+        if (e.key === 'Tab' && isMenuOpen) {
+            if (e.shiftKey) {
+                // Shift + Tab
+                if (document.activeElement === firstFocusable) {
+                    e.preventDefault();
+                    lastFocusable.focus();
+                }
+            } else {
+                // Tab
+                if (document.activeElement === lastFocusable) {
+                    e.preventDefault();
+                    firstFocusable.focus();
+                }
+            }
+        }
+    });
+    
+    // Close menu when clicking on menu links (optional - can be disabled)
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            // Uncomment next line if you want menu to close on link click
+            // closeMenu();
+        });
+    });
 }
 
 // ============================================

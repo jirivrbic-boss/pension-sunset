@@ -126,34 +126,114 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #c4a028;
 }
 
-/* Main Layout - Split Screen */
-.main-layout {
-    display: flex;
-    min-height: 100vh;
+/* ============================================
+   3D OFF-CANVAS MENU - Grandhotel Pupp Style
+   ============================================ */
+
+:root {
+    /* Menu Configuration - easily adjustable */
+    --menu-width: 320px;
+    --menu-animation-duration: 400ms;
+    --menu-animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* 3D Transform Configuration */
+    --menu-perspective: 1200px;
+    --menu-translate-x: 320px;
+    --menu-rotate-y: -18deg;
+    --menu-scale: 0.92;
+    
+    /* Colors */
+    --overlay-color: rgba(0, 0, 0, 0.6);
+    --menu-bg: #ffffff;
 }
 
-/* Left Sidebar - Fixed Menu */
-.left-sidebar {
-    width: 280px;
-    background-color: var(--bg-white);
+/* Hamburger Menu Button */
+.menu-toggle {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 1001;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    z-index: 100;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    padding: var(--spacing-lg) var(--spacing-md);
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: var(--menu-animation-duration) var(--menu-animation-easing);
 }
 
-.left-sidebar .logo {
-    margin-bottom: var(--spacing-lg);
+.menu-toggle:hover {
+    background: var(--bg-white);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.menu-toggle:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.hamburger-line {
+    width: 24px;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: var(--menu-animation-duration) var(--menu-animation-easing);
+    transform-origin: center;
+}
+
+/* Hamburger animation when menu is open */
+body.has-menu-open .hamburger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+body.has-menu-open .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+
+body.has-menu-open .hamburger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Off-Canvas Menu */
+.off-canvas-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--menu-width);
+    height: 100vh;
+    background-color: var(--menu-bg);
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform var(--menu-animation-duration) var(--menu-animation-easing);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+body.has-menu-open .off-canvas-menu {
+    transform: translateX(0);
+}
+
+.menu-content {
+    padding: var(--spacing-lg);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-logo {
+    margin-bottom: var(--spacing-xl);
     padding-bottom: var(--spacing-md);
     border-bottom: 1px solid var(--border-color);
 }
 
-.left-sidebar .logo h1 {
+.menu-logo h2 {
     font-size: 1.75rem;
     margin: 0;
     color: var(--primary-color);
@@ -162,7 +242,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
 }
 
-.left-sidebar .logo-subtitle {
+.menu-subtitle {
     font-size: 0.875rem;
     color: var(--text-light);
     display: block;
@@ -170,42 +250,42 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0.25rem;
 }
 
-/* Sidebar Navigation */
-.sidebar-nav {
+.menu-nav {
     flex: 1;
-    overflow-y: auto;
 }
 
-.sidebar-nav ul {
+.menu-nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.sidebar-nav li {
-    margin-bottom: var(--spacing-sm);
+.menu-nav li {
+    margin-bottom: var(--spacing-md);
 }
 
-.sidebar-nav a {
+.menu-link {
     display: block;
     color: var(--text-dark);
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 400;
-    font-family: var(--font-body);
+    font-family: var(--font-heading);
+    letter-spacing: 0.05em;
     transition: var(--transition);
     padding: var(--spacing-xs) 0;
     border-bottom: 1px solid transparent;
 }
 
-.sidebar-nav a:hover {
+.menu-link:hover,
+.menu-link:focus {
     color: var(--accent-color);
     border-bottom-color: var(--accent-color);
-    padding-left: var(--spacing-xs);
+    padding-left: var(--spacing-sm);
+    outline: none;
 }
 
-/* Sidebar Footer */
-.sidebar-footer {
+.menu-footer {
     padding-top: var(--spacing-md);
     border-top: 1px solid var(--border-color);
     display: flex;
@@ -213,11 +293,11 @@ h1, h2, h3, h4, h5, h6 {
     gap: var(--spacing-sm);
 }
 
-.sidebar-footer .language-switcher {
+.menu-footer .language-switcher {
     display: flex;
 }
 
-.sidebar-footer .lang-btn {
+.menu-footer .lang-btn {
     width: 100%;
     padding: 0.75rem;
     border: none;
@@ -231,11 +311,13 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-.sidebar-footer .lang-btn:hover {
+.menu-footer .lang-btn:hover,
+.menu-footer .lang-btn:focus {
     background-color: var(--accent-color);
+    outline: none;
 }
 
-.sidebar-footer .btn-reservation {
+.menu-footer .btn-reservation {
     width: 100%;
     padding: 0.75rem;
     background-color: var(--secondary-color);
@@ -249,17 +331,73 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
-.sidebar-footer .btn-reservation:hover {
+.menu-footer .btn-reservation:hover,
+.menu-footer .btn-reservation:focus {
     background-color: #c4a028;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    outline: none;
 }
 
-/* Right Content Area */
-.right-content {
-    flex: 1;
-    margin-left: 280px;
+/* Overlay */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-color);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--menu-animation-duration) var(--menu-animation-easing),
+                visibility var(--menu-animation-duration) var(--menu-animation-easing);
+    cursor: pointer;
+}
+
+body.has-menu-open .menu-overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Page Wrapper - 3D Transform */
+.page-wrapper {
     min-height: 100vh;
+    transition: transform var(--menu-animation-duration) var(--menu-animation-easing);
+    transform-origin: left center;
+    background-color: var(--bg-white);
+}
+
+/* 3D Transform when menu is open (Desktop only) */
+@media (min-width: 769px) {
+    body.has-menu-open .page-wrapper {
+        transform: perspective(var(--menu-perspective)) 
+                   translateX(var(--menu-translate-x)) 
+                   rotateY(var(--menu-rotate-y)) 
+                   scale(var(--menu-scale));
+        border-radius: 8px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Mobile: simpler transform without 3D */
+@media (max-width: 768px) {
+    body.has-menu-open .page-wrapper {
+        transform: translateX(var(--menu-width));
+    }
+    
+    :root {
+        --menu-rotate-y: 0deg;
+        --menu-scale: 1;
+        --menu-perspective: 0;
+    }
+}
+
+/* Prevent body scroll when menu is open */
+body.has-menu-open {
+    overflow: hidden;
 }
 
 .nav-list {
@@ -528,36 +666,16 @@ h1, h2, h3, h4, h5, h6 {
     visibility: visible;
 }
 
-@media (max-width: 968px) {
-    .left-sidebar {
-        width: 250px;
-    }
-    
-    .right-content {
-        margin-left: 250px;
-    }
-    
-    .left-sidebar .logo h1 {
-        font-size: 1.5rem;
-    }
-    
-    .sidebar-nav a {
-        font-size: 0.9rem;
-    }
-}
-
 @media (max-width: 768px) {
-    .left-sidebar {
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
+    .menu-toggle {
+        top: 1rem;
+        left: 1rem;
+        width: 44px;
+        height: 44px;
     }
     
-    .left-sidebar.open {
-        transform: translateX(0);
-    }
-    
-    .right-content {
-        margin-left: 0;
+    .menu-link {
+        font-size: 1.25rem;
     }
     
     .hero-main-title {
