@@ -133,17 +133,18 @@ h1, h2, h3, h4, h5, h6 {
 :root {
     /* Menu Configuration - easily adjustable */
     --menu-width: 320px;
-    --menu-animation-duration: 400ms;
+    --menu-animation-duration: 500ms;
     --menu-animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
     
-    /* 3D Transform Configuration */
-    --menu-perspective: 1200px;
+    /* 3D Transform Configuration - adjusted for proper card flip effect */
+    --menu-perspective: 1500px;
     --menu-translate-x: 320px;
-    --menu-rotate-y: -18deg;
-    --menu-scale: 0.92;
+    --menu-rotate-y: -15deg;
+    --menu-scale: 0.95;
+    --menu-translate-z: -100px;
     
     /* Colors */
-    --overlay-color: rgba(0, 0, 0, 0.6);
+    --overlay-color: rgba(0, 0, 0, 0.5);
     --menu-bg: #ffffff;
 }
 
@@ -354,6 +355,7 @@ body.has-menu-open .off-canvas-menu {
     transition: opacity var(--menu-animation-duration) var(--menu-animation-easing),
                 visibility var(--menu-animation-duration) var(--menu-animation-easing);
     cursor: pointer;
+    backdrop-filter: blur(2px);
 }
 
 body.has-menu-open .menu-overlay {
@@ -368,6 +370,8 @@ body.has-menu-open .menu-overlay {
     transition: transform var(--menu-animation-duration) var(--menu-animation-easing);
     transform-origin: left center;
     background-color: var(--bg-white);
+    position: relative;
+    will-change: transform;
 }
 
 /* 3D Transform when menu is open (Desktop only) */
@@ -375,10 +379,19 @@ body.has-menu-open .menu-overlay {
     body.has-menu-open .page-wrapper {
         transform: perspective(var(--menu-perspective)) 
                    translateX(var(--menu-translate-x)) 
+                   translateZ(var(--menu-translate-z))
                    rotateY(var(--menu-rotate-y)) 
                    scale(var(--menu-scale));
-        border-radius: 8px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        box-shadow: -10px 0 50px rgba(0, 0, 0, 0.4),
+                    0 0 0 1px rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+    }
+    
+    /* Add perspective container */
+    body.has-menu-open {
+        perspective: var(--menu-perspective);
+        perspective-origin: left center;
     }
 }
 
@@ -392,6 +405,7 @@ body.has-menu-open .menu-overlay {
         --menu-rotate-y: 0deg;
         --menu-scale: 1;
         --menu-perspective: 0;
+        --menu-translate-z: 0;
     }
 }
 
