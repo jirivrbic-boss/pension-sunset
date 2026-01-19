@@ -1350,6 +1350,11 @@ body.menu-open {
     max-width: 90%;
     max-height: 90%;
     object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox img.loading {
+    opacity: 0.3;
 }
 
 .lightbox-close,

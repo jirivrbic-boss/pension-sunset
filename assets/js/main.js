@@ -729,6 +729,13 @@ window.addEventListener('resize', () => {
     }, 250); // Debounce 250ms
 });
 
+// Globální proměnné pro lightbox
+let lightboxState = {
+    currentIndex: 0,
+    imageFiles: [],
+    handleKeyPress: null
+};
+
 function openLightbox(index, imageFiles) {
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
@@ -736,56 +743,102 @@ function openLightbox(index, imageFiles) {
     const lightboxPrev = document.getElementById('lightboxPrev');
     const lightboxNext = document.getElementById('lightboxNext');
     
-    if (!lightbox || !lightboxImage) return;
+    if (!lightbox || !lightboxImage || !imageFiles || imageFiles.length === 0) {
+        console.error('Lightbox elements or images not found');
+        return;
+    }
     
-    let currentIndex = index;
+    // Ulož stav
+    lightboxState.currentIndex = index;
+    lightboxState.imageFiles = imageFiles;
+    
+    // Odstraň starý event listener, pokud existuje
+    if (lightboxState.handleKeyPress) {
+        document.removeEventListener('keydown', lightboxState.handleKeyPress);
+    }
     
     function showImage() {
-        lightboxImage.src = `/fotky/${imageFiles[currentIndex]}`;
-        lightboxImage.alt = `Galerie ${currentIndex + 1}`;
+        if (lightboxState.imageFiles.length === 0) return;
+        
+        const imagePath = `/fotky/${lightboxState.imageFiles[lightboxState.currentIndex]}`;
+        
+        // Přidej loading třídu
+        lightboxImage.classList.add('loading');
+        lightboxImage.style.opacity = '0';
+        
+        // Preload obrázek
+        const img = new Image();
+        img.onload = () => {
+            lightboxImage.src = imagePath;
+            lightboxImage.alt = `Galerie ${lightboxState.currentIndex + 1} / ${lightboxState.imageFiles.length}`;
+            lightboxImage.style.opacity = '1';
+            lightboxImage.classList.remove('loading');
+        };
+        img.onerror = () => {
+            console.error('Failed to load image:', imagePath);
+            lightboxImage.classList.remove('loading');
+            lightboxImage.style.opacity = '1';
+        };
+        img.src = imagePath;
     }
     
     function nextImage() {
-        currentIndex = (currentIndex + 1) % imageFiles.length;
+        if (lightboxState.imageFiles.length === 0) return;
+        lightboxState.currentIndex = (lightboxState.currentIndex + 1) % lightboxState.imageFiles.length;
         showImage();
     }
     
     function prevImage() {
-        currentIndex = (currentIndex - 1 + imageFiles.length) % imageFiles.length;
+        if (lightboxState.imageFiles.length === 0) return;
+        lightboxState.currentIndex = (lightboxState.currentIndex - 1 + lightboxState.imageFiles.length) % lightboxState.imageFiles.length;
         showImage();
     }
     
-    showImage();
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    
-    // Event listeners
     const closeLightbox = () => {
         lightbox.classList.remove('active');
         document.body.style.overflow = '';
+        if (lightboxState.handleKeyPress) {
+            document.removeEventListener('keydown', lightboxState.handleKeyPress);
+            lightboxState.handleKeyPress = null;
+        }
     };
     
+    // Keyboard navigation
+    lightboxState.handleKeyPress = (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') {
+            closeLightbox();
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            nextImage();
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            prevImage();
+        }
+    };
+    
+    // Odeber staré event listenery a přidej nové
+    // Použijeme once: true, aby se listenery automaticky odstranily po použití
     lightboxClose.onclick = closeLightbox;
-    lightboxNext.onclick = nextImage;
-    lightboxPrev.onclick = prevImage;
+    lightboxNext.onclick = (e) => {
+        e.stopPropagation();
+        nextImage();
+    };
+    lightboxPrev.onclick = (e) => {
+        e.stopPropagation();
+        prevImage();
+    };
     
     lightbox.onclick = (e) => {
         if (e.target === lightbox) closeLightbox();
     };
     
-    // Keyboard navigation
-    const handleKeyPress = (e) => {
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowRight') nextImage();
-        if (e.key === 'ArrowLeft') prevImage();
-    };
+    document.addEventListener('keydown', lightboxState.handleKeyPress);
     
-    document.addEventListener('keydown', handleKeyPress);
-    
-    // Cleanup on close
-    lightboxClose.addEventListener('click', () => {
-        document.removeEventListener('keydown', handleKeyPress);
-    }, { once: true });
+    // Zobraz první obrázek
+    showImage();
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
 }
 
 // ============================================
