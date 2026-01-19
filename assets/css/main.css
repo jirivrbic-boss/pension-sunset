@@ -296,6 +296,8 @@ body.menu-open .hamburger-line:nth-child(3) {
     transform: translateX(-100%);
     transition: transform var(--menu-animation-duration) var(--menu-animation-easing);
     overflow: hidden;
+    border: none;
+    box-shadow: none;
 }
 
 body.menu-open .side-menu {
