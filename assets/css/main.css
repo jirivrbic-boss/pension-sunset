@@ -136,12 +136,11 @@ h1, h2, h3, h4, h5, h6 {
     --menu-animation-duration: 500ms;
     --menu-animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
     
-    /* 3D Transform Configuration - adjusted for proper card flip effect */
-    --menu-perspective: 1500px;
+    /* 3D Transform Configuration */
+    --menu-perspective: 1200px;
     --menu-translate-x: 320px;
-    --menu-rotate-y: -15deg;
-    --menu-scale: 0.95;
-    --menu-translate-z: -100px;
+    --menu-rotate-y: -18deg;
+    --menu-scale: 0.92;
     
     /* Colors */
     --overlay-color: rgba(0, 0, 0, 0.5);
