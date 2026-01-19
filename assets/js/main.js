@@ -139,23 +139,21 @@ function initSideMenu() {
         
         isMenuOpen = false;
         
-        // Get saved scroll position from dataset
-        const savedY = parseInt(body.dataset.scrollY || savedScrollPosition.toString(), 10);
+        // Get saved scroll position from dataset (always use the saved value)
+        const savedY = parseInt(body.dataset.scrollY || savedScrollPosition.toString(), 10) || 0;
         
         // Remove classes first (CSS transition will handle animation)
         document.documentElement.classList.remove('menu-open');
         body.classList.remove('menu-open');
         
-        // Wait for CSS transition to complete before restoring scroll
         const app = document.getElementById('app');
         
         // Function to restore scroll position
         const restoreScroll = () => {
-            // CRITICAL: Remove transform FIRST to show normal-sized content
-            // Then remove scroll lock styles
+            // CRITICAL: Remove transform translateY FIRST (from openMenu)
+            // This was used to maintain position during scroll lock
             if (app) {
-                // Force remove transform immediately (no transition)
-                app.style.transform = 'none';
+                app.style.transform = '';
                 app.style.top = '';
             }
             
@@ -169,7 +167,7 @@ function initSideMenu() {
                 document.documentElement.scrollTop = savedY;
                 document.body.scrollTop = savedY;
                 
-                // Double-check and force again after a frame
+                // Double-check and force again after frames to ensure it sticks
                 requestAnimationFrame(() => {
                     const currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
                     if (Math.abs(currentY - savedY) > 1) {
@@ -177,6 +175,14 @@ function initSideMenu() {
                         document.documentElement.scrollTop = savedY;
                         document.body.scrollTop = savedY;
                     }
+                    
+                    // Final check after another frame
+                    requestAnimationFrame(() => {
+                        const finalY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+                        if (Math.abs(finalY - savedY) > 1) {
+                            window.scrollTo(0, savedY);
+                        }
+                    });
                 });
             });
         };
@@ -215,19 +221,16 @@ function initSideMenu() {
         
         // Return focus to previous element or hamburger button WITHOUT scrolling
         // Use requestAnimationFrame to ensure scroll is restored first
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                const targetFocus = previousFocus || menuToggle;
-                if (targetFocus && targetFocus.focus) {
-                    try {
-                        targetFocus.focus({ preventScroll: true });
-                    } catch (err) {
-                        // Fallback: don't focus if it causes scroll jump
-                        // Just update tabindex if needed
-                    }
+        setTimeout(() => {
+            const targetFocus = previousFocus || menuToggle;
+            if (targetFocus && targetFocus.focus) {
+                try {
+                    targetFocus.focus({ preventScroll: true });
+                } catch (err) {
+                    // Fallback: don't focus if it causes scroll jump
                 }
-            });
-        });
+            }
+        }, 100);
     }
     
     function toggleMenu(e) {

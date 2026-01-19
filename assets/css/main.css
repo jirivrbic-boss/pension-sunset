@@ -501,6 +501,8 @@ body.menu-open .backdrop {
                 height var(--menu-animation-duration) var(--menu-animation-easing),
                 right var(--menu-animation-duration) var(--menu-animation-easing);
     will-change: transform;
+    /* Ensure content is always visible, even when transformed */
+    backface-visibility: visible;
 }
 
 /* Transform when menu is open - scale and center */
