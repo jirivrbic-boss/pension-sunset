@@ -402,6 +402,8 @@ body.menu-open .backdrop {
         overflow: hidden;
         margin: 0 auto;
         max-width: calc(100% - var(--menu-width));
+        margin: 0 auto;
+        max-width: calc(100% - var(--menu-width));
     }
 }
 
