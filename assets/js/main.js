@@ -201,8 +201,7 @@ function initSideMenu() {
                 delete app._scrollSync;
             }
             
-            // NOW remove inline styles that lock scroll
-            // This happens AFTER the transform animation completes
+            // CRITICAL: Remove inline styles from app FIRST
             if (app) {
                 app.style.top = '';
                 app.style.transform = '';
@@ -210,47 +209,45 @@ function initSideMenu() {
                 app.scrollTop = 0;
             }
             
-            // Remove ALL inline styles that lock scroll
-            body.style.cssText = '';
+            // CRITICAL: Remove body fixed position BUT keep the top value
+            // Remove inline styles one by one to avoid layout shift
+            body.style.position = '';
+            body.style.width = '';
+            body.style.overflow = '';
+            body.style.left = '';
+            body.style.right = '';
+            body.style.height = '';
             
-            // Wait a frame for layout to settle, then restore scroll
+            // Remove top last, but only after we've set the scroll position
+            // First, restore scroll position while body is still positioned
             requestAnimationFrame(() => {
+                // Set scroll position BEFORE removing body.style.top
+                // This prevents the "refresh" effect
+                document.documentElement.scrollTop = finalScrollY;
+                document.body.scrollTop = finalScrollY;
+                
+                // Now remove the top style
+                body.style.top = '';
+                
+                // Force scroll to position using window.scrollTo
+                window.scrollTo({
+                    top: finalScrollY,
+                    left: 0,
+                    behavior: 'auto'
+                });
+                
+                // Double-check after a frame
                 requestAnimationFrame(() => {
-                    // Force scroll to saved position immediately (or position from app scroll)
-                    // Use multiple methods to ensure it works
-                    window.scrollTo({
-                        top: finalScrollY,
-                        left: 0,
-                        behavior: 'auto' // No smooth scroll, instant
-                    });
-                    document.documentElement.scrollTop = finalScrollY;
-                    document.body.scrollTop = finalScrollY;
-                    
-                    // Double-check and force again after frames to ensure it sticks
-                    requestAnimationFrame(() => {
-                        const currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-                        if (Math.abs(currentY - finalScrollY) > 1) {
-                            window.scrollTo({
-                                top: finalScrollY,
-                                left: 0,
-                                behavior: 'auto'
-                            });
-                            document.documentElement.scrollTop = finalScrollY;
-                            document.body.scrollTop = finalScrollY;
-                        }
-                        
-                        // Final check after another frame
-                        requestAnimationFrame(() => {
-                            const finalCheckY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-                            if (Math.abs(finalCheckY - finalScrollY) > 1) {
-                                window.scrollTo({
-                                    top: finalScrollY,
-                                    left: 0,
-                                    behavior: 'auto'
-                                });
-                            }
+                    const currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+                    if (Math.abs(currentY - finalScrollY) > 1) {
+                        window.scrollTo({
+                            top: finalScrollY,
+                            left: 0,
+                            behavior: 'auto'
                         });
-                    });
+                        document.documentElement.scrollTop = finalScrollY;
+                        document.body.scrollTop = finalScrollY;
+                    }
                 });
             });
         };
