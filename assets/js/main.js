@@ -106,12 +106,12 @@ function initSideMenu() {
         
         if (app) {
             // Clear any previous transform or top styles that might interfere
-            app.style.top = '';
             app.style.transform = '';
-            // Set app position to maintain viewport position
-            // Use transform translateY to combine with CSS transforms (scale, rotateY)
-            // This will be applied BEFORE the CSS transforms, so we need to account for that
-            app.style.transform = `translateY(-${scrollY}px)`;
+            app.style.top = '';
+            // When menu opens, app becomes position:fixed (via CSS)
+            // Use top to position it so the current viewport content is visible
+            // Since body is fixed with top: -scrollY, app should also account for scrollY
+            app.style.top = `-${scrollY}px`;
         }
         
         // Force a reflow to ensure styles are applied
