@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Výlety do okolí - Pension Sunset Mezirolí</title>
+    <meta name="description" content="Objevte krásy Karlovarského kraje - tipy na výlety, turistické atrakce, přírodní zajímavosti a lázeňská města">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <!-- Hamburger Menu Button -->
+    <button class="menu-toggle" id="menuToggle" aria-controls="sideMenu" aria-expanded="false" aria-label="Otevřít menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+
+    <!-- Side Menu -->
+    <aside class="side-menu" id="sideMenu" role="navigation" aria-label="Hlavní navigace">
+        <div class="menu-content">
+            <div class="menu-logo">
+                <h2>Pension Sunset</h2>
+                <span class="menu-subtitle">Mezirolí</span>
+            </div>
+            
+            <nav class="menu-nav">
+                <ul>
+                    <li><a href="index.html#uvod" class="menu-link">ÚVOD</a></li>
+                    <li><a href="index.html#o-penzionu" class="menu-link">O PENZIONU</a></li>
+                    <li><a href="index.html#pokoje" class="menu-link">POKOJE</a></li>
+                    <li><a href="index.html#wellness" class="menu-link">WELLNESS</a></li>
+                    <li><a href="index.html#okoli" class="menu-link">OKOLÍ</a></li>
+                    <li><a href="vyletu.html" class="menu-link active">VÝLETY</a></li>
+                    <li><a href="index.html#sluzby" class="menu-link">SLUŽBY</a></li>
+                    <li><a href="index.html#galerie" class="menu-link">GALERIE</a></li>
+                    <li><a href="index.html#kontakt" class="menu-link">KONTAKT</a></li>
+                </ul>
+            </nav>
+            
+            <div class="menu-footer">
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="cs">CS</button>
+                </div>
+                <a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="btn-reservation">
+                    Rezervovat
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Backdrop Overlay -->
+    <button class="backdrop" id="backdrop" aria-hidden="true" aria-label="Zavřít menu"></button>
+
+    <!-- App Wrapper -->
+    <div class="app" id="app">
+
+    <!-- Hero Section -->
+    <section class="trips-hero">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Výlety do okolí</h1>
+                <p class="section-subtitle">Objevte krásy Karlovarského kraje</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="trips-filters">
+        <div class="container">
+            <div class="filters-wrapper">
+                <div class="filter-group">
+                    <label for="cityFilter">Město:</label>
+                    <select id="cityFilter" class="filter-select">
+                        <option value="">Všechna města</option>
+                        <option value="karlovy-vary">Karlovy Vary</option>
+                        <option value="frantiskovy-lazne">Františkovy Lázně</option>
+                        <option value="marianske-lazne">Mariánské Lázně</option>
+                        <option value="loket">Loket</option>
+                        <option value="ostrov">Ostrov</option>
+                        <option value="jachymov">Jáchymov</option>
+                        <option value="aberamy">Abertamy</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="typeFilter">Typ:</label>
+                    <select id="typeFilter" class="filter-select">
+                        <option value="">Všechny typy</option>
+                        <option value="lazne">Lázně</option>
+                        <option value="hory">Hory</option>
+                        <option value="bazen">Bazén</option>
+                        <option value="priroda">Příroda</option>
+                        <option value="pamatka">Památka</option>
+                        <option value="vyhled">Vyhlídka</option>
+                        <option value="kultura">Kultura</option>
+                    </select>
+                </div>
+                
+                <button id="resetFilters" class="btn btn-primary">Resetovat filtry</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trips Grid -->
+    <section class="trips-grid-section">
+        <div class="container">
+            <div class="trips-grid" id="tripsGrid">
+                <!-- Trips will be rendered here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Pension Sunset</h3>
+                    <p>Klid, harmonie a relax u Karlových Varů</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="TripAdvisor"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Rychlé odkazy</h4>
+                    <ul>
+                        <li><a href="index.html#uvod">Úvod</a></li>
+                        <li><a href="index.html#pokoje">Pokoje</a></li>
+                        <li><a href="index.html#wellness">Wellness</a></li>
+                        <li><a href="index.html#okoli">Okolí</a></li>
+                        <li><a href="vyletu.html">Výlety</a></li>
+                        <li><a href="index.html#galerie">Galerie</a></li>
+                        <li><a href="index.html#kontakt">Kontakt</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Služby</h4>
+                    <ul>
+                        <li><a href="index.html#sluzby">Vybavení</a></li>
+                        <li><a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer">Rezervovat na Booking.com</a></li>
+                        <li><a href="index.html#wellness">Wellness</a></li>
+                        <li><a href="index.html#okoli">Okolí</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Jazyky</h4>
+                    <div class="footer-languages">
+                        <a href="#" data-lang="cs">Čeština</a>
+                        <a href="#" data-lang="en">English</a>
+                        <a href="#" data-lang="de">Deutsch</a>
+                        <a href="#" data-lang="ru">Русский</a>
+                        <a href="#" data-lang="sk">Slovenčina</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pension Sunset Mezirolí. Všechna práva vyhrazena.</p>
+                <p><a href="admin.html" class="admin-link">Admin</a></p>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+    <!-- End App Wrapper -->
+
+    <!-- Firebase SDK -->
+    <script type="module" src="assets/js/firebase.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
+    <script src="assets/js/trips.js"></script>
+    
+    <!-- Fallback: Initialize menu even if modules fail -->
+    <script>
+        (function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const menu = document.getElementById('sideMenu');
+            const backdrop = document.getElementById('backdrop');
+            const body = document.body;
+            
+            if (!menuToggle || !menu || !backdrop) {
+                console.error('Menu elements not found');
+                return;
+            }
+            
+            let isMenuOpen = false;
+            
+            function toggleMenu() {
+                isMenuOpen = !isMenuOpen;
+                body.classList.toggle('menu-open', isMenuOpen);
+                menuToggle.setAttribute('aria-expanded', isMenuOpen);
+            }
+            
+            function closeMenu() {
+                isMenuOpen = false;
+                body.classList.remove('menu-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+            
+            menuToggle.addEventListener('click', toggleMenu);
+            backdrop.addEventListener('click', closeMenu);
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && isMenuOpen) {
+                    closeMenu();
+                }
+            });
+            
+            const menuLinks = menu.querySelectorAll('.menu-link');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Menu will stay open for navigation
+                });
+            });
+            
+            console.log('Menu fallback initialized');
+        })();
+    </script>
+</body>
+</html>
