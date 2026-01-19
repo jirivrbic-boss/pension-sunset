@@ -376,19 +376,20 @@ function initSideMenu() {
     menuLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
+            const target = link.getAttribute('target');
             
             // Always prevent default first to avoid any navigation
             e.preventDefault();
             e.stopPropagation();
             
+            // Close menu first - this will handle the animation
+            closeMenu(e);
+            
             // If it's an anchor link (starts with #)
             if (href && href.startsWith('#')) {
                 const targetId = href.substring(1);
                 
-                // Close menu first (this will restore scroll position)
-                closeMenu(e);
-                
-                // Wait for menu to close and scroll to be restored, then scroll to target
+                // Wait for menu close animation to complete (500ms) + buffer
                 setTimeout(() => {
                     const targetElement = document.getElementById(targetId);
                     
@@ -405,15 +406,18 @@ function initSideMenu() {
                             behavior: 'smooth'
                         });
                     }
-                }, 350); // Wait for menu close animation + scroll restore
+                }, 650); // Wait for menu close animation (500ms) + scroll restore buffer
             } else if (href && !href.startsWith('#')) {
-                // External link or different page - close menu first, then navigate
-                closeMenu(e);
-                
-                // Small delay to allow menu to close, then navigate
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 100);
+                // External link or different page
+                if (target === '_blank') {
+                    // Open in new tab - don't wait for menu animation
+                    window.open(href, '_blank', 'noopener,noreferrer');
+                } else {
+                    // Navigate in same window - wait for menu to close
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 650); // Wait for menu close animation
+                }
             }
         });
     });
@@ -424,8 +428,8 @@ function initSideMenu() {
 // ============================================
 
 function initNavigation() {
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // Smooth scroll for anchor links (but NOT menu links - they are handled separately)
+    document.querySelectorAll('a[href^="#"]:not(.menu-link)').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             if (href === '#') {
