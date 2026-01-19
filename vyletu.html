@@ -173,23 +173,20 @@
                     <h4>Rychlé odkazy</h4>
                     <ul>
                         <li><a href="index.html#uvod">Úvod</a></li>
+                        <li><a href="index.html#o-penzionu">O penzionu</a></li>
                         <li><a href="index.html#pokoje">Pokoje</a></li>
-                        <li><a href="index.html#wellness">Wellness</a></li>
-                        <li><a href="index.html#okoli">Okolí</a></li>
                         <li><a href="vyletu.html">Výlety</a></li>
-                        <li><a href="https://goout.net/cs/karlovy-vary/akce/lezblurkk/" target="_blank" rel="noopener noreferrer">Události v okolí</a></li>
                         <li><a href="index.html#galerie">Galerie</a></li>
                         <li><a href="index.html#kontakt">Kontakt</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Služby</h4>
+                    <h4>Další informace</h4>
                     <ul>
-                        <li><a href="index.html#sluzby">Vybavení</a></li>
-                        <li><a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer">Rezervovat na Booking.com</a></li>
-                        <li><a href="index.html#wellness">Wellness</a></li>
+                        <li><a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer">Rezervovat</a></li>
                         <li><a href="index.html#okoli">Okolí</a></li>
+                        <li><a href="https://goout.net/cs/karlovy-vary/akce/lezblurkk/" target="_blank" rel="noopener noreferrer">Události v okolí</a></li>
                     </ul>
                 </div>
                 
@@ -206,8 +203,11 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Pension Sunset Mezirolí. Všechna práva vyhrazena.</p>
+                <p>&copy; <span id="currentYear">2024</span> Pension Sunset Mezirolí. Všechna práva vyhrazena.</p>
                 <p><a href="admin.html" class="admin-link">Admin</a></p>
+                <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.7); margin-top: 0.5rem;">
+                    Web vytvořila <a href="https://wloom.eu" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.9); text-decoration: underline;">wloom.eu</a>
+                </p>
             </div>
         </div>
     </footer>
@@ -264,6 +264,14 @@
             });
             
             console.log('Menu fallback initialized');
+        })();
+        
+        // Automaticky aktualizovat rok ve footeru
+        (function() {
+            const yearElement = document.getElementById('currentYear');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
         })();
     </script>
 </body>
