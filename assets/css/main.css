@@ -392,22 +392,29 @@ body.menu-open .backdrop {
         height: 100%;
     }
     
-    /* Scale down and center the content vertically */
+    /* Scale down and center the content - show only current viewport */
     body.menu-open {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
     }
     
     body.menu-open .app {
-        transform: translateX(calc(var(--menu-translate-x) / 0.85)) scale(0.85);
+        transform: scale(0.85);
         transform-origin: center center;
         border-radius: 12px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         overflow: hidden;
-        max-width: calc((100% - var(--menu-width)) / 0.85);
-        width: calc((100% - var(--menu-width)) / 0.85);
         margin-left: var(--menu-translate-x);
+        width: calc(100% - var(--menu-width));
+        max-width: calc(100% - var(--menu-width));
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
     }
 }
 

@@ -69,8 +69,19 @@ function initSideMenu() {
     
     function openMenu() {
         isMenuOpen = true;
-        document.documentElement.classList.add('menu-open');
+        
+        // Save current scroll position
+        const scrollY = window.scrollY;
+        body.style.top = `-${scrollY}px`;
         body.classList.add('menu-open');
+        document.documentElement.classList.add('menu-open');
+        
+        // Apply scroll position to app
+        const app = document.getElementById('app');
+        if (app) {
+            app.style.top = `-${scrollY}px`;
+        }
+        
         menuToggle.setAttribute('aria-expanded', 'true');
         backdrop.setAttribute('aria-hidden', 'false');
         
@@ -87,8 +98,22 @@ function initSideMenu() {
     
     function closeMenu() {
         isMenuOpen = false;
+        
+        // Restore scroll position
+        const scrollY = body.style.top;
         document.documentElement.classList.remove('menu-open');
         body.classList.remove('menu-open');
+        body.style.top = '';
+        
+        const app = document.getElementById('app');
+        if (app) {
+            const top = app.style.top;
+            app.style.top = '';
+            if (top) {
+                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            }
+        }
+        
         menuToggle.setAttribute('aria-expanded', 'false');
         backdrop.setAttribute('aria-hidden', 'true');
         
