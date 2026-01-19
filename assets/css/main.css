@@ -383,30 +383,28 @@ body.menu-open .backdrop {
     transform-style: preserve-3d;
 }
 
-/* 3D Transform when menu is open (Desktop only) */
+/* Transform when menu is open - scale and center */
 @media (min-width: 769px) {
     /* Perspective container - must be on body or html */
     html.menu-open,
     body.menu-open {
-        perspective: var(--menu-perspective);
-        perspective-origin: left center;
         overflow: hidden;
         height: 100%;
     }
     
-    /* 3D card flip effect - perspective in transform for better browser support */
+    /* Scale down and center the content vertically */
     body.menu-open .app {
-        transform: perspective(var(--menu-perspective))
-                   translateX(var(--menu-translate-x)) 
-                   rotateY(var(--menu-rotate-y)) 
-                   scale(var(--menu-scale));
-        transform-origin: left center;
-        transform-style: preserve-3d;
-        border-radius: 18px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35),
-                    -10px 0 30px rgba(0, 0, 0, 0.2);
+        transform: translateX(var(--menu-translate-x)) translateY(-50%) scale(0.85);
+        transform-origin: center center;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         overflow: hidden;
-        backface-visibility: hidden;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: calc((100% - var(--menu-width)) / 2);
+        margin-top: 0;
+        max-width: calc(100% - var(--menu-width));
     }
 }
 
