@@ -215,26 +215,41 @@ function initSideMenu() {
             
             // Wait a frame for layout to settle, then restore scroll
             requestAnimationFrame(() => {
-                // Force scroll to saved position immediately (or position from app scroll)
-                window.scrollTo(0, finalScrollY);
-                document.documentElement.scrollTop = finalScrollY;
-                document.body.scrollTop = finalScrollY;
-                
-                // Double-check and force again after frames to ensure it sticks
                 requestAnimationFrame(() => {
-                    const currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-                    if (Math.abs(currentY - finalScrollY) > 1) {
-                        window.scrollTo(0, finalScrollY);
-                        document.documentElement.scrollTop = finalScrollY;
-                        document.body.scrollTop = finalScrollY;
-                    }
+                    // Force scroll to saved position immediately (or position from app scroll)
+                    // Use multiple methods to ensure it works
+                    window.scrollTo({
+                        top: finalScrollY,
+                        left: 0,
+                        behavior: 'auto' // No smooth scroll, instant
+                    });
+                    document.documentElement.scrollTop = finalScrollY;
+                    document.body.scrollTop = finalScrollY;
                     
-                    // Final check after another frame
+                    // Double-check and force again after frames to ensure it sticks
                     requestAnimationFrame(() => {
-                        const finalY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-                        if (Math.abs(finalY - finalScrollY) > 1) {
-                            window.scrollTo(0, finalScrollY);
+                        const currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+                        if (Math.abs(currentY - finalScrollY) > 1) {
+                            window.scrollTo({
+                                top: finalScrollY,
+                                left: 0,
+                                behavior: 'auto'
+                            });
+                            document.documentElement.scrollTop = finalScrollY;
+                            document.body.scrollTop = finalScrollY;
                         }
+                        
+                        // Final check after another frame
+                        requestAnimationFrame(() => {
+                            const finalCheckY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+                            if (Math.abs(finalCheckY - finalScrollY) > 1) {
+                                window.scrollTo({
+                                    top: finalScrollY,
+                                    left: 0,
+                                    behavior: 'auto'
+                                });
+                            }
+                        });
                     });
                 });
             });
@@ -313,7 +328,10 @@ function initSideMenu() {
     menuToggle.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        // Don't allow bubbling to prevent any parent handlers
+        e.stopImmediatePropagation();
         toggleMenu(e);
+        return false;
     });
     
     // Menu close button (X) click
