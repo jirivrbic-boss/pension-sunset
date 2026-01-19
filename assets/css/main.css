@@ -371,42 +371,37 @@ body.menu-open .backdrop {
     pointer-events: auto;
 }
 
-/* App Wrapper - ALL content, will be transformed in 3D */
+/* App Wrapper - ALL content, will be transformed */
 .app {
     min-height: 100vh;
     width: 100%;
     background-color: var(--bg-white);
     position: relative;
-    transform-origin: 0% 50%;
+    transform-origin: center center;
     transition: transform var(--menu-animation-duration) var(--menu-animation-easing);
     will-change: transform;
-    transform-style: preserve-3d;
 }
 
-/* 3D Transform when menu is open (Desktop only) */
+/* Transform when menu is open - scale and center */
 @media (min-width: 769px) {
     /* Perspective container - must be on body or html */
     html.menu-open,
     body.menu-open {
-        perspective: var(--menu-perspective);
-        perspective-origin: left center;
+        /* perspective removed */
+        /* perspective-origin removed */
         overflow: hidden;
         height: 100%;
     }
     
-    /* 3D card flip effect - perspective in transform for better browser support */
+    /* Scale down and center the content */
     body.menu-open .app {
-        transform: perspective(var(--menu-perspective))
-                   translateX(var(--menu-translate-x)) 
-                   rotateY(var(--menu-rotate-y)) 
-                   scale(var(--menu-scale));
-        transform-origin: left center;
-        transform-style: preserve-3d;
-        border-radius: 18px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35),
-                    -10px 0 30px rgba(0, 0, 0, 0.2);
+        transform: translateX(var(--menu-translate-x)) scale(0.85);
+        transform-origin: center center;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         overflow: hidden;
-        backface-visibility: hidden;
+        margin: 0 auto;
+        max-width: calc(100% - var(--menu-width));
     }
 }
 
