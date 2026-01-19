@@ -151,15 +151,18 @@ function initSideMenu() {
         
         // Function to restore scroll position
         const restoreScroll = () => {
-            // Remove ALL inline styles that lock scroll
-            body.style.cssText = '';
-            
+            // CRITICAL: Remove transform FIRST to show normal-sized content
+            // Then remove scroll lock styles
             if (app) {
+                // Force remove transform immediately (no transition)
+                app.style.transform = 'none';
                 app.style.top = '';
             }
             
-            // Force scroll position restoration
-            // Wait for next frame to ensure layout is ready
+            // Remove ALL inline styles that lock scroll
+            body.style.cssText = '';
+            
+            // Wait a frame for layout to settle, then restore scroll
             requestAnimationFrame(() => {
                 // Force scroll to saved position immediately
                 window.scrollTo(0, savedY);

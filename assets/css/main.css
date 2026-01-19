@@ -533,7 +533,17 @@ body.menu-open .backdrop {
         height: 100vh;
         position: fixed;
         right: 0;
+        transition: transform var(--menu-animation-duration) var(--menu-animation-easing),
+                    width var(--menu-animation-duration) var(--menu-animation-easing),
+                    max-width var(--menu-animation-duration) var(--menu-animation-easing);
         /* top will be set by JavaScript to preserve scroll position */
+    }
+    
+    /* When menu closes, app should return to normal size immediately */
+    .app {
+        transition: transform var(--menu-animation-duration) var(--menu-animation-easing),
+                    width var(--menu-animation-duration) var(--menu-animation-easing),
+                    max-width var(--menu-animation-duration) var(--menu-animation-easing);
     }
 }
 
