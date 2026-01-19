@@ -142,42 +142,66 @@ function initSideMenu() {
         
         // Wait for CSS transition to complete before restoring scroll
         const app = document.getElementById('app');
+        
+        // Function to restore scroll position
         const restoreScroll = () => {
-            // Remove inline styles
+            // Remove inline styles that lock scroll
             body.style.position = '';
             body.style.top = '';
             body.style.width = '';
             body.style.overflow = '';
+            body.style.left = '';
+            body.style.right = '';
             
             if (app) {
                 app.style.top = '';
             }
             
-            // Restore scroll position instantly (no smooth scroll to avoid visual jump)
+            // Force scroll position restoration
+            // Use multiple requestAnimationFrame to ensure it happens after layout
             requestAnimationFrame(() => {
-                window.scrollTo(0, savedY);
-                // Double-check after a frame to ensure scroll is restored
+                // First, ensure we're at the top
+                window.scrollTo(0, 0);
                 requestAnimationFrame(() => {
-                    if (Math.abs(window.scrollY - savedY) > 1) {
-                        window.scrollTo(0, savedY);
-                    }
+                    // Then restore saved position
+                    window.scrollTo(0, savedY);
+                    requestAnimationFrame(() => {
+                        // Double-check and force if needed
+                        const currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+                        if (Math.abs(currentY - savedY) > 1) {
+                            window.scrollTo(0, savedY);
+                            // Force one more time
+                            document.documentElement.scrollTop = savedY;
+                            document.body.scrollTop = savedY;
+                        }
+                    });
                 });
             });
         };
         
+        // Listen for transition end on app element
         if (app) {
-            // Listen for transition end on app element
-            app.addEventListener('transitionend', function onTransitionEnd(event) {
+            let transitionEnded = false;
+            
+            const onTransitionEnd = function(event) {
                 // Only restore if this is the transform transition (not a child element)
-                if (event.target === app && event.propertyName === 'transform') {
-                    app.removeEventListener('transitionend', onTransitionEnd);
-                    restoreScroll();
+                if (event.target === app && (event.propertyName === 'transform' || event.propertyName === 'all')) {
+                    if (!transitionEnded) {
+                        transitionEnded = true;
+                        app.removeEventListener('transitionend', onTransitionEnd);
+                        restoreScroll();
+                    }
                 }
-            }, { once: true });
+            };
+            
+            app.addEventListener('transitionend', onTransitionEnd, { once: true });
             
             // Fallback timeout in case transitionend doesn't fire
             setTimeout(() => {
-                restoreScroll();
+                if (!transitionEnded) {
+                    transitionEnded = true;
+                    restoreScroll();
+                }
             }, 600); // Slightly longer than transition duration
         } else {
             // Fallback if app element not found
