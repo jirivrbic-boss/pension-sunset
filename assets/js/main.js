@@ -85,13 +85,16 @@ function initSideMenu() {
         // This MUST happen in the same synchronous block to prevent scroll jump
         const scrollY = savedScrollPosition;
         
-        // Lock scroll position BEFORE adding classes to prevent jump
-        body.style.position = 'fixed';
-        body.style.top = `-${scrollY}px`;
-        body.style.width = '100%';
-        body.style.overflow = 'hidden';
-        body.style.left = '0';
-        body.style.right = '0';
+        // IMPORTANT: Apply inline styles FIRST, before any classes
+        // This prevents CSS from applying position:fixed and causing scroll jump
+        body.style.cssText = `
+            position: fixed !important;
+            top: -${scrollY}px !important;
+            width: 100% !important;
+            overflow: hidden !important;
+            left: 0 !important;
+            right: 0 !important;
+        `;
         
         const app = document.getElementById('app');
         if (app) {
@@ -99,7 +102,10 @@ function initSideMenu() {
             app.style.top = `-${scrollY}px`;
         }
         
-        // Now add classes (this won't cause scroll jump because body is already fixed)
+        // Now add classes (this won't cause scroll jump because body is already fixed via inline style)
+        // Force a reflow to ensure styles are applied
+        void body.offsetHeight;
+        
         document.documentElement.classList.add('menu-open');
         body.classList.add('menu-open');
         
@@ -145,36 +151,29 @@ function initSideMenu() {
         
         // Function to restore scroll position
         const restoreScroll = () => {
-            // Remove inline styles that lock scroll
-            body.style.position = '';
-            body.style.top = '';
-            body.style.width = '';
-            body.style.overflow = '';
-            body.style.left = '';
-            body.style.right = '';
+            // Remove ALL inline styles that lock scroll
+            body.style.cssText = '';
             
             if (app) {
                 app.style.top = '';
             }
             
             // Force scroll position restoration
-            // Use multiple requestAnimationFrame to ensure it happens after layout
+            // Wait for next frame to ensure layout is ready
             requestAnimationFrame(() => {
-                // First, ensure we're at the top
-                window.scrollTo(0, 0);
+                // Force scroll to saved position immediately
+                window.scrollTo(0, savedY);
+                document.documentElement.scrollTop = savedY;
+                document.body.scrollTop = savedY;
+                
+                // Double-check and force again after a frame
                 requestAnimationFrame(() => {
-                    // Then restore saved position
-                    window.scrollTo(0, savedY);
-                    requestAnimationFrame(() => {
-                        // Double-check and force if needed
-                        const currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-                        if (Math.abs(currentY - savedY) > 1) {
-                            window.scrollTo(0, savedY);
-                            // Force one more time
-                            document.documentElement.scrollTop = savedY;
-                            document.body.scrollTop = savedY;
-                        }
-                    });
+                    const currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+                    if (Math.abs(currentY - savedY) > 1) {
+                        window.scrollTo(0, savedY);
+                        document.documentElement.scrollTop = savedY;
+                        document.body.scrollTop = savedY;
+                    }
                 });
             });
         };
