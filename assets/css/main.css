@@ -392,23 +392,22 @@ body.menu-open .backdrop {
         height: 100%;
     }
     
-    /* Scale down and center the content */
+    /* Scale down and center the content vertically */
     body.menu-open {
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
     }
     
     body.menu-open .app {
-        transform: scale(0.85);
+        transform: translateX(calc(var(--menu-translate-x) / 0.85)) scale(0.85);
         transform-origin: center center;
         border-radius: 12px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         overflow: hidden;
+        max-width: calc((100% - var(--menu-width)) / 0.85);
+        width: calc((100% - var(--menu-width)) / 0.85);
         margin-left: var(--menu-translate-x);
-        width: calc(100% - var(--menu-width));
-        max-width: calc(100% - var(--menu-width));
-        min-height: 100vh;
     }
 }
 
@@ -1547,29 +1546,31 @@ body.menu-open {
 }
 
 .trips-grid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
 }
 
 .trip-card {
     width: 100%;
     overflow: hidden;
     border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
     background-color: var(--bg-white);
+    display: flex;
+    flex-direction: column;
 }
 
 .trip-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .trip-card-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     position: relative;
 }
 
@@ -1577,7 +1578,8 @@ body.menu-open {
 .trip-image-side {
     position: relative;
     overflow: hidden;
-    min-height: 500px;
+    height: 280px;
+    width: 100%;
 }
 
 .trip-image-wrapper {
@@ -1596,115 +1598,114 @@ body.menu-open {
 }
 
 .trip-card:hover .trip-image-wrapper img {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
-/* Blur efekt v polovině s přechodem do barvy */
+/* Blur efekt v dolní polovině s přechodem do barvy */
 .trip-image-gradient {
     position: absolute;
-    top: 0;
     bottom: 0;
-    width: 50%;
+    left: 0;
+    right: 0;
+    height: 50%;
     z-index: 2;
     pointer-events: none;
 }
 
-/* Blur maska - efekt blur v polovině (od 40% do 60%) */
+/* Blur maska - efekt blur v dolní polovině */
 .trip-image-wrapper::after {
     content: '';
     position: absolute;
-    top: 0;
     bottom: 0;
-    width: 50%;
+    left: 0;
+    right: 0;
+    height: 50%;
     z-index: 1;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    mask-image: linear-gradient(to right, transparent 0%, transparent 30%, black 40%, black 60%, transparent 70%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 30%, black 40%, black 60%, transparent 70%, transparent 100%);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    mask-image: linear-gradient(to bottom, transparent 0%, transparent 30%, black 40%, black 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 30%, black 40%, black 100%);
 }
 
-.trip-image-left .trip-image-wrapper::after {
-    right: 0;
-}
-
-.trip-image-right .trip-image-wrapper::after {
-    left: 0;
-    mask-image: linear-gradient(to left, transparent 0%, transparent 30%, black 40%, black 60%, transparent 70%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to left, transparent 0%, transparent 30%, black 40%, black 60%, transparent 70%, transparent 100%);
-}
-
-/* Gradient přechod z průhledné do barvy */
-.trip-gradient-left {
-    right: 0;
-}
-
+/* Gradient přechod z průhledné do barvy zdola */
+.trip-gradient-left,
 .trip-gradient-right {
+    bottom: 0;
     left: 0;
+    right: 0;
+    width: 100%;
 }
 
 /* Trip Content Side */
 .trip-content-side {
+    flex: 1;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-lg);
+    flex-direction: column;
+    padding: var(--spacing-md);
     color: var(--bg-white);
     position: relative;
+    justify-content: space-between;
 }
 
 .trip-content-wrapper {
-    max-width: 500px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .trip-name {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     color: var(--bg-white);
     line-height: 1.2;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .trip-description {
-    font-size: 1.125rem;
-    line-height: 1.8;
-    margin-bottom: var(--spacing-lg);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
     color: rgba(255, 255, 255, 0.95);
     font-weight: 300;
+    flex: 1;
 }
 
 .trip-maps-link {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: var(--spacing-xs);
-    padding: 1rem 2rem;
-    background-color: rgba(255, 255, 255, 0.15);
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(255, 255, 255, 0.2);
     color: var(--bg-white);
     text-decoration: none;
     border-radius: 4px;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: var(--transition);
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.3);
     font-family: var(--font-body);
+    width: 100%;
+    margin-top: auto;
 }
 
 .trip-maps-link:hover {
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.3);
     border-color: rgba(255, 255, 255, 0.5);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .trip-maps-link i {
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .trip-maps-link i:last-child {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     margin-left: auto;
 }
 
@@ -1718,64 +1719,26 @@ body.menu-open {
 
 /* Responsive Design */
 @media (max-width: 968px) {
-    .trip-card-inner {
-        grid-template-columns: 1fr;
-        min-height: auto;
-    }
-    
-    .trip-image-side {
-        min-height: 350px;
-        order: 1;
-    }
-    
-    .trip-content-side {
-        order: 2;
-        min-height: 350px;
-    }
-    
-    /* Na mobilu: blur a gradient zespoda */
-    .trip-image-wrapper::after {
-        width: 100%;
-        height: 50%;
-        bottom: 0;
-        top: auto;
-    }
-    
-    .trip-image-gradient {
-        width: 100%;
-        height: 50%;
-        bottom: 0;
-        top: auto;
-    }
-    
-    .trip-name {
-        font-size: 2rem;
-    }
-    
-    .trip-description {
-        font-size: 1rem;
+    .trips-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 640px) {
-    .trip-name {
-        font-size: 1.75rem;
-    }
-    
-    .trip-content-side {
-        padding: var(--spacing-md);
-        min-height: 300px;
+    .trips-grid {
+        grid-template-columns: 1fr;
     }
     
     .trip-image-side {
-        min-height: 300px;
+        height: 250px;
     }
     
-    .trip-maps-link {
-        padding: 0.875rem 1.5rem;
-        font-size: 0.95rem;
-        width: 100%;
-        justify-content: center;
+    .trip-name {
+        font-size: 1.35rem;
+    }
+    
+    .trip-description {
+        font-size: 0.9rem;
     }
 }
 

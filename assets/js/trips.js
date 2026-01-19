@@ -10,7 +10,7 @@ const tripsData = [
         city: 'frantiskovy-lazne',
         type: 'lazne',
         description: 'Lázeňské město s klasickou architekturou a léčivými prameny. Ideální místo pro relaxaci a procházky po kolonádách.',
-        image: 'fotky/178484544.jpg', // placeholder - měl by být skutečný obrázek
+        image: 'https://images.unsplash.com/photo-1580584126903-c17d41830450?w=1200&h=800&fit=crop',
         color: '#8B7355',
         mapsUrl: 'https://maps.app.goo.gl/search/Františkovy+Lázně'
     },
@@ -20,7 +20,7 @@ const tripsData = [
         city: 'karlovy-vary',
         type: 'lazne',
         description: 'Nejznámější kolonáda v Karlových Varech, kde můžete ochutnat léčivou vodu z pramenů a užít si atmosféru lázeňského města.',
-        image: 'fotky/178480560.jpg',
+        image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200&h=800&fit=crop',
         color: '#d4af37',
         mapsUrl: 'https://maps.app.goo.gl/search/Mlýnská+kolonáda+Karlovy+Vary'
     },
@@ -30,7 +30,7 @@ const tripsData = [
         city: 'karlovy-vary',
         type: 'vyhled',
         description: 'Vyhlídková věž s krásným výhledem na Karlovy Vary a okolí. Přístupná lanovkou nebo pěšky.',
-        image: 'fotky/178479648.jpg',
+        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop',
         color: '#8B7355',
         mapsUrl: 'https://maps.app.goo.gl/search/Diana+vyhlídka+Karlovy+Vary'
     },
@@ -40,7 +40,7 @@ const tripsData = [
         city: 'ostrov',
         type: 'hory',
         description: 'Nejvyšší hora Krušných hor s rozhlednou a možností lyžování v zimě. Nádherné výhledy do okolí.',
-        image: 'fotky/178482126.jpg',
+        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop',
         color: '#4a6741',
         mapsUrl: 'https://maps.app.goo.gl/search/Klínovec'
     },
@@ -50,7 +50,7 @@ const tripsData = [
         city: 'aberamy',
         type: 'priroda',
         description: 'Přírodní zajímavost - propadlina vzniklá po těžbě cínu. Tajuplné místo obklopené lesy.',
-        image: 'fotky/178483119.jpg',
+        image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=800&fit=crop',
         color: '#5a5a5a',
         mapsUrl: 'https://maps.app.goo.gl/search/Vlčí+jáma+Abertamy'
     },
@@ -60,7 +60,7 @@ const tripsData = [
         city: 'aberamy',
         type: 'hory',
         description: 'Malebná horská obec v Krušných horách s bohatou hornickou historií. Ideální výchozí bod pro turistiku.',
-        image: 'fotky/178481221.jpg',
+        image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&h=800&fit=crop',
         color: '#4a6741',
         mapsUrl: 'https://maps.app.goo.gl/search/Abertamy'
     },
@@ -70,7 +70,7 @@ const tripsData = [
         city: 'loket',
         type: 'pamatka',
         description: 'Středověký hrad a malebné město nad řekou Ohře. Historické centrum a krásné výhledy.',
-        image: 'fotky/178482932.jpg',
+        image: 'https://images.unsplash.com/photo-1539650116574-75c0c6d73a15?w=1200&h=800&fit=crop',
         color: '#8B7355',
         mapsUrl: 'https://maps.app.goo.gl/search/Hrad+Loket'
     },
@@ -80,7 +80,7 @@ const tripsData = [
         city: 'frantiskovy-lazne',
         type: 'bazen',
         description: 'Moderní aquapark s bazény, tobogány a wellness zónou. Skvělé pro celou rodinu.',
-        image: 'fotky/178480866.jpg',
+        image: 'https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534?w=1200&h=800&fit=crop',
         color: '#2c7dd6',
         mapsUrl: 'https://maps.app.goo.gl/search/Aquaforum+Františkovy+Lázně'
     },
@@ -90,7 +90,7 @@ const tripsData = [
         city: 'marianske-lazne',
         type: 'lazne',
         description: 'Elegantní lázeňské město s kolonádou, prameny a nádhernými parky. Perla lázeňského trojúhelníku.',
-        image: 'fotky/178479759.jpg',
+        image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&h=800&fit=crop',
         color: '#8B7355',
         mapsUrl: 'https://maps.app.goo.gl/search/Mariánské+Lázně'
     },
@@ -100,7 +100,7 @@ const tripsData = [
         city: 'jachymov',
         type: 'pamatka',
         description: 'Historické město s hornickou minulostí a radioaktivními prameny. Muzeum a lázeňství.',
-        image: 'fotky/178478261.jpg',
+        image: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=1200&h=800&fit=crop',
         color: '#8B7355',
         mapsUrl: 'https://maps.app.goo.gl/search/Jáchymov'
     },
@@ -110,7 +110,7 @@ const tripsData = [
         city: 'karlovy-vary',
         type: 'vyhled',
         description: 'Romantická vyhlídka pojmenovaná po J.W. Goethovi s výhledem na město a údolí řeky Teplé.',
-        image: 'fotky/178480294.jpg',
+        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop',
         color: '#8B7355',
         mapsUrl: 'https://maps.app.goo.gl/search/Goethova+vyhlídka+Karlovy+Vary'
     },
@@ -120,7 +120,7 @@ const tripsData = [
         city: 'ostrov',
         type: 'kultura',
         description: 'Historické město s klášterem, zámkem a zajímavým centrem. Klidné místo pro procházky.',
-        image: 'fotky/144699058.jpg',
+        image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&h=800&fit=crop',
         color: '#8B7355',
         mapsUrl: 'https://maps.app.goo.gl/search/Ostrov+nad+Ohří'
     }
@@ -194,63 +194,44 @@ function renderTrips(trips) {
 }
 
 function createTripCard(trip) {
-    // Alternate between left and right image placement
-    const isEven = trip.id % 2 === 0;
-    const imageSide = isEven ? 'left' : 'right';
-    
     const gradientColor = trip.color || '#8B7355';
+    const rgbaColor = hexToRgba(gradientColor);
     
+    // Kompaktní karta s obrázkem nahoře a obsahem dole
     return `
         <div class="trip-card" data-city="${trip.city}" data-type="${trip.type}">
-            ${imageSide === 'left' ? createTripCardWithLeftImage(trip, gradientColor) : createTripCardWithRightImage(trip, gradientColor)}
-        </div>
-    `;
-}
-
-function createTripCardWithLeftImage(trip, gradientColor) {
-    return `
-        <div class="trip-card-inner">
-            <div class="trip-image-side trip-image-left">
-                <div class="trip-image-wrapper">
-                    <img src="${trip.image}" alt="${trip.name}" onerror="this.src='fotky/178484544.jpg'">
-                    <div class="trip-image-gradient" style="background: linear-gradient(to right, ${gradientColor}00, ${gradientColor}ff);"></div>
+            <div class="trip-card-inner">
+                <div class="trip-image-side">
+                    <div class="trip-image-wrapper">
+                        <img src="${trip.image}" alt="${trip.name}" loading="lazy">
+                        <div class="trip-image-gradient" style="background: linear-gradient(to bottom, transparent 0%, transparent 30%, ${rgbaColor(0.3)} 50%, ${rgbaColor(0.8)} 80%, ${rgbaColor(1)} 100%);"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="trip-content-side trip-content-right" style="background-color: ${gradientColor};">
-                <div class="trip-content-wrapper">
-                    <h2 class="trip-name">${trip.name}</h2>
-                    <p class="trip-description">${trip.description}</p>
-                    <a href="${trip.mapsUrl}" target="_blank" rel="noopener noreferrer" class="trip-maps-link">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Otevřít v Mapách</span>
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
+                <div class="trip-content-side" style="background-color: ${gradientColor};">
+                    <div class="trip-content-wrapper">
+                        <h2 class="trip-name">${trip.name}</h2>
+                        <p class="trip-description">${trip.description}</p>
+                        <a href="${trip.mapsUrl}" target="_blank" rel="noopener noreferrer" class="trip-maps-link">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Otevřít v Mapách</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     `;
 }
 
-function createTripCardWithRightImage(trip, gradientColor) {
-    return `
-        <div class="trip-card-inner">
-            <div class="trip-content-side trip-content-left" style="background-color: ${gradientColor};">
-                <div class="trip-content-wrapper">
-                    <h2 class="trip-name">${trip.name}</h2>
-                    <p class="trip-description">${trip.description}</p>
-                    <a href="${trip.mapsUrl}" target="_blank" rel="noopener noreferrer" class="trip-maps-link">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Otevřít v Mapách</span>
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="trip-image-side trip-image-right">
-                <div class="trip-image-wrapper">
-                    <img src="${trip.image}" alt="${trip.name}" onerror="this.src='fotky/178484544.jpg'">
-                    <div class="trip-image-gradient" style="background: linear-gradient(to left, ${gradientColor}00, ${gradientColor}ff);"></div>
-                </div>
-            </div>
-        </div>
-    `;
+// Helper function to convert hex color to rgba
+function hexToRgba(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    if (!result) {
+        // Default color if parsing fails
+        return (alpha) => `rgba(139, 115, 85, ${alpha})`;
+    }
+    const r = parseInt(result[1], 16);
+    const g = parseInt(result[2], 16);
+    const b = parseInt(result[3], 16);
+    return (alpha) => `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
