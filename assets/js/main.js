@@ -117,6 +117,22 @@ function initSideMenu() {
             // This allows user to scroll the scaled-down content
             requestAnimationFrame(() => {
                 app.scrollTop = scrollY;
+                
+                // Sync app.style.top with app.scrollTop when user scrolls
+                // This ensures the visual position stays correct
+                const syncScroll = () => {
+                    if (isMenuOpen && app) {
+                        const currentScroll = app.scrollTop;
+                        // Update top to match scroll position
+                        app.style.top = `-${currentScroll}px`;
+                    }
+                };
+                
+                // Listen for scroll events inside the app element
+                app.addEventListener('scroll', syncScroll, { passive: true });
+                
+                // Store the sync function so we can remove it later
+                app._scrollSync = syncScroll;
             });
         }
         
@@ -174,9 +190,15 @@ function initSideMenu() {
         const restoreScroll = () => {
             // Get current scroll position from app element if user scrolled it
             let finalScrollY = savedY;
-            if (app && app.scrollTop !== undefined) {
+            if (app && app.scrollTop !== undefined && app.scrollTop > 0) {
                 // If user scrolled inside the app, use that position
                 finalScrollY = app.scrollTop;
+            }
+            
+            // Remove scroll sync listener if it exists
+            if (app && app._scrollSync) {
+                app.removeEventListener('scroll', app._scrollSync);
+                delete app._scrollSync;
             }
             
             // NOW remove inline styles that lock scroll
