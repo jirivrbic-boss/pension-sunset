@@ -10,8 +10,8 @@ import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    initSideMenu();
     initNavigation();
-    initHeroSlider();
     initGallery();
     loadRooms();
     initLanguageSwitcher();
@@ -19,35 +19,56 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
+// SIDE MENU
+// ============================================
+
+function initSideMenu() {
+    const menuToggle = document.getElementById('menuToggle');
+    const sideMenu = document.getElementById('sideMenu');
+    const sideMenuClose = document.getElementById('sideMenuClose');
+    const sideMenuOverlay = document.getElementById('sideMenuOverlay');
+    const mainWrapper = document.getElementById('mainWrapper');
+    
+    function openMenu() {
+        sideMenu.classList.add('active');
+        sideMenuOverlay.classList.add('active');
+        mainWrapper.classList.add('slide-left');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMenu() {
+        sideMenu.classList.remove('active');
+        sideMenuOverlay.classList.remove('active');
+        mainWrapper.classList.remove('slide-left');
+        document.body.style.overflow = '';
+    }
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', openMenu);
+    }
+    
+    if (sideMenuClose) {
+        sideMenuClose.addEventListener('click', closeMenu);
+    }
+    
+    if (sideMenuOverlay) {
+        sideMenuOverlay.addEventListener('click', closeMenu);
+    }
+    
+    // Close menu when clicking on menu links
+    const menuLinks = sideMenu.querySelectorAll('a[href^="#"]');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            closeMenu();
+        });
+    });
+}
+
+// ============================================
 // NAVIGATION
 // ============================================
 
 function initNavigation() {
-    const header = document.getElementById('header');
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const nav = document.getElementById('nav');
-    
-    // Sticky header on scroll
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 100) {
-            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
-        } else {
-            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-        }
-        
-        lastScroll = currentScroll;
-    });
-    
-    // Mobile menu toggle
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
-        });
-    }
-    
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -64,38 +85,15 @@ function initNavigation() {
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-                const headerHeight = header.offsetHeight;
-                const targetPosition = target.offsetTop - headerHeight;
+                const targetPosition = target.offsetTop;
                 
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
                 });
-                
-                // Close mobile menu if open
-                if (nav.classList.contains('active')) {
-                    nav.classList.remove('active');
-                }
             }
         });
     });
-}
-
-// ============================================
-// HERO SLIDER
-// ============================================
-
-function initHeroSlider() {
-    const slides = document.querySelectorAll('.hero-slide');
-    if (slides.length === 0) return;
-    
-    let currentSlide = 0;
-    
-    setInterval(() => {
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-    }, 5000);
 }
 
 // ============================================
