@@ -489,8 +489,8 @@ body.menu-open .backdrop {
         transform: scale(0.85) rotateY(-15deg);
         transform-origin: right center;
         transform-style: preserve-3d;
-        border-radius: 12px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        border-radius: 0;
+        box-shadow: none;
         overflow: hidden;
         width: calc(100% - var(--menu-width));
         max-width: calc(100% - var(--menu-width));
