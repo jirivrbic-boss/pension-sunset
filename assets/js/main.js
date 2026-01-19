@@ -184,11 +184,41 @@ function initSideMenu() {
         }
     });
     
-    // Close menu when clicking on menu links (optional - can be disabled)
+    // Handle menu link clicks - scroll to section or navigate to page
     menuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            // Uncomment next line if you want menu to close on link click
-            // closeMenu();
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            
+            // If it's an anchor link (starts with #)
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                
+                // Close menu first
+                closeMenu();
+                
+                // Wait for menu to close, then scroll to section
+                setTimeout(() => {
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    } else if (targetId === 'uvod') {
+                        // Special case for home - scroll to top
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 300); // Wait for menu close animation
+            } else if (href && !href.startsWith('#')) {
+                // External link or different page - close menu and navigate
+                closeMenu();
+                // Navigation will happen naturally via href
+            }
         });
     });
 }
@@ -237,7 +267,7 @@ async function loadRooms() {
     const rooms = [
         {
             id: 'RD150721301',
-            name: 'Dvoulůžkový pokoj Standard s manželskou postelí a sdílenou koupelnou',
+            name: 'Dvoulůžkový pokoj Standard',
             size: '25 m²',
             beds: '1 manželská postel',
             capacity: 2,
