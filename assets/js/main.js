@@ -103,24 +103,8 @@ function initSideMenu() {
         // Save current focus
         previousFocus = document.activeElement;
         
-        // Focus first menu item WITHOUT scrolling
-        requestAnimationFrame(() => {
-            if (firstFocusable) {
-                // Try preventScroll, fallback to manual scroll save/restore
-                if (firstFocusable.focus && typeof firstFocusable.focus === 'function') {
-                    try {
-                        firstFocusable.focus({ preventScroll: true });
-                    } catch (err) {
-                        // Fallback for browsers that don't support preventScroll
-                        const currentScroll = window.scrollY;
-                        firstFocusable.focus();
-                        if (window.scrollY !== currentScroll) {
-                            window.scrollTo(0, currentScroll);
-                        }
-                    }
-                }
-            }
-        });
+        // DON'T focus first menu item to avoid any scroll jumps
+        // User can manually navigate menu if needed
     }
     
     function closeMenu(e) {
@@ -187,20 +171,19 @@ function initSideMenu() {
         backdrop.setAttribute('aria-hidden', 'true');
         
         // Return focus to previous element or hamburger button WITHOUT scrolling
+        // Use requestAnimationFrame to ensure scroll is restored first
         requestAnimationFrame(() => {
-            const targetFocus = previousFocus || menuToggle;
-            if (targetFocus && targetFocus.focus) {
-                try {
-                    targetFocus.focus({ preventScroll: true });
-                } catch (err) {
-                    // Fallback: save scroll, focus, restore scroll
-                    const currentScroll = window.scrollY;
-                    targetFocus.focus();
-                    if (window.scrollY !== currentScroll) {
-                        window.scrollTo(0, currentScroll);
+            requestAnimationFrame(() => {
+                const targetFocus = previousFocus || menuToggle;
+                if (targetFocus && targetFocus.focus) {
+                    try {
+                        targetFocus.focus({ preventScroll: true });
+                    } catch (err) {
+                        // Fallback: don't focus if it causes scroll jump
+                        // Just update tabindex if needed
                     }
                 }
-            }
+            });
         });
     }
     
