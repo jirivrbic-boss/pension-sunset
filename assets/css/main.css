@@ -371,39 +371,42 @@ body.menu-open .backdrop {
     pointer-events: auto;
 }
 
-/* App Wrapper - ALL content, will be transformed */
+/* App Wrapper - ALL content, will be transformed in 3D */
 .app {
     min-height: 100vh;
     width: 100%;
     background-color: var(--bg-white);
     position: relative;
-    transform-origin: center center;
+    transform-origin: 0% 50%;
     transition: transform var(--menu-animation-duration) var(--menu-animation-easing);
     will-change: transform;
+    transform-style: preserve-3d;
 }
 
-/* Transform when menu is open - scale and center */
+/* 3D Transform when menu is open (Desktop only) */
 @media (min-width: 769px) {
     /* Perspective container - must be on body or html */
     html.menu-open,
     body.menu-open {
-        /* perspective removed */
-        /* perspective-origin removed */
+        perspective: var(--menu-perspective);
+        perspective-origin: left center;
         overflow: hidden;
         height: 100%;
     }
     
-    /* Scale down and center the content */
+    /* 3D card flip effect - perspective in transform for better browser support */
     body.menu-open .app {
-        transform: translateX(var(--menu-translate-x)) scale(0.85);
-        transform-origin: center center;
-        border-radius: 12px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        transform: perspective(var(--menu-perspective))
+                   translateX(var(--menu-translate-x)) 
+                   rotateY(var(--menu-rotate-y)) 
+                   scale(var(--menu-scale));
+        transform-origin: left center;
+        transform-style: preserve-3d;
+        border-radius: 18px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35),
+                    -10px 0 30px rgba(0, 0, 0, 0.2);
         overflow: hidden;
-        margin: 0 auto;
-        max-width: calc(100% - var(--menu-width));
-        margin: 0 auto;
-        max-width: calc(100% - var(--menu-width));
+        backface-visibility: hidden;
     }
 }
 
@@ -1438,3 +1441,299 @@ body.menu-open {
 .mb-1 { margin-bottom: var(--spacing-sm); }
 .mb-2 { margin-bottom: var(--spacing-md); }
 
+/* ============================================
+   TRIPS PAGE - Výlety do okolí
+   ============================================ */
+
+/* Trips Hero */
+.trips-hero {
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    color: var(--bg-white);
+    margin-top: 0;
+}
+
+.trips-hero .section-title {
+    color: var(--bg-white);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.trips-hero .section-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Trips Filters */
+.trips-filters {
+    padding: var(--spacing-md) 0;
+    background-color: var(--bg-light);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background-color: rgba(248, 248, 248, 0.95);
+}
+
+.filters-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-group label {
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.filter-select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    background-color: var(--bg-white);
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+}
+
+.filter-select:hover {
+    border-color: var(--accent-color);
+}
+
+#resetFilters {
+    padding: 0.75rem 1.5rem;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .filters-wrapper {
+        flex-direction: column;
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+    
+    #resetFilters {
+        width: 100%;
+    }
+}
+
+/* Trips Grid Section */
+.trips-grid-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-white);
+}
+
+.trips-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.trip-card {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transition: var(--transition);
+}
+
+.trip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+.trip-card-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 400px;
+    position: relative;
+}
+
+/* Trip Image Side */
+.trip-image-side {
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+}
+
+.trip-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.trip-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.trip-image-gradient {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+}
+
+.trip-image-left .trip-image-gradient {
+    right: 0;
+    background: linear-gradient(to right, transparent 0%, rgba(139, 115, 85, 0.3) 50%, rgba(139, 115, 85, 0.9) 100%);
+}
+
+.trip-image-right .trip-image-gradient {
+    left: 0;
+    background: linear-gradient(to left, transparent 0%, rgba(139, 115, 85, 0.3) 50%, rgba(139, 115, 85, 0.9) 100%);
+}
+
+/* Trip Content Side */
+.trip-content-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    color: var(--bg-white);
+    position: relative;
+}
+
+.trip-content-wrapper {
+    max-width: 500px;
+    width: 100%;
+}
+
+.trip-name {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--bg-white);
+    line-height: 1.2;
+}
+
+.trip-description {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: var(--spacing-lg);
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 300;
+}
+
+.trip-maps-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 1rem 2rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--bg-white);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.trip-maps-link:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.trip-maps-link i {
+    font-size: 1.1rem;
+}
+
+.trip-maps-link i:last-child {
+    font-size: 0.875rem;
+    margin-left: auto;
+}
+
+.no-results {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--text-light);
+    font-size: 1.125rem;
+    grid-column: 1 / -1;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .trip-card-inner {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+    
+    .trip-image-side {
+        min-height: 300px;
+        order: 1;
+    }
+    
+    .trip-content-side {
+        order: 2;
+        min-height: 300px;
+    }
+    
+    .trip-image-gradient {
+        width: 100%;
+        height: 50%;
+        bottom: 0;
+        top: auto;
+        background: linear-gradient(to top, rgba(139, 115, 85, 0.9) 0%, rgba(139, 115, 85, 0.3) 50%, transparent 100%) !important;
+    }
+    
+    .trip-name {
+        font-size: 2rem;
+    }
+    
+    .trip-description {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .trip-name {
+        font-size: 1.75rem;
+    }
+    
+    .trip-content-side {
+        padding: var(--spacing-md);
+    }
+    
+    .trip-maps-link {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Menu Active State */
+.menu-link.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}
