@@ -76,3 +76,4 @@
 **Datum testování:** 2026-01-06  
 **Status:** ✅ Všechny testy úspěšné
 
+

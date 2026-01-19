@@ -318,63 +318,43 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* Booking Form */
-.booking-form {
-    background-color: var(--bg-white);
-    border-radius: 8px;
-    padding: var(--spacing-md);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    margin-top: var(--spacing-md);
+/* Booking CTA */
+.booking-cta {
+    text-align: center;
+    margin-top: var(--spacing-lg);
 }
 
-.booking-form-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: var(--spacing-sm);
-    align-items: end;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    display: flex;
+.booking-cta .btn-large {
+    padding: 1.25rem 3rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: inline-flex;
     align-items: center;
-    gap: var(--spacing-xs);
-    font-size: 0.875rem;
-    color: var(--text-light);
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group select {
-    padding: 0.75rem;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    font-family: var(--font-body);
-    font-size: 1rem;
+    gap: var(--spacing-sm);
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     transition: var(--transition);
 }
 
-.form-group input:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+.booking-cta .btn-large:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
 }
 
-.booking-form-content .btn {
-    width: 100%;
-    justify-content: center;
-    padding: 1rem;
+.booking-note {
+    margin-top: var(--spacing-sm);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
 }
 
 @media (max-width: 768px) {
-    .booking-form-content {
-        grid-template-columns: 1fr;
+    .booking-cta .btn-large {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+    
+    .booking-note {
+        font-size: 0.875rem;
     }
 }
 
@@ -862,6 +842,70 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: 400px;
     border: none;
+}
+
+/* Full Width Map Section */
+.contact-map-full {
+    width: 100vw;
+    margin-top: var(--spacing-lg);
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    position: relative;
+}
+
+.contact-map-full iframe {
+    width: 100%;
+    height: 500px;
+    border: none;
+    display: block;
+}
+
+.map-link-wrapper {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+.map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 0.75rem 1.5rem;
+    background-color: var(--bg-white);
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.map-link:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.map-link i {
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .contact-map-full iframe {
+        height: 400px;
+    }
+    
+    .map-link-wrapper {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .map-link {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
 }
 
 @media (max-width: 968px) {

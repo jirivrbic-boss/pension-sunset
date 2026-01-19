@@ -12,7 +12,6 @@ import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initHeroSlider();
-    initBookingForm();
     initGallery();
     loadRooms();
     initLanguageSwitcher();
@@ -53,7 +52,7 @@ function initNavigation() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-            if (href === '#' || href === '#rezervace') {
+            if (href === '#') {
                 e.preventDefault();
                 const hero = document.getElementById('uvod');
                 if (hero) {
@@ -97,61 +96,6 @@ function initHeroSlider() {
         currentSlide = (currentSlide + 1) % slides.length;
         slides[currentSlide].classList.add('active');
     }, 5000);
-}
-
-// ============================================
-// BOOKING FORM
-// ============================================
-
-function initBookingForm() {
-    const bookingForm = document.getElementById('bookingFormContent');
-    const checkinInput = document.getElementById('checkin');
-    const checkoutInput = document.getElementById('checkout');
-    
-    // Set minimum date to today
-    const today = new Date().toISOString().split('T')[0];
-    if (checkinInput) {
-        checkinInput.min = today;
-    }
-    if (checkoutInput) {
-        checkoutInput.min = today;
-    }
-    
-    // Update checkout minimum date when checkin changes
-    if (checkinInput && checkoutInput) {
-        checkinInput.addEventListener('change', () => {
-            if (checkinInput.value) {
-                const checkinDate = new Date(checkinInput.value);
-                checkinDate.setDate(checkinDate.getDate() + 1);
-                checkoutInput.min = checkinDate.toISOString().split('T')[0];
-                
-                // If checkout is before new checkin, update it
-                if (checkoutInput.value && new Date(checkoutInput.value) <= new Date(checkinInput.value)) {
-                    checkoutInput.value = '';
-                }
-            }
-        });
-    }
-    
-    // Handle form submission
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const formData = {
-                checkin: checkinInput.value,
-                checkout: checkoutInput.value,
-                guests: document.getElementById('guests').value,
-                rooms: document.getElementById('rooms').value
-            };
-            
-            // TODO: Connect to backend/API
-            console.log('Booking request:', formData);
-            
-            // For now, show alert
-            alert(`Rezervace pro ${formData.checkin} - ${formData.checkout}\nHosté: ${formData.guests}, Pokoje: ${formData.rooms}\n\nTato funkce bude brzy dostupná!`);
-        });
-    }
 }
 
 // ============================================
@@ -205,26 +149,17 @@ function createRoomCard(room, roomId) {
                     ${room.price || 0} Kč<span>/noc</span>
                 </div>
             </div>
-            <button class="btn btn-primary" onclick="handleRoomBooking('${roomId}')" style="width: 100%; margin-top: 1rem;">
-                <span>Rezervovat</span>
-                <i class="fas fa-arrow-right"></i>
-            </button>
+            <a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; margin-top: 1rem; text-decoration: none; display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;">
+                <span>Rezervovat na Booking.com</span>
+                <i class="fas fa-external-link-alt"></i>
+            </a>
         </div>
     `;
     
     return card;
 }
 
-// Global function for room booking
-window.handleRoomBooking = function(roomId) {
-    const hero = document.getElementById('uvod');
-    if (hero) {
-        hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    
-    // TODO: Pre-fill booking form with room ID
-    console.log('Booking room:', roomId);
-};
+// Room booking redirects to Booking.com (no longer needed as links are direct)
 
 // ============================================
 // GALLERY
