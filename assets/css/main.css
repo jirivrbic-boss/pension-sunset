@@ -374,11 +374,13 @@ body.menu-open .backdrop {
 /* App Wrapper - ALL content, will be transformed in 3D */
 .app {
     min-height: 100vh;
+    width: 100%;
     background-color: var(--bg-white);
     position: relative;
-    transform-origin: left center;
+    transform-origin: 0% 50%;
     transition: transform var(--menu-animation-duration) var(--menu-animation-easing);
     will-change: transform;
+    transform-style: preserve-3d;
 }
 
 /* 3D Transform when menu is open (Desktop only) */
@@ -392,17 +394,18 @@ body.menu-open .backdrop {
         height: 100%;
     }
     
-    /* 3D card flip effect */
+    /* 3D card flip effect - perspective in transform for better browser support */
     body.menu-open .app {
         transform: perspective(var(--menu-perspective))
                    translateX(var(--menu-translate-x)) 
                    rotateY(var(--menu-rotate-y)) 
                    scale(var(--menu-scale));
+        transform-origin: left center;
+        transform-style: preserve-3d;
         border-radius: 18px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35),
                     -10px 0 30px rgba(0, 0, 0, 0.2);
         overflow: hidden;
-        transform-style: preserve-3d;
         backface-visibility: hidden;
     }
 }
