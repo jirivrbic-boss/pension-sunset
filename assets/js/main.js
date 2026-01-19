@@ -503,7 +503,7 @@ async function loadRooms() {
             ],
             rating: '8,8',
             ratingCount: '25',
-            image: 'fotky/178484544.jpg'
+            image: 'fotky/178478261.jpg'
         },
         {
             id: 'RD150721302',
@@ -547,7 +547,7 @@ async function loadRooms() {
             ],
             rating: '8,8',
             ratingCount: '25',
-            image: 'fotky/178484544.jpg'
+            image: 'fotky/178482126.jpg'
         }
     ];
     
