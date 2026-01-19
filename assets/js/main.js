@@ -164,11 +164,11 @@ function initSideMenu() {
         
         // Function to restore scroll position
         const restoreScroll = () => {
-            // CRITICAL: Remove transform translateY FIRST (from openMenu)
+            // CRITICAL: Remove inline styles FIRST (from openMenu)
             // This was used to maintain position during scroll lock
             if (app) {
-                app.style.transform = '';
                 app.style.top = '';
+                app.style.transform = '';
             }
             
             // Remove ALL inline styles that lock scroll
