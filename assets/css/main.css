@@ -532,7 +532,8 @@ body.menu-open .backdrop {
         transform-style: preserve-3d;
         border-radius: 0;
         box-shadow: none;
-        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
         width: calc(100% - var(--menu-width));
         max-width: calc(100% - var(--menu-width));
         height: 100vh;
@@ -544,6 +545,8 @@ body.menu-open .backdrop {
                     max-width var(--menu-animation-duration) var(--menu-animation-easing),
                     top var(--menu-animation-duration) var(--menu-animation-easing);
         /* top is set inline by JS to preserve scroll position: top: -scrollYpx */
+        /* Allow scrolling inside the scaled-down content */
+        -webkit-overflow-scrolling: touch;
     }
     
     /* When menu closes, app should return to normal size immediately */
@@ -1388,7 +1391,7 @@ body.menu-open {
 
 /* Contact Section */
 .contact {
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-xl) 0 0 0;
     background-color: var(--bg-white);
 }
 
@@ -1489,10 +1492,11 @@ body.menu-open {
 /* Full Width Map Section */
 .contact-map-full {
     width: 100vw;
-    margin-top: var(--spacing-lg);
+    margin-top: 0;
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
     position: relative;
+    margin-bottom: 0;
 }
 
 .contact-map-full iframe {

@@ -112,6 +112,12 @@ function initSideMenu() {
             // Use top to position it so the current viewport content is visible
             // Since body is fixed with top: -scrollY, app should also account for scrollY
             app.style.top = `-${scrollY}px`;
+            
+            // Set initial scroll position inside the app element
+            // This allows user to scroll the scaled-down content
+            requestAnimationFrame(() => {
+                app.scrollTop = scrollY;
+            });
         }
         
         // Force a reflow to ensure styles are applied
