@@ -327,11 +327,6 @@ function createRoomCard(room) {
     
     const imageUrl = room.image || 'fotky/178484544.jpg';
     
-    // Vytvoření seznamu hlavních vlastností
-    const featuresHtml = room.features.slice(0, 4).map(feature => 
-        `<span class="room-feature-tag"><i class="fas fa-check"></i> ${feature}</span>`
-    ).join('');
-    
     card.innerHTML = `
         <img src="${imageUrl}" alt="${room.name}" class="room-image" onerror="this.src='fotky/178484544.jpg'">
         <div class="room-content">
@@ -339,11 +334,6 @@ function createRoomCard(room) {
             <div class="room-specs">
                 <span class="room-size"><i class="fas fa-expand-arrows-alt"></i> ${room.size}</span>
                 <span class="room-beds"><i class="fas fa-bed"></i> ${room.beds}</span>
-                <span class="room-rating"><i class="fas fa-star"></i> ${room.rating} (${room.ratingCount} hodnocení)</span>
-            </div>
-            <p class="room-description">${room.description}</p>
-            <div class="room-features">
-                ${featuresHtml}
             </div>
             <a href="${room.bookingUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; margin-top: 1rem; text-decoration: none; display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;">
                 <span>Rezervovat na Booking.com</span>
