@@ -413,8 +413,8 @@ body.menu-open .backdrop {
         max-width: calc(100% - var(--menu-width));
         height: 100vh;
         position: fixed;
-        top: 0;
         left: 0;
+        /* top will be set by JavaScript to preserve scroll position */
     }
 }
 

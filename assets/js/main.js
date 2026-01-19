@@ -59,6 +59,7 @@ function initSideMenu() {
     
     let isMenuOpen = false;
     let previousFocus = null;
+    let savedScrollPosition = 0;
     
     // Focus trap elements
     const focusableElements = menu.querySelectorAll(
@@ -70,16 +71,19 @@ function initSideMenu() {
     function openMenu() {
         isMenuOpen = true;
         
-        // Save current scroll position
-        const scrollY = window.scrollY;
-        body.style.top = `-${scrollY}px`;
-        body.classList.add('menu-open');
-        document.documentElement.classList.add('menu-open');
+        // Save current scroll position BEFORE any changes
+        savedScrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
         
-        // Apply scroll position to app
+        // Add classes
+        document.documentElement.classList.add('menu-open');
+        body.classList.add('menu-open');
+        
+        // Apply scroll position to body and app to maintain viewport
+        body.style.top = `-${savedScrollPosition}px`;
+        
         const app = document.getElementById('app');
         if (app) {
-            app.style.top = `-${scrollY}px`;
+            app.style.top = `-${savedScrollPosition}px`;
         }
         
         menuToggle.setAttribute('aria-expanded', 'true');
@@ -99,20 +103,22 @@ function initSideMenu() {
     function closeMenu() {
         isMenuOpen = false;
         
-        // Restore scroll position
-        const scrollY = body.style.top;
+        // Remove classes first
         document.documentElement.classList.remove('menu-open');
         body.classList.remove('menu-open');
+        
+        // Remove inline styles
         body.style.top = '';
         
         const app = document.getElementById('app');
         if (app) {
-            const top = app.style.top;
             app.style.top = '';
-            if (top) {
-                window.scrollTo(0, parseInt(scrollY || '0') * -1);
-            }
         }
+        
+        // Restore scroll position AFTER removing fixed positioning
+        requestAnimationFrame(() => {
+            window.scrollTo(0, savedScrollPosition);
+        });
         
         menuToggle.setAttribute('aria-expanded', 'false');
         backdrop.setAttribute('aria-hidden', 'true');
