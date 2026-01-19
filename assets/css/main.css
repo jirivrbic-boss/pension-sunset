@@ -38,6 +38,12 @@
 
 html {
     scroll-behavior: smooth;
+    height: 100%;
+}
+
+html.menu-open {
+    height: 100%;
+    overflow: hidden;
 }
 
 body {
@@ -371,28 +377,33 @@ body.menu-open .backdrop {
     background-color: var(--bg-white);
     position: relative;
     transform-origin: left center;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
     transition: transform var(--menu-animation-duration) var(--menu-animation-easing);
     will-change: transform;
 }
 
 /* 3D Transform when menu is open (Desktop only) */
 @media (min-width: 769px) {
-    /* Perspective on body for proper 3D effect */
+    /* Perspective container - must be on body or html */
+    html.menu-open,
     body.menu-open {
         perspective: var(--menu-perspective);
         perspective-origin: left center;
         overflow: hidden;
+        height: 100%;
     }
     
+    /* 3D card flip effect */
     body.menu-open .app {
-        transform: translateX(var(--menu-translate-x)) 
+        transform: perspective(var(--menu-perspective))
+                   translateX(var(--menu-translate-x)) 
                    rotateY(var(--menu-rotate-y)) 
                    scale(var(--menu-scale));
         border-radius: 18px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35),
+                    -10px 0 30px rgba(0, 0, 0, 0.2);
         overflow: hidden;
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
     }
 }
 
@@ -400,6 +411,8 @@ body.menu-open .backdrop {
 @media (max-width: 768px) {
     body.menu-open .app {
         transform: translateX(var(--menu-width));
+        border-radius: 0;
+        box-shadow: none;
     }
     
     :root {
@@ -411,6 +424,9 @@ body.menu-open .backdrop {
 /* Prevent body scroll when menu is open */
 body.menu-open {
     overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
 }
 
 .nav-list {

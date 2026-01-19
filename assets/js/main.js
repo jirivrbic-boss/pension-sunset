@@ -69,6 +69,7 @@ function initSideMenu() {
     
     function openMenu() {
         isMenuOpen = true;
+        document.documentElement.classList.add('menu-open');
         body.classList.add('menu-open');
         menuToggle.setAttribute('aria-expanded', 'true');
         backdrop.setAttribute('aria-hidden', 'false');
@@ -86,6 +87,7 @@ function initSideMenu() {
     
     function closeMenu() {
         isMenuOpen = false;
+        document.documentElement.classList.remove('menu-open');
         body.classList.remove('menu-open');
         menuToggle.setAttribute('aria-expanded', 'false');
         backdrop.setAttribute('aria-hidden', 'true');
