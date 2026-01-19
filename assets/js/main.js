@@ -248,6 +248,16 @@ function initSideMenu() {
         toggleMenu(e);
     });
     
+    // Menu close button (X) click
+    const menuCloseBtn = document.getElementById('menuCloseBtn');
+    if (menuCloseBtn) {
+        menuCloseBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeMenu(e);
+        });
+    }
+    
     // Backdrop click - prevent default
     backdrop.addEventListener('click', (e) => {
         e.preventDefault();

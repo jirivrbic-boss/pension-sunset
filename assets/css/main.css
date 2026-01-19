@@ -304,6 +304,41 @@ body.menu-open .side-menu {
     transform: translateX(0);
 }
 
+/* Menu Close Button (X) */
+.menu-close-btn {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 1001;
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #1a3a5f;
+    font-size: 1.5rem;
+    transition: var(--transition);
+    padding: 0;
+    border-radius: 50%;
+}
+
+.menu-close-btn:hover {
+    background-color: rgba(26, 58, 95, 0.1);
+    transform: rotate(90deg);
+}
+
+.menu-close-btn:focus {
+    outline: 2px solid #1a3a5f;
+    outline-offset: 2px;
+}
+
+.menu-close-btn i {
+    display: block;
+}
+
 .menu-content {
     padding: 0;
     height: 100%;
