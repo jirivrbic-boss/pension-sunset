@@ -371,16 +371,16 @@ body.menu-open .backdrop {
     pointer-events: auto;
 }
 
-/* App Wrapper - ALL content, will be transformed in 3D */
+/* App Wrapper - ALL content, will be transformed */
 .app {
     min-height: 100vh;
     width: 100%;
     background-color: var(--bg-white);
     position: relative;
-    transform-origin: 0% 50%;
+    transform-origin: center center;
     transition: transform var(--menu-animation-duration) var(--menu-animation-easing);
     will-change: transform;
-    transform-style: preserve-3d;
+
 }
 
 /* Transform when menu is open - scale and center */
