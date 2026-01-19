@@ -879,14 +879,65 @@ body.menu-open {
 
 .room-name {
     font-size: 1.5rem;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
     color: var(--primary-color);
+}
+
+.room-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.room-specs span {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+.room-specs i {
+    color: var(--accent-color);
+}
+
+.room-size,
+.room-beds,
+.room-rating {
+    font-size: 0.875rem;
 }
 
 .room-description {
     color: var(--text-light);
     margin-bottom: var(--spacing-sm);
     line-height: 1.6;
+    font-size: 0.9rem;
+}
+
+.room-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+}
+
+.room-feature-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--bg-light);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--text-dark);
+}
+
+.room-feature-tag i {
+    color: var(--accent-color);
+    font-size: 0.7rem;
 }
 
 .room-details {

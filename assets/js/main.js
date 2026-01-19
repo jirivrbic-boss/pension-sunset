@@ -20,7 +20,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     initLanguageSwitcher();
     initScrollAnimations();
     
-    // Try to load Firebase modules
+    // Load rooms from Booking.com data (no longer needs Firebase)
+    loadRooms();
+    
+    // Try to load Firebase modules for other features (if needed)
     try {
         const firebaseModule = await import('./firebase.js');
         db = firebaseModule.db;
@@ -31,11 +34,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             query: firestoreModule.query,
             orderBy: firestoreModule.orderBy
         };
-        
-        // Load rooms if Firebase is available
-        if (db && firestore) {
-            loadRooms();
-        }
     } catch (error) {
         console.warn('Firebase modules not available, continuing without Firebase:', error);
     }
@@ -211,34 +209,110 @@ function initNavigation() {
 }
 
 // ============================================
-// LOAD ROOMS FROM FIRESTORE
+// LOAD ROOMS FROM BOOKING.COM DATA
 // ============================================
 
 async function loadRooms() {
     const roomsGrid = document.getElementById('roomsGrid');
     if (!roomsGrid) return;
     
-    if (!db || !firestore) {
-        console.warn('Firebase not available, cannot load rooms');
-        return;
-    }
+    // Statická data pokojů z Booking.com
+    const rooms = [
+        {
+            id: 'RD150721301',
+            name: 'Dvoulůžkový pokoj Standard s manželskou postelí a sdílenou koupelnou',
+            size: '25 m²',
+            beds: '1 manželská postel',
+            capacity: 2,
+            bookingUrl: 'https://www.booking.com/hotel/cz/pension-sunset-meziroli.cs.html?aid=304142&label=gen173nr-10CAEoggI46AdIM1gEaDqIAQGYATO4AQfIAQ3YAQPoAQH4AQGIAgGoAgG4AoelussGwAIB0gIkMDA2YzM3NjAtMGVmOS00Y2E1LWJhODgtMjhkMjQzZTBkMWNm2AIB4AIB&sid=8367012984e9b7276db77b2de7af6b66&dest_id=1507213&dest_type=hotel&dist=0&group_adults=2&group_children=0&hapos=1&hpos=1&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&srepoch=1768854167&srpvid=0ef28f492aa70b43&type=total&ucfs=1&#RD150721301',
+            features: [
+                'Výhled do zahrady',
+                'Výhled na hory',
+                'Výhled na město',
+                'TV s plochou obrazovkou',
+                'Zvuková izolace',
+                'Wi-Fi zdarma'
+            ],
+            description: 'Bazén s výhledem a vířivka jsou speciálními prvky tohoto dvoulůžkového pokoje. Pokoje obsahují sdílenou koupelnu se sprchou, fénem a pantoflemi zdarma. Dvoulůžkový pokoj nabízí soukromý vchod, zvukově izolované stěny, rychlovarnou konvici, TV s plochou obrazovkou s kabelovými programy a výhled do zahrady.',
+            amenities: [
+                'Vířivka',
+                'Povlečení',
+                'Zásuvka u postele',
+                'Posezení',
+                'Zvuková izolace',
+                'Soukromý vchod',
+                'TV',
+                'Lednička',
+                'Satelitní programy',
+                'Příslušenství na přípravu čaje a kávy',
+                'Rádio',
+                'Mikrovlnná trouba',
+                'Topení',
+                'TV s plochou obrazovkou',
+                'Kuchyňské potřeby',
+                'Šatna',
+                'Služba buzení/Budík',
+                'Koberec',
+                'Rychlovarná konvice',
+                'Venkovní nábytek',
+                'Venkovní jídelní kout',
+                'Kabelové programy'
+            ],
+            rating: '8,8',
+            ratingCount: '25',
+            image: 'fotky/178484544.jpg'
+        },
+        {
+            id: 'RD150721302',
+            name: 'Třílůžkový pokoj Standard',
+            size: '30 m²',
+            beds: '3 jednolůžkové postele',
+            capacity: 3,
+            bookingUrl: 'https://www.booking.com/hotel/cz/pension-sunset-meziroli.cs.html?aid=304142&label=gen173nr-10CAEoggI46AdIM1gEaDqIAQGYATO4AQfIAQ3YAQPoAQH4AQGIAgGoAgG4AoelussGwAIB0gIkMDA2YzM3NjAtMGVmOS00Y2E1LWJhODgtMjhkMjQzZTBkMWNm2AIB4AIB&sid=8367012984e9b7276db77b2de7af6b66&dest_id=1507213&dest_type=hotel&dist=0&group_adults=2&group_children=0&hapos=1&hpos=1&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&srepoch=1768854167&srpvid=0ef28f492aa70b43&type=total&ucfs=1&#RD150721302',
+            features: [
+                'Výhled do zahrady',
+                'Výhled na hory',
+                'Výhled na město',
+                'TV s plochou obrazovkou',
+                'Zvuková izolace',
+                'Wi-Fi zdarma'
+            ],
+            description: 'Hosté zažijí výjimečný zážitek, protože tento třílůžkový pokoj nabízí bazén s výhledem a vířivku. Pokoje obsahují sdílenou koupelnu se sprchou, fénem a pantoflemi zdarma. Třílůžkový pokoj nabízí TV s plochou obrazovkou s kabelovými programy, soukromý vchod, zvukově izolované stěny, rychlovarnou konvici a výhled do zahrady.',
+            amenities: [
+                'Vířivka',
+                'Povlečení',
+                'Zásuvka u postele',
+                'Posezení',
+                'Zvuková izolace',
+                'Soukromý vchod',
+                'TV',
+                'Lednička',
+                'Satelitní programy',
+                'Příslušenství na přípravu čaje a kávy',
+                'Rádio',
+                'Mikrovlnná trouba',
+                'Topení',
+                'TV s plochou obrazovkou',
+                'Kuchyňské potřeby',
+                'Šatna',
+                'Služba buzení/Budík',
+                'Koberec',
+                'Rychlovarná konvice',
+                'Venkovní nábytek',
+                'Venkovní jídelní kout',
+                'Kabelové programy'
+            ],
+            rating: '8,8',
+            ratingCount: '25',
+            image: 'fotky/178484544.jpg'
+        }
+    ];
     
     try {
-        const { collection, getDocs, query, orderBy } = firestore;
-        const roomsRef = collection(db, 'rooms');
-        const q = query(roomsRef, orderBy('name', 'asc'));
-        const querySnapshot = await getDocs(q);
-        
-        if (querySnapshot.empty) {
-            roomsGrid.innerHTML = '<p class="text-center">Zatím nejsou k dispozici žádné pokoje.</p>';
-            return;
-        }
-        
         roomsGrid.innerHTML = '';
         
-        querySnapshot.forEach((doc) => {
-            const room = doc.data();
-            const roomCard = createRoomCard(room, doc.id);
+        rooms.forEach((room) => {
+            const roomCard = createRoomCard(room);
             roomsGrid.appendChild(roomCard);
         });
     } catch (error) {
@@ -247,27 +321,31 @@ async function loadRooms() {
     }
 }
 
-function createRoomCard(room, roomId) {
+function createRoomCard(room) {
     const card = document.createElement('div');
     card.className = 'room-card fade-in';
     
-    const imageUrl = room.image ? `fotky/${room.image}` : 'fotky/178484544.jpg';
+    const imageUrl = room.image || 'fotky/178484544.jpg';
+    
+    // Vytvoření seznamu hlavních vlastností
+    const featuresHtml = room.features.slice(0, 4).map(feature => 
+        `<span class="room-feature-tag"><i class="fas fa-check"></i> ${feature}</span>`
+    ).join('');
     
     card.innerHTML = `
         <img src="${imageUrl}" alt="${room.name}" class="room-image" onerror="this.src='fotky/178484544.jpg'">
         <div class="room-content">
             <h3 class="room-name">${room.name}</h3>
-            <p class="room-description">${room.description || ''}</p>
-            <div class="room-details">
-                <div class="room-capacity">
-                    <i class="fas fa-users"></i>
-                    <span>${room.capacity || 2} osob</span>
-                </div>
-                <div class="room-price">
-                    ${room.price || 0} Kč<span>/noc</span>
-                </div>
+            <div class="room-specs">
+                <span class="room-size"><i class="fas fa-expand-arrows-alt"></i> ${room.size}</span>
+                <span class="room-beds"><i class="fas fa-bed"></i> ${room.beds}</span>
+                <span class="room-rating"><i class="fas fa-star"></i> ${room.rating} (${room.ratingCount} hodnocení)</span>
             </div>
-            <a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; margin-top: 1rem; text-decoration: none; display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;">
+            <p class="room-description">${room.description}</p>
+            <div class="room-features">
+                ${featuresHtml}
+            </div>
+            <a href="${room.bookingUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; margin-top: 1rem; text-decoration: none; display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;">
                 <span>Rezervovat na Booking.com</span>
                 <i class="fas fa-external-link-alt"></i>
             </a>
