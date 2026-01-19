@@ -172,11 +172,20 @@ function initSideMenu() {
         
         // Function to restore scroll position - called AFTER CSS transition completes
         const restoreScroll = () => {
+            // Get current scroll position from app element if user scrolled it
+            let finalScrollY = savedY;
+            if (app && app.scrollTop !== undefined) {
+                // If user scrolled inside the app, use that position
+                finalScrollY = app.scrollTop;
+            }
+            
             // NOW remove inline styles that lock scroll
             // This happens AFTER the transform animation completes
             if (app) {
                 app.style.top = '';
                 app.style.transform = '';
+                // Reset app scroll
+                app.scrollTop = 0;
             }
             
             // Remove ALL inline styles that lock scroll
@@ -184,25 +193,25 @@ function initSideMenu() {
             
             // Wait a frame for layout to settle, then restore scroll
             requestAnimationFrame(() => {
-                // Force scroll to saved position immediately
-                window.scrollTo(0, savedY);
-                document.documentElement.scrollTop = savedY;
-                document.body.scrollTop = savedY;
+                // Force scroll to saved position immediately (or position from app scroll)
+                window.scrollTo(0, finalScrollY);
+                document.documentElement.scrollTop = finalScrollY;
+                document.body.scrollTop = finalScrollY;
                 
                 // Double-check and force again after frames to ensure it sticks
                 requestAnimationFrame(() => {
                     const currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-                    if (Math.abs(currentY - savedY) > 1) {
-                        window.scrollTo(0, savedY);
-                        document.documentElement.scrollTop = savedY;
-                        document.body.scrollTop = savedY;
+                    if (Math.abs(currentY - finalScrollY) > 1) {
+                        window.scrollTo(0, finalScrollY);
+                        document.documentElement.scrollTop = finalScrollY;
+                        document.body.scrollTop = finalScrollY;
                     }
                     
                     // Final check after another frame
                     requestAnimationFrame(() => {
                         const finalY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-                        if (Math.abs(finalY - savedY) > 1) {
-                            window.scrollTo(0, savedY);
+                        if (Math.abs(finalY - finalScrollY) > 1) {
+                            window.scrollTo(0, finalScrollY);
                         }
                     });
                 });
