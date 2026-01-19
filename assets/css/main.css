@@ -373,9 +373,9 @@ body.menu-open .side-menu {
 .menu-link.menu-reservation {
     color: var(--secondary-color);
     font-weight: 600;
-    margin-top: 1rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #e0e0e0;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
 }
 
 .menu-footer {
