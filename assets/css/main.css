@@ -340,7 +340,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 2;
 }
 
@@ -490,6 +490,35 @@ h1, h2, h3, h4, h5, h6 {
     visibility: visible;
 }
 
+@media (max-width: 968px) {
+    .header-top {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .header-right {
+        gap: var(--spacing-sm);
+    }
+    
+    .header-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .btn-reservation {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+    
+    .logo-subtitle {
+        font-size: 0.75rem;
+    }
+}
+
 @media (max-width: 768px) {
     .side-menu {
         width: 100%;
@@ -510,6 +539,18 @@ h1, h2, h3, h4, h5, h6 {
     
     .hero-subtitle {
         font-size: 1.2rem;
+    }
+    
+    .hero-year {
+        font-size: 0.875rem;
+    }
+    
+    .header-icon {
+        display: none;
+    }
+    
+    .language-switcher {
+        display: none;
     }
 }
 
