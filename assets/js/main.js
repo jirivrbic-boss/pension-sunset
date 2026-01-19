@@ -2,18 +2,36 @@
 // MAIN JAVASCRIPT - PUBLIC WEBSITE
 // ============================================
 
-import { db } from './firebase.js';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+// Try to import Firebase, but don't fail if it doesn't work
+let db = null;
+try {
+    const firebaseModule = await import('./firebase.js');
+    db = firebaseModule.db;
+    const { collection, getDocs, query, orderBy } = await import('firebase/firestore');
+    window.firestore = { collection, getDocs, query, orderBy };
+} catch (error) {
+    console.warn('Firebase modules not available:', error);
+}
 
 // ============================================
 // INITIALIZATION
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Always initialize menu first (critical)
     initSideMenu();
+    
+    // Initialize other features
     initNavigation();
     initGallery();
-    loadRooms();
+    
+    // Only load rooms if Firebase is available
+    if (db && window.firestore) {
+        loadRooms();
+    } else {
+        console.warn('Firebase not available, skipping rooms load');
+    }
+    
     initLanguageSwitcher();
     initScrollAnimations();
 });
@@ -160,7 +178,13 @@ async function loadRooms() {
     const roomsGrid = document.getElementById('roomsGrid');
     if (!roomsGrid) return;
     
+    if (!db || !window.firestore) {
+        console.warn('Firebase not available, cannot load rooms');
+        return;
+    }
+    
     try {
+        const { collection, getDocs, query, orderBy } = window.firestore;
         const roomsRef = collection(db, 'rooms');
         const q = query(roomsRef, orderBy('name', 'asc'));
         const querySnapshot = await getDocs(q);

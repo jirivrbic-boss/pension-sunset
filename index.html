@@ -480,6 +480,58 @@
     <script type="module" src="assets/js/firebase.js"></script>
     <script type="module" src="assets/js/main.js"></script>
     
+    <!-- Fallback: Initialize menu even if modules fail -->
+    <script>
+        // Ensure menu works even if ES6 modules fail
+        (function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const menu = document.getElementById('offCanvasMenu');
+            const overlay = document.getElementById('menuOverlay');
+            const body = document.body;
+            
+            if (!menuToggle || !menu || !overlay) {
+                console.error('Menu elements not found');
+                return;
+            }
+            
+            let isMenuOpen = false;
+            
+            function toggleMenu() {
+                isMenuOpen = !isMenuOpen;
+                body.classList.toggle('has-menu-open', isMenuOpen);
+                menuToggle.setAttribute('aria-expanded', isMenuOpen);
+            }
+            
+            function closeMenu() {
+                isMenuOpen = false;
+                body.classList.remove('has-menu-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+            
+            // Add event listeners
+            menuToggle.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', closeMenu);
+            
+            // ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && isMenuOpen) {
+                    closeMenu();
+                }
+            });
+            
+            // Close menu on menu link click
+            const menuLinks = menu.querySelectorAll('.menu-link');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Uncomment to close menu on link click
+                    // closeMenu();
+                });
+            });
+            
+            console.log('Menu fallback initialized');
+        })();
+    </script>
+    
     <!-- Fallback: If modules fail, try to load gallery anyway -->
     <script>
         // Fallback gallery initialization if ES6 modules fail
