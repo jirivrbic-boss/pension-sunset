@@ -403,8 +403,9 @@ body.menu-open .backdrop {
     }
     
     body.menu-open .app {
-        transform: scale(0.85);
+        transform: scale(0.85) rotateY(-15deg);
         transform-origin: right center;
+        transform-style: preserve-3d;
         border-radius: 12px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
         overflow: hidden;
@@ -414,6 +415,12 @@ body.menu-open .backdrop {
         position: fixed;
         right: 0;
         /* top will be set by JavaScript to preserve scroll position */
+    }
+    
+    /* Add perspective for 3D effect */
+    body.menu-open {
+        perspective: 1200px;
+        perspective-origin: right center;
     }
 }
 
