@@ -18,43 +18,40 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-    <!-- Main Layout -->
-    <div class="main-layout">
-        <!-- Left Sidebar - Menu -->
-        <aside class="left-sidebar">
-            <div class="sidebar-header">
-                <button class="menu-toggle" id="menuToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <a href="tel:+420775560610" class="header-icon" title="Telefon">
-                    <i class="fas fa-phone"></i>
-                </a>
-            </div>
-            
+    <!-- Header - Static Top Menu -->
+    <header class="header-static">
+        <div class="header-container">
             <div class="logo">
                 <h1>Pension Sunset</h1>
                 <span class="logo-subtitle">Mezirolí</span>
             </div>
             
-            <nav class="sidebar-nav">
+            <nav class="main-nav">
                 <ul>
-                    <li><a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer">Rezervace</a></li>
-                    <li><a href="#okoli">OKOLÍ</a></li>
-                    <li><a href="#sluzby">SLUŽBY</a></li>
-                    <li><a href="#galerie">GALERIE</a></li>
-                    <li><a href="#kontakt">KONTAKT</a></li>
+                    <li><a href="#uvod">Úvod</a></li>
+                    <li><a href="#o-penzionu">O penzionu</a></li>
+                    <li><a href="#pokoje">Pokoje</a></li>
+                    <li><a href="#wellness">Wellness</a></li>
+                    <li><a href="#okoli">Okolí</a></li>
+                    <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
                 </ul>
             </nav>
             
-            <div class="sidebar-footer">
+            <div class="header-right">
                 <div class="language-switcher">
                     <button class="lang-btn active" data-lang="cs">CS</button>
                 </div>
+                <a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="btn-reservation">
+                    Rezervovat
+                    <i class="fas fa-arrow-up-right"></i>
+                </a>
             </div>
-        </aside>
+        </div>
+    </header>
 
-        <!-- Right Content Area -->
-        <div class="right-content" id="rightContent">
+    <!-- Main Content -->
+    <main class="main-content">
 
     <!-- Hero Section -->
     <section class="hero" id="uvod">
@@ -466,10 +463,8 @@
         </div>
     </footer>
 
-        </div>
-        <!-- End Right Content -->
-    </div>
-    <!-- End Main Layout -->
+    </main>
+    <!-- End Main Content -->
 
     <!-- Firebase SDK -->
     <script type="module" src="assets/js/firebase.js"></script>

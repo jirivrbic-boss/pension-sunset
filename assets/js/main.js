@@ -19,18 +19,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
-// SIDE MENU TOGGLE
+// HEADER SCROLL EFFECT
 // ============================================
 
 function initSideMenu() {
-    const menuToggle = document.getElementById('menuToggle');
-    const leftSidebar = document.querySelector('.left-sidebar');
-    const rightContent = document.getElementById('rightContent');
+    const header = document.querySelector('.header-static');
     
-    if (menuToggle && leftSidebar && rightContent) {
-        menuToggle.addEventListener('click', () => {
-            leftSidebar.classList.toggle('hidden');
-            rightContent.classList.toggle('full-width');
+    if (header) {
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.backgroundColor = 'rgba(26, 26, 26, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.backgroundColor = 'rgba(26, 26, 26, 0.95)';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+            }
+            
+            lastScroll = currentScroll;
         });
     }
 }
