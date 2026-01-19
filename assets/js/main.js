@@ -73,17 +73,25 @@ function initSideMenu() {
             e.stopPropagation();
         }
         
+        // Don't open if already open
+        if (isMenuOpen) {
+            return;
+        }
+        
         isMenuOpen = true;
         
         // Save current scroll position BEFORE any changes
-        savedScrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+        // Always get fresh scroll position to ensure accuracy
+        const currentScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+        savedScrollPosition = currentScrollY;
         
         // Store scroll position in dataset for later use
         body.dataset.scrollY = savedScrollPosition.toString();
         
         // CRITICAL: Lock scroll position SYNCHRONOUSLY before ANY DOM changes
-        // This MUST happen in the same synchronous block to prevent scroll jump
         const scrollY = savedScrollPosition;
+        
+        const app = document.getElementById('app');
         
         // IMPORTANT: Apply inline styles FIRST, before any classes
         // This prevents CSS from applying position:fixed and causing scroll jump
@@ -96,16 +104,20 @@ function initSideMenu() {
             right: 0 !important;
         `;
         
-        const app = document.getElementById('app');
         if (app) {
-            // Set app top to negative scroll to maintain viewport position
-            app.style.top = `-${scrollY}px`;
+            // Clear any previous transform or top styles that might interfere
+            app.style.top = '';
+            app.style.transform = '';
+            // Set app position to maintain viewport position
+            // Use transform translateY to combine with CSS transforms (scale, rotateY)
+            // This will be applied BEFORE the CSS transforms, so we need to account for that
+            app.style.transform = `translateY(-${scrollY}px)`;
         }
         
-        // Now add classes (this won't cause scroll jump because body is already fixed via inline style)
         // Force a reflow to ensure styles are applied
         void body.offsetHeight;
         
+        // Now add classes (this won't cause scroll jump because body is already fixed via inline style)
         document.documentElement.classList.add('menu-open');
         body.classList.add('menu-open');
         
@@ -120,11 +132,13 @@ function initSideMenu() {
         
         // Double-check after a frame to ensure position is maintained
         requestAnimationFrame(() => {
-            // Verify scroll didn't jump
-            if (app && Math.abs(parseFloat(app.style.top) + scrollY) > 1) {
-                app.style.top = `-${scrollY}px`;
+            const checkScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+            if (Math.abs(checkScrollY) > 1) {
+                // Force scroll to 0 if it jumped
+                window.scrollTo(0, 0);
             }
-            if (Math.abs(parseFloat(body.style.top) + scrollY) > 1) {
+            const bodyTop = parseFloat(body.style.top.replace('px', '')) || 0;
+            if (Math.abs(Math.abs(bodyTop) - scrollY) > 1) {
                 body.style.top = `-${scrollY}px`;
             }
         });
