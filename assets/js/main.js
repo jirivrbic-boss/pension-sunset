@@ -81,21 +81,39 @@ function initSideMenu() {
         // Store scroll position in dataset for later use
         body.dataset.scrollY = savedScrollPosition.toString();
         
-        // Lock scroll position BEFORE adding classes to prevent jump
-        // This must happen synchronously before any layout changes
-        body.style.position = 'fixed';
-        body.style.top = `-${savedScrollPosition}px`;
-        body.style.width = '100%';
-        body.style.overflow = 'hidden';
-        
-        const app = document.getElementById('app');
-        if (app) {
-            app.style.top = `-${savedScrollPosition}px`;
-        }
-        
-        // Now add classes (this won't cause scroll jump because body is already fixed)
-        document.documentElement.classList.add('menu-open');
-        body.classList.add('menu-open');
+        // CRITICAL: Lock scroll position SYNCHRONOUSLY before ANY DOM changes
+        // Use requestAnimationFrame to ensure browser has painted current state
+        requestAnimationFrame(() => {
+            // Lock scroll position BEFORE adding classes to prevent jump
+            body.style.position = 'fixed';
+            body.style.top = `-${savedScrollPosition}px`;
+            body.style.width = '100%';
+            body.style.overflow = 'hidden';
+            body.style.left = '0';
+            body.style.right = '0';
+            
+            const app = document.getElementById('app');
+            if (app) {
+                // Set app top to negative scroll to maintain viewport position
+                app.style.top = `-${savedScrollPosition}px`;
+            }
+            
+            // Now add classes (this won't cause scroll jump because body is already fixed)
+            document.documentElement.classList.add('menu-open');
+            body.classList.add('menu-open');
+            
+            // Double-check scroll didn't jump (fix if it did)
+            requestAnimationFrame(() => {
+                const currentScroll = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll !== 0 && savedScrollPosition !== 0) {
+                    // If scroll changed, force it back
+                    body.style.top = `-${savedScrollPosition}px`;
+                    if (app) {
+                        app.style.top = `-${savedScrollPosition}px`;
+                    }
+                }
+            });
+        });
         
         menuToggle.setAttribute('aria-expanded', 'true');
         backdrop.setAttribute('aria-hidden', 'false');
