@@ -18,15 +18,33 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-    <!-- Hamburger Menu Button -->
-    <button class="menu-toggle" id="menuToggle" aria-controls="sideMenu" aria-expanded="false" aria-label="Otevřít menu">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-    </button>
+    <!-- Top Navigation Buttons -->
+    <div class="top-nav-buttons">
+        <!-- Hamburger Menu Button -->
+        <button class="menu-toggle" id="menuToggle" aria-controls="sideMenu" aria-expanded="false" aria-label="Otevřít menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        
+        <!-- Email Button -->
+        <a href="mailto:info@pensionsunset.cz" class="top-nav-btn" aria-label="Odeslat email">
+            <i class="fas fa-envelope"></i>
+        </a>
+        
+        <!-- Phone Button -->
+        <a href="tel:+420775560610" class="top-nav-btn" aria-label="Zavolat">
+            <i class="fas fa-phone"></i>
+        </a>
+    </div>
 
     <!-- Side Menu -->
     <aside class="side-menu" id="sideMenu" role="navigation" aria-label="Hlavní navigace">
+        <!-- Close Button (X) -->
+        <button class="menu-close-btn" id="menuCloseBtn" aria-label="Zavřít menu">
+            <i class="fas fa-times"></i>
+        </button>
+        
         <div class="menu-content">
             <div class="menu-logo">
                 <h2>Pension Sunset</h2>
@@ -38,13 +56,11 @@
                     <li><a href="index.html#uvod" class="menu-link">ÚVOD</a></li>
                     <li><a href="index.html#o-penzionu" class="menu-link">O PENZIONU</a></li>
                     <li><a href="index.html#pokoje" class="menu-link">POKOJE</a></li>
-                    <li><a href="index.html#wellness" class="menu-link">WELLNESS</a></li>
-                    <li><a href="index.html#okoli" class="menu-link">OKOLÍ</a></li>
                     <li><a href="vyletu.html" class="menu-link active">VÝLETY</a></li>
                     <li><a href="https://goout.net/cs/karlovy-vary/akce/lezblurkk/" target="_blank" rel="noopener noreferrer" class="menu-link">UDÁLOSTI V OKOLÍ</a></li>
-                    <li><a href="index.html#sluzby" class="menu-link">SLUŽBY</a></li>
                     <li><a href="index.html#galerie" class="menu-link">GALERIE</a></li>
                     <li><a href="index.html#kontakt" class="menu-link">KONTAKT</a></li>
+                    <li><a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="menu-link menu-reservation">REZERVOVAT</a></li>
                 </ul>
             </nav>
             
@@ -71,6 +87,12 @@
             <div class="section-header">
                 <h1 class="section-title">Výlety do okolí</h1>
                 <p class="section-subtitle">Objevte krásy Karlovarského kraje</p>
+            </div>
+            <!-- Reservation Button in Hero Section -->
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="btn-reservation-top" aria-label="Rezervovat" style="display: inline-block;">
+                    Rezervovat
+                </a>
             </div>
         </div>
     </section>
@@ -204,7 +226,6 @@
             
             <div class="footer-bottom">
                 <p>&copy; <span id="currentYear">2024</span> Pension Sunset Mezirolí. Všechna práva vyhrazena.</p>
-                <p><a href="admin.html" class="admin-link">Admin</a></p>
                 <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.7); margin-top: 0.5rem;">
                     Web vytvořila <a href="https://wloom.eu" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.9); text-decoration: underline;">wloom.eu</a>
                 </p>

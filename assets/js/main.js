@@ -507,7 +507,7 @@ async function loadRooms() {
             ],
             rating: '8,8',
             ratingCount: '25',
-            image: 'fotky/178478261.jpg'
+            image: '/fotky/178478261.jpg'
         },
         {
             id: 'RD150721302',
@@ -551,7 +551,7 @@ async function loadRooms() {
             ],
             rating: '8,8',
             ratingCount: '25',
-            image: 'fotky/178482126.jpg'
+            image: '/fotky/178482126.jpg'
         }
     ];
     
@@ -572,10 +572,11 @@ function createRoomCard(room) {
     const card = document.createElement('div');
     card.className = 'room-card fade-in';
     
-    const imageUrl = room.image || 'fotky/178484544.jpg';
+    // Použij lokální fotku - každý pokoj má svou vlastní fotku v lokálních souborech
+    const imageUrl = room.image || '/fotky/178484544.jpg';
     
     card.innerHTML = `
-        <img src="${imageUrl}" alt="${room.name}" class="room-image" onerror="this.src='fotky/178484544.jpg'">
+        <img src="${imageUrl}" alt="${room.name}" class="room-image" onerror="this.src='/fotky/178484544.jpg'">
         <div class="room-content">
             <h3 class="room-name">${room.name}</h3>
             <div class="room-specs">
