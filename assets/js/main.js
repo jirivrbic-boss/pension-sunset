@@ -108,26 +108,8 @@ function initSideMenu() {
             // Clear any previous transform or top styles that might interfere
             app.style.transform = '';
             app.style.top = '';
-            
-            // When menu opens, app becomes position:fixed (via CSS)
-            // We don't need to set app.style.top because CSS already has top: 0
-            // Instead, we'll use app.scrollTop to position the content correctly
-            
-            // Set initial scroll position inside the app element
-            // This allows user to scroll the scaled-down content
-            // Use requestAnimationFrame to ensure DOM is ready
-            requestAnimationFrame(() => {
-                // Set scroll position inside the app element
-                // This will show the correct part of the content
-                app.scrollTop = scrollY;
-                
-                // Double-check after another frame to ensure scroll is set
-                requestAnimationFrame(() => {
-                    if (app.scrollTop !== scrollY) {
-                        app.scrollTop = scrollY;
-                    }
-                });
-            });
+            // Reset app scroll to 0 first to ensure clean state
+            app.scrollTop = 0;
         }
         
         // Force a reflow to ensure styles are applied
@@ -136,6 +118,32 @@ function initSideMenu() {
         // Now add classes (this won't cause scroll jump because body is already fixed via inline style)
         document.documentElement.classList.add('menu-open');
         body.classList.add('menu-open');
+        
+        // Set scroll position inside the app element AFTER classes are applied
+        // This ensures the app element has the correct CSS (position: fixed, height: 100vh, etc.)
+        if (app) {
+            // Wait for CSS to apply and element to be ready
+            requestAnimationFrame(() => {
+                // Set scroll position inside the app element
+                // This will show the correct part of the content
+                app.scrollTop = scrollY;
+                
+                // Double-check after another frame to ensure scroll is set correctly
+                requestAnimationFrame(() => {
+                    // Verify the scroll position is correct
+                    if (Math.abs(app.scrollTop - scrollY) > 1) {
+                        app.scrollTop = scrollY;
+                    }
+                    
+                    // Final check after CSS transition might have started
+                    setTimeout(() => {
+                        if (isMenuOpen && Math.abs(app.scrollTop - scrollY) > 1) {
+                            app.scrollTop = scrollY;
+                        }
+                    }, 50);
+                });
+            });
+        }
         
         menuToggle.setAttribute('aria-expanded', 'true');
         backdrop.setAttribute('aria-hidden', 'false');
@@ -238,6 +246,11 @@ function initSideMenu() {
                         document.documentElement.scrollTop = finalScrollY;
                         document.body.scrollTop = finalScrollY;
                     }
+                    
+                    // Update saved scroll position to match the restored position
+                    // This ensures next menu open will use the correct position
+                    savedScrollPosition = finalScrollY;
+                    body.dataset.scrollY = finalScrollY.toString();
                 });
             });
         };
