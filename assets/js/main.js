@@ -382,14 +382,14 @@ function initSideMenu() {
             e.preventDefault();
             e.stopPropagation();
             
-            // Close menu first - this will handle the animation
-            closeMenu(e);
-            
             // If it's an anchor link (starts with #)
             if (href && href.startsWith('#')) {
                 const targetId = href.substring(1);
                 
-                // Wait for menu close animation to complete (500ms) + buffer
+                // Close menu first - this will handle the animation
+                closeMenu(e);
+                
+                // Wait for menu close animation to complete AND scroll to be restored
                 setTimeout(() => {
                     const targetElement = document.getElementById(targetId);
                     
@@ -399,16 +399,33 @@ function initSideMenu() {
                             behavior: 'smooth',
                             block: 'start'
                         });
+                        
+                        // After smooth scroll completes, update saved scroll position
+                        // Smooth scroll takes ~500ms, so wait for it to complete
+                        setTimeout(() => {
+                            const finalScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+                            savedScrollPosition = finalScrollY;
+                            body.dataset.scrollY = finalScrollY.toString();
+                        }, 600); // Wait for smooth scroll animation to complete
                     } else if (targetId === 'uvod' || targetId === '') {
                         // Special case for home - scroll to top smoothly
                         window.scrollTo({
                             top: 0,
                             behavior: 'smooth'
                         });
+                        
+                        // Update saved scroll position after scroll completes
+                        setTimeout(() => {
+                            savedScrollPosition = 0;
+                            body.dataset.scrollY = '0';
+                        }, 600);
                     }
-                }, 650); // Wait for menu close animation (500ms) + scroll restore buffer
+                }, 700); // Wait for menu close animation (500ms) + scroll restore buffer (200ms)
             } else if (href && !href.startsWith('#')) {
                 // External link or different page
+                // Close menu first
+                closeMenu(e);
+                
                 if (target === '_blank') {
                     // Open in new tab - don't wait for menu animation
                     window.open(href, '_blank', 'noopener,noreferrer');
