@@ -539,12 +539,11 @@ body.menu-open .backdrop {
         height: 100vh;
         position: fixed;
         right: 0;
-        top: 0; /* Will be overridden by inline style from JS */
+        top: 0;
         transition: transform var(--menu-animation-duration) var(--menu-animation-easing),
                     width var(--menu-animation-duration) var(--menu-animation-easing),
-                    max-width var(--menu-animation-duration) var(--menu-animation-easing),
-                    top var(--menu-animation-duration) var(--menu-animation-easing);
-        /* top is set inline by JS to preserve scroll position: top: -scrollYpx */
+                    max-width var(--menu-animation-duration) var(--menu-animation-easing);
+        /* Scroll position is preserved via app.scrollTop, not via top style */
         /* Allow scrolling inside the scaled-down content */
         -webkit-overflow-scrolling: touch;
     }

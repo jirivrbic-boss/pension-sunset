@@ -108,31 +108,25 @@ function initSideMenu() {
             // Clear any previous transform or top styles that might interfere
             app.style.transform = '';
             app.style.top = '';
+            
             // When menu opens, app becomes position:fixed (via CSS)
-            // Use top to position it so the current viewport content is visible
-            // Since body is fixed with top: -scrollY, app should also account for scrollY
-            app.style.top = `-${scrollY}px`;
+            // We don't need to set app.style.top because CSS already has top: 0
+            // Instead, we'll use app.scrollTop to position the content correctly
             
             // Set initial scroll position inside the app element
             // This allows user to scroll the scaled-down content
+            // Use requestAnimationFrame to ensure DOM is ready
             requestAnimationFrame(() => {
+                // Set scroll position inside the app element
+                // This will show the correct part of the content
                 app.scrollTop = scrollY;
                 
-                // Sync app.style.top with app.scrollTop when user scrolls
-                // This ensures the visual position stays correct
-                const syncScroll = () => {
-                    if (isMenuOpen && app) {
-                        const currentScroll = app.scrollTop;
-                        // Update top to match scroll position
-                        app.style.top = `-${currentScroll}px`;
+                // Double-check after another frame to ensure scroll is set
+                requestAnimationFrame(() => {
+                    if (app.scrollTop !== scrollY) {
+                        app.scrollTop = scrollY;
                     }
-                };
-                
-                // Listen for scroll events inside the app element
-                app.addEventListener('scroll', syncScroll, { passive: true });
-                
-                // Store the sync function so we can remove it later
-                app._scrollSync = syncScroll;
+                });
             });
         }
         
@@ -195,11 +189,7 @@ function initSideMenu() {
                 finalScrollY = app.scrollTop;
             }
             
-            // Remove scroll sync listener if it exists
-            if (app && app._scrollSync) {
-                app.removeEventListener('scroll', app._scrollSync);
-                delete app._scrollSync;
-            }
+            // No scroll sync listener needed anymore - we removed it from openMenu
             
             // CRITICAL: Remove inline styles from app FIRST
             if (app) {
