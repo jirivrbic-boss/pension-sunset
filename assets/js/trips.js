@@ -29,7 +29,7 @@ const tripsData = [
         city: 'skalna',
         type: 'priroda',
         description: 'Unikátní rezervace s bahenními sopkami a minerálními prameny. Český Yellowstone s naučnou stezkou.',
-        image: 'fotky/soos',
+        image: 'fotky/soos.jpg',
         color: '#4a6741',
         mapsUrl: getMapsUrl('Národní přírodní rezervace Soos', 'Skalná')
     },
@@ -79,7 +79,7 @@ const tripsData = [
         city: 'svatava',
         type: 'priroda',
         description: 'Umělé jezero vzniklé zatopením hnědouhelného dolu. Skvělé pro koupání, vodní sporty a relaxaci.',
-        image: 'fotky/medard.jpeg',
+        image: 'fotky/medard.jpg',
         color: '#2c7dd6',
         mapsUrl: getMapsUrl('Jezero Medard', 'Svatava')
     },
@@ -89,7 +89,7 @@ const tripsData = [
         city: 'horni-blatna',
         type: 'priroda',
         description: 'Přírodní zajímavost – propadlina vzniklá po těžbě cínu. Tajuplné místo obklopené lesy.',
-        image: 'fotky/vlcjamy.jpeg',
+        image: 'fotky/vlcjamy.jpg',
         color: '#5a5a5a',
         mapsUrl: getMapsUrl('Vlčí jámy', 'Horní Blatná')
     },
