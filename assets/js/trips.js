@@ -1218,16 +1218,14 @@ function createTripCard(trip) {
     const gradientColor = trip.color || '#8B7355';
     const rgbaColor = hexToRgba(gradientColor);
     
-    // Kompaktní karta s obrázkem nahoře a obsahem dole
+    // Karta s fotkou vylézající zleva z pravého rámečku
     return `
         <div class="trip-card" data-city="${trip.city}" data-type="${trip.type}">
             <div class="trip-card-inner">
-                <div class="trip-image-side">
+                <div class="trip-content-side" style="background-color: ${gradientColor};">
                     <div class="trip-image-wrapper">
                         <img src="${trip.image}" alt="${trip.name}" loading="lazy">
                     </div>
-                </div>
-                <div class="trip-content-side" style="background-color: ${gradientColor};">
                     <div class="trip-content-wrapper">
                         <h2 class="trip-name">${trip.name}</h2>
                         <p class="trip-description">${trip.description}</p>

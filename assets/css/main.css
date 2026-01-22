@@ -1805,77 +1805,47 @@ body.menu-open {
 }
 
 .trip-card-inner {
+    position: relative;
+    width: 100%;
+}
+
+/* Trip Content Side */
+.trip-content-side {
+    position: relative;
+    padding: var(--spacing-md);
+    padding-left: calc(45% + var(--spacing-md));
+    color: var(--bg-white);
+    min-height: 400px;
     display: flex;
     flex-direction: column;
-    position: relative;
-}
-
-/* Trip Image Side */
-.trip-image-side {
-    position: relative;
-    width: 100%;
+    justify-content: center;
     overflow: hidden;
-    line-height: 0;
-    margin: 0;
-    padding: 0;
 }
 
+/* Trip Image - vylézá zleva */
 .trip-image-wrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 66.666%; /* 3:2 aspect ratio - fallback */
-    aspect-ratio: 3 / 2; /* Modern browsers */
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45%;
+    height: 90%;
     overflow: hidden;
-    margin: 0;
-    background-color: #f5f5f5;
+    z-index: 1;
+    border-radius: 0 12px 12px 0;
 }
 
 .trip-image-wrapper img {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
     display: block;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    margin: 0;
-    padding: 0;
 }
 
 .trip-card:hover .trip-image-wrapper img {
     transform: scale(1.05);
-}
-
-/* Gradient přechod z průhledné do barvy zdola */
-.trip-image-gradient {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    z-index: 2;
-    pointer-events: none;
-}
-
-/* Gradient přechod z průhledné do barvy zdola */
-.trip-gradient-left,
-.trip-gradient-right {
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-}
-
-/* Trip Content Side */
-.trip-content-side {
-    display: flex;
-    flex-direction: column;
-    padding: var(--spacing-md);
-    color: var(--bg-white);
-    position: relative;
-    min-height: auto;
 }
 
 .trip-content-wrapper {
@@ -1883,6 +1853,8 @@ body.menu-open {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
+    position: relative;
+    z-index: 2;
 }
 
 .trip-name {
@@ -1959,8 +1931,19 @@ body.menu-open {
         grid-template-columns: 1fr;
     }
     
-    .trip-image-side {
-        min-height: 250px;
+    .trip-content-side {
+        padding-left: var(--spacing-md);
+        min-height: auto;
+    }
+    
+    .trip-image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 250px;
+        top: auto;
+        transform: none;
+        border-radius: 0;
+        margin-bottom: var(--spacing-md);
     }
     
     .trip-name {
@@ -2100,79 +2083,7 @@ body.menu-open {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
 }
 
-.trip-card-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: auto;
-    position: relative;
-}
-
-/* Trip Image Side */
-.trip-image-side {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    margin: 0;
-    padding: 0;
-}
-
-.trip-image-wrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 66.666%; /* 3:2 aspect ratio - fallback */
-    aspect-ratio: 3 / 2; /* Modern browsers */
-    overflow: hidden;
-    margin: 0;
-    background-color: #f5f5f5;
-}
-
-.trip-image-wrapper img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    margin: 0;
-    padding: 0;
-}
-
-.trip-image-gradient {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 50%;
-    z-index: 2;
-}
-
-.trip-image-left .trip-image-gradient {
-    right: 0;
-    background: linear-gradient(to right, transparent 0%, rgba(139, 115, 85, 0.3) 50%, rgba(139, 115, 85, 0.9) 100%);
-}
-
-.trip-image-right .trip-image-gradient {
-    left: 0;
-    background: linear-gradient(to left, transparent 0%, rgba(139, 115, 85, 0.3) 50%, rgba(139, 115, 85, 0.9) 100%);
-}
-
-/* Trip Content Side */
-.trip-content-side {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-lg);
-    color: var(--bg-white);
-    position: relative;
-}
-
-.trip-content-wrapper {
-    max-width: 500px;
-    width: 100%;
-}
+/* Duplicitní CSS odstraněno - používá se první definice */
 
 .trip-name {
     font-family: var(--font-heading);
@@ -2232,31 +2143,12 @@ body.menu-open {
 
 /* Responsive Design */
 @media (max-width: 968px) {
-    .trip-card-inner {
-        grid-template-columns: 1fr;
-        min-height: auto;
-    }
-    
-    .trip-image-side {
-        order: 1;
+    .trip-content-side {
+        padding-left: calc(40% + var(--spacing-md));
     }
     
     .trip-image-wrapper {
-        padding-bottom: 75%; /* 4:3 aspect ratio - fallback */
-        aspect-ratio: 4 / 3; /* Modern browsers */
-    }
-    
-    .trip-content-side {
-        order: 2;
-        height: auto;
-    }
-    
-    .trip-image-gradient {
-        width: 100%;
-        height: 50%;
-        bottom: 0;
-        top: auto;
-        background: linear-gradient(to top, rgba(139, 115, 85, 0.9) 0%, rgba(139, 115, 85, 0.3) 50%, transparent 100%) !important;
+        width: 40%;
     }
     
     .trip-name {
@@ -2269,12 +2161,24 @@ body.menu-open {
 }
 
 @media (max-width: 640px) {
-    .trip-name {
-        font-size: 1.75rem;
-    }
-    
     .trip-content-side {
         padding: var(--spacing-md);
+        padding-left: var(--spacing-md);
+        min-height: auto;
+    }
+    
+    .trip-image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 250px;
+        top: auto;
+        transform: none;
+        border-radius: 8px 8px 0 0;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .trip-name {
+        font-size: 1.75rem;
     }
     
     .trip-maps-link {
