@@ -1225,7 +1225,6 @@ function createTripCard(trip) {
                 <div class="trip-image-side">
                     <div class="trip-image-wrapper">
                         <img src="${trip.image}" alt="${trip.name}" loading="lazy">
-                        <div class="trip-image-gradient" style="background: linear-gradient(to bottom, transparent 0%, transparent 30%, ${rgbaColor(0.3)} 50%, ${rgbaColor(0.8)} 80%, ${rgbaColor(1)} 100%);"></div>
                     </div>
                 </div>
                 <div class="trip-content-side" style="background-color: ${gradientColor};">
