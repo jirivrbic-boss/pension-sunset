@@ -29,7 +29,7 @@ const tripsData = [
         city: 'skalna',
         type: 'priroda',
         description: 'Unikátní rezervace s bahenními sopkami a minerálními prameny. Český Yellowstone s naučnou stezkou.',
-        image: './fotky/soos.jpg',
+        image: 'fotky/soos.webp',
         color: '#4a6741',
         mapsUrl: getMapsUrl('Národní přírodní rezervace Soos', 'Skalná')
     },
