@@ -1807,7 +1807,7 @@ body.menu-open {
 .trip-card-inner {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: auto;
     position: relative;
 }
 
@@ -1860,20 +1860,17 @@ body.menu-open {
 
 /* Trip Content Side */
 .trip-content-side {
-    flex: 1;
     display: flex;
     flex-direction: column;
     padding: var(--spacing-md);
     color: var(--bg-white);
     position: relative;
-    justify-content: space-between;
 }
 
 .trip-content-wrapper {
     width: 100%;
     display: flex;
     flex-direction: column;
-    flex: 1;
 }
 
 .trip-name {
@@ -2094,7 +2091,7 @@ body.menu-open {
 .trip-card-inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 400px;
+    height: auto;
     position: relative;
 }
 
@@ -2223,7 +2220,7 @@ body.menu-open {
     
     .trip-content-side {
         order: 2;
-        min-height: 300px;
+        height: auto;
     }
     
     .trip-image-gradient {
