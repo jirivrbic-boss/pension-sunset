@@ -733,7 +733,7 @@ const tripsData = [
         city: 'karlovy-vary',
         type: 'lazne',
         description: 'Luxusní wellness resort s bazénem na střeše. Nádherný výhled na město a okolí.',
-        image: 'fotky/saunia.jpg',
+        image: 'fotky/saunia.webp',
         color: '#2c7dd6',
         mapsUrl: getMapsUrl('Saunia Thermal', 'Karlovy Vary')
     },
