@@ -31,7 +31,7 @@ const tripsData = [
         description: 'Unikátní rezervace s bahenními sopkami a minerálními prameny. Český Yellowstone s naučnou stezkou.',
         image: 'fotky/soos.webp',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Národní přírodní rezervace Soos', 'Skalná')
+        mapsUrl: 'https://www.google.com/maps/search/Národní+přírodní+rezervace+Soos'
     },
     {
         id: 2,
@@ -41,7 +41,7 @@ const tripsData = [
         description: 'Malebná horská krajina s bohatou historií těžby. Ideální pro turistiku a poznávání přírody.',
         image: 'fotky/krusnehory.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Krušné hory', 'Boží Dar')
+        mapsUrl: 'https://www.google.com/maps/search/Krušné+hory'
     },
     {
         id: 3,
@@ -51,7 +51,7 @@ const tripsData = [
         description: 'Unikátní geologická památka – nejmladší sopka v ČR s naučnou stezkou a výhledem do okolí.',
         image: 'fotky/komornihurka.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Komorní hůrka', 'Františkovy Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Sopka+Komorní+hůrka'
     },
     {
         id: 4,
@@ -61,7 +61,7 @@ const tripsData = [
         description: 'Přírodní skalní útvary připomínající svatební procesí. Romantické místo v údolí Ohře.',
         image: 'fotky/svatosskeskaly.webp',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Svatošské skály', 'Loket')
+        mapsUrl: 'https://www.google.com/maps/search/Svatošské+skály+u+Lokte'
     },
     {
         id: 5,
@@ -71,7 +71,7 @@ const tripsData = [
         description: 'Kamenná rozhledna z roku 1876 s krásným výhledem na Mariánské Lázně a okolní krajinu.',
         image: 'fotky/hamelika.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Rozhledna Hamelika', 'Mariánské Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Rozhledna+Hamelika'
     },
     {
         id: 6,
@@ -81,7 +81,7 @@ const tripsData = [
         description: 'Umělé jezero vzniklé zatopením hnědouhelného dolu. Skvělé pro koupání, vodní sporty a relaxaci.',
         image: 'fotky/medard.jpg',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Jezero Medard', 'Svatava')
+        mapsUrl: 'https://www.google.com/maps/search/Jezero+Medard'
     },
     {
         id: 7,
@@ -91,7 +91,7 @@ const tripsData = [
         description: 'Přírodní zajímavost – propadlina vzniklá po těžbě cínu. Tajuplné místo obklopené lesy.',
         image: 'fotky/vlcjamy.jpg',
         color: '#5a5a5a',
-        mapsUrl: getMapsUrl('Vlčí jámy', 'Horní Blatná')
+        mapsUrl: 'https://www.google.com/maps/search/Vlčí+jámy+u+Horní+Blatné'
     },
     {
         id: 8,
@@ -101,7 +101,7 @@ const tripsData = [
         description: 'Nejzápadnější rozhledna v ČR s výhledem do Německa. Kamenná věž z roku 1904.',
         image: 'fotky/haj.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Rozhledna Háj', 'Aš')
+        mapsUrl: 'https://www.google.com/maps/search/Rozhledna+Háj+u+Aše'
     },
     {
         id: 9,
@@ -111,7 +111,7 @@ const tripsData = [
         description: 'Unikátní spirálová rozhledna s kamenným schodištěm venku. Nádherný výhled do okolí.',
         image: 'fotky/krasno.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Rozhledna Krásno', 'Krásno')
+        mapsUrl: 'https://www.google.com/maps/search/Rozhledna+na+Krásenském+Vrchu'
     },
     {
         id: 10,
@@ -121,7 +121,7 @@ const tripsData = [
         description: 'Rozsáhlé rašeliniště s naučnou stezkou a vyhlídkou. Vzácné rostliny a živočichové.',
         image: 'fotky/bozidarske.jpeg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Božídarské rašeliniště', 'Boží Dar')
+        mapsUrl: 'https://www.google.com/maps/search/Božídarské+rašeliniště'
     },
     {
         id: 11,
@@ -131,7 +131,7 @@ const tripsData = [
         description: 'Chráněná krajinná oblast s čistou přírodou, prameny a vzácnými druhy. Ideální pro turistiku.',
         image: 'fotky/slavkovskyles.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('CHKO Slavkovský les', 'Mariánské Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/CHKO+Slavkovský+les'
     },
     {
         id: 12,
@@ -141,7 +141,7 @@ const tripsData = [
         description: 'Horský vrchol s krásným výhledem a naučnou stezkou s mýtickými postavami z krušnohorských pověstí.',
         image: 'fotky/plesivec.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Plešivec', 'Abertamy')
+        mapsUrl: 'https://www.google.com/maps/search/Vrchol+Plešivec'
     },
     {
         id: 13,
@@ -151,7 +151,7 @@ const tripsData = [
         description: 'Naučná stezka pro děti i dospělé s 12 zastávkami. Kouzelné místo s vánoční atmosférou po celý rok.',
         image: 'fotky/jeziskova.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Ježíškova cesta', 'Boží Dar')
+        mapsUrl: 'https://www.google.com/maps/search/Ježíškova+cesta+Boží+Dar'
     },
     {
         id: 14,
@@ -161,7 +161,7 @@ const tripsData = [
         description: 'Tropický skleník s živými motýly z celého světa. Uklidňující prostředí s exotickými rostlinami.',
         image: 'fotky/papilonia',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Papilonia', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Motýlí+dům+Papilonia+Karlovy+Vary'
     },
     {
         id: 15,
@@ -171,7 +171,7 @@ const tripsData = [
         description: 'Nejznámější a nejsilnější pramen v Karlových Varech tryskající do výšky 12 metrů.',
         image: 'fotky/vridlo.jpeg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Vřídlo', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Vřídlo+Karlovy+Vary'
     },
     {
         id: 16,
@@ -181,7 +181,7 @@ const tripsData = [
         description: 'Historická rozhledna z roku 1909 s výhledem na Cheb, Krušné hory a Smrčiny.',
         image: 'fotky/bismarckova.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Bismarckova rozhledna', 'Cheb')
+        mapsUrl: 'https://www.google.com/maps/search/Bismarckova+rozhledna+Cheb'
     },
     {
         id: 17,
@@ -191,7 +191,7 @@ const tripsData = [
         description: 'Symbolické místo na hranici s Německem. Turistický bod nejzápadnějšího místa ČR.',
         image: 'fotky/nejzapadnejsi.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Nejzápadnější bod', 'Krásná')
+        mapsUrl: 'https://www.google.com/maps/search/Nejzápadnější+bod+České+republiky'
     },
     {
         id: 18,
@@ -201,7 +201,7 @@ const tripsData = [
         description: 'Rašeliniště s vývěry sirovodíkových pramenů a bahenními sopkami. Unikátní přírodní úkaz.',
         image: 'fotky/smradoch.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Smraďoch', 'Mariánské Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Přírodní+rezervace+Smraďoch'
     },
     {
         id: 19,
@@ -211,7 +211,7 @@ const tripsData = [
         description: 'Romantická vyhlídka pojmenovaná po J.W. Goethovi s výhledem na město a údolí řeky Teplé.',
         image: 'fotky/geothova.webp',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Goethova vyhlídka', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Goethova+vyhlídka'
     },
     {
         id: 20,
@@ -221,7 +221,7 @@ const tripsData = [
         description: 'Podzemní prohlídka míst, kde se formují minerální útvary a kamenné růže z pramenů.',
         image: 'fotky/podzemi.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Podzemí vřídelní kolonády', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Podzemí+vřídelní+kolonády'
     },
     {
         id: 21,
@@ -231,7 +231,7 @@ const tripsData = [
         description: 'Klidný lesopark s rybníkem a ptačí pozorovatelnou. Ideální místo pro procházky a pozorování ptactva.',
         image: 'fotky/amerika.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Lesopark Amerika', 'Františkovy Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Rybník+Amerika+Františkovy+Lázně'
     },
     {
         id: 22,
@@ -241,7 +241,7 @@ const tripsData = [
         description: 'Krásný park s léčivým pramenem a naučnou stezkou. Klidné místo k relaxaci.',
         image: 'fotky/prelatuv.webp',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Prelátův pramen', 'Mariánské Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Prelátův+pramen+Mariánské+Lázně'
     },
     {
         id: 23,
@@ -251,7 +251,7 @@ const tripsData = [
         description: 'Skalní útvar s vyhlídkou a naučnou stezkou. Malebný výhled do okolní krajiny.',
         image: 'fotky/vysoky.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Vysoký kámen', 'Kraslice')
+        mapsUrl: 'https://www.google.com/maps/search/Vysoký+kámen+u+Kraslic'
     },
     {
         id: 24,
@@ -261,7 +261,7 @@ const tripsData = [
         description: 'Historická těžební štola s prohlídkami. Fascinující podzemní svět Krušných hor.',
         image: 'fotky/johannes.jpg',
         color: '#5a5a5a',
-        mapsUrl: getMapsUrl('Štola Johannes', 'Boží Dar')
+        mapsUrl: 'https://www.google.com/maps/search/Štola+Johannes'
     },
     {
         id: 25,
@@ -271,7 +271,7 @@ const tripsData = [
         description: 'Naučná stezka s dřevěnými sochami postav z krušnohorských legend a pověstí.',
         image: 'fotky/mysticka.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Mýtická stezka', 'Abertamy')
+        mapsUrl: 'https://www.google.com/maps/search/Stezka+krušnohorských+pověstí+Plešivec'
     },
     {
         id: 26,
@@ -281,7 +281,7 @@ const tripsData = [
         description: 'Půvabná botanická zahrada s vzácnými rostlinami a klidným prostředím k relaxaci.',
         image: 'fotky/botanicka.jpeg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Botanická zahrada', 'Bečov nad Teplou')
+        mapsUrl: 'https://www.google.com/maps/search/Botanická+zahrada+Bečov+nad+Teplou'
     },
     {
         id: 27,
@@ -291,7 +291,7 @@ const tripsData = [
         description: 'Naučná stezka s dřevěnými sochami medvědů a informacemi o přírodě Krušných hor.',
         image: 'fotky/medvedi.jpeg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Medvědí stezka', 'Jáchymov')
+        mapsUrl: 'https://www.google.com/maps/search/Medvědí+stezka+Jáchymov'
     },
     {
         id: 28,
@@ -301,7 +301,7 @@ const tripsData = [
         description: 'Symbolické umělecké dílo v krajině – otevřené dveře s výhledem do přírody.',
         image: 'fotky/dvere.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Otevřené dveře', 'Stříbrná')
+        mapsUrl: 'https://www.google.com/maps/search/Otevřené+dveře+v+Krušných+horách'
     },
     {
         id: 29,
@@ -311,7 +311,7 @@ const tripsData = [
         description: 'Krásné modrozelené jezírko v bývalém lomu. Ideální místo pro koupání a relaxaci.',
         image: 'fotky/rotava.jpg',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Zatopený lom', 'Rotava')
+        mapsUrl: 'https://www.google.com/maps/search/Lom+Rotava'
     },
     {
         id: 30,
@@ -321,7 +321,7 @@ const tripsData = [
         description: 'Romantická vyhlídka s glorietem a sochou kamzíka. Nádherný výhled na město.',
         image: 'fotky/jelenskok.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Jelení skok', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Vyhlídka+Jelení+skok'
     },
     {
         id: 31,
@@ -331,7 +331,7 @@ const tripsData = [
         description: 'Romantická pseudogotická rozhledna z 19. století s výhledem na lázeňské město.',
         image: 'fotky/salingburg.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Rozhledna Salingburg', 'Františkovy Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Rozhledna+Salingburg'
     },
     {
         id: 32,
@@ -341,7 +341,7 @@ const tripsData = [
         description: 'Romantické údolí s mlýnky a potůčky. Klidné místo pro procházky v přírodě.',
         image: 'fotky/mlynky.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Údolí mlýnků', 'Jáchymov')
+        mapsUrl: 'https://www.google.com/maps/search/Údolí+mlýnků+Jáchymov'
     },
     {
         id: 33,
@@ -351,7 +351,7 @@ const tripsData = [
         description: 'Dálková turistická trasa vedoucí celou republikou. Ideální pro dlouhé túry a poznávání přírody.',
         image: 'fotky/viaczechia.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Via Czechia', 'Aš')
+        mapsUrl: 'https://www.google.com/maps/search/Via+Czechia'
     },
     {
         id: 34,
@@ -361,7 +361,7 @@ const tripsData = [
         description: 'Přírodní skalní útvar připomínající varhany. Geologická zajímavost v Krušných horách.',
         image: 'fotky/varhany.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Rotavské varhany', 'Rotava')
+        mapsUrl: 'https://www.google.com/maps/search/Rotavské+varhany'
     },
     {
         id: 35,
@@ -371,7 +371,7 @@ const tripsData = [
         description: 'Obora s daňky a srnci, visutými můstky a naučnou stezkou. Skvělé pro rodiny s dětmi.',
         image: 'fotky/linhart.webp',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Obora svatý Linhart', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Obora+svatý+Linhart'
     },
 
     // Památky
@@ -383,7 +383,7 @@ const tripsData = [
         description: 'Romantická zřícenina gotického hradu s krásným výhledem. Poutní místo s bohatou historií.',
         image: 'fotky/andelska.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Hrad Andělská Hora', 'Andělská Hora')
+        mapsUrl: 'https://www.google.com/maps/search/Hrad+Andělská+Hora'
     },
     {
         id: 37,
@@ -393,7 +393,7 @@ const tripsData = [
         description: 'Renesanční zámek s krásnými interiéry a anglickým parkem. Sídlo významného šlechtického rodu.',
         image: 'fotky/chyse.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Zámek Chyše', 'Chyše')
+        mapsUrl: 'https://www.google.com/maps/search/Zámek+Chyše'
     },
     {
         id: 38,
@@ -403,7 +403,7 @@ const tripsData = [
         description: 'Barokní zámek s nádhernými sochami od M.B. Brauna. Unikátní barokní park a kašny.',
         image: 'fotky/valec.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Zámek Valeč', 'Valeč')
+        mapsUrl: 'https://www.google.com/maps/search/Zámek+Valeč'
     },
     {
         id: 39,
@@ -413,7 +413,7 @@ const tripsData = [
         description: 'Historická lanovka z roku 1912. Vede k vyhlídkové věži Diana s krásným výhledem na město.',
         image: 'fotky/diana.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Lanovka Diana', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Lanová+dráha+Diana'
     },
     {
         id: 40,
@@ -423,7 +423,7 @@ const tripsData = [
         description: 'Jeden z nejcennějších pokladů České republiky. Gotický relikviář s bohatou výzdobou.',
         image: 'fotky/relikviar.webp',
         color: '#d4af37',
-        mapsUrl: getMapsUrl('Relikviář svatého Maura', 'Bečov nad Teplou')
+        mapsUrl: 'https://www.google.com/maps/search/Relikviář+svatého+Maura'
     },
     {
         id: 41,
@@ -433,7 +433,7 @@ const tripsData = [
         description: 'Romantický hrad z 12. století s expozicí nábytku a keramiky. Krásný výhled do okolí.',
         image: 'fotky/seeberg.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Hrad Seeberg', 'Poustka')
+        mapsUrl: 'https://www.google.com/maps/search/Hrad+Seeberg'
     },
     {
         id: 42,
@@ -443,7 +443,7 @@ const tripsData = [
         description: 'Nejkrásnější kolonáda v ČR s vývěry léčivých pramenů. Elegantní litinová stavba z 19. století.',
         image: 'fotky/kolonada.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Kolonáda', 'Mariánské Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Lázeňská+kolonáda+Mariánské+Lázně'
     },
     {
         id: 43,
@@ -453,7 +453,7 @@ const tripsData = [
         description: 'Premonstrátský klášter s knihovnou a historickými sbírkami. Duchovní centrum regionu.',
         image: 'fotky/tepla.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Klášter Teplá', 'Teplá')
+        mapsUrl: 'https://www.google.com/maps/search/Klášter+Teplá'
     },
     {
         id: 44,
@@ -463,7 +463,7 @@ const tripsData = [
         description: 'Románský hrad s restaurací a muzeem. Nejstarší románský hrad v Čechách.',
         image: 'fotky/vildstejn.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Hrad Vildštejn', 'Skalná')
+        mapsUrl: 'https://www.google.com/maps/search/Hrad+Vildštejn'
     },
     {
         id: 45,
@@ -473,7 +473,7 @@ const tripsData = [
         description: 'Barokní poutní areál s kostelem a křížovou cestou. Místo s působivou atmosférou.',
         image: 'fotky/skoky.jpeg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Skoky', 'Žlutice')
+        mapsUrl: 'https://www.google.com/maps/search/Poutní+kostel+Skoky+u+Žlutic'
     },
     {
         id: 46,
@@ -483,7 +483,7 @@ const tripsData = [
         description: 'Gotický hrad přestavěný na romantický zámek. Prohlídky interiérů a krásné výhledy.',
         image: 'fotky/hornihrad.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Horní Hrad', 'Stráž nad Ohří')
+        mapsUrl: 'https://www.google.com/maps/search/Horní+Hrad'
     },
     {
         id: 47,
@@ -493,7 +493,7 @@ const tripsData = [
         description: 'Historický důl s muzeem. První radonové lázně na světě vznikly právě zde.',
         image: 'fotky/svornost.jpg',
         color: '#5a5a5a',
-        mapsUrl: getMapsUrl('Důl Svornost', 'Jáchymov')
+        mapsUrl: 'https://www.google.com/maps/search/Důl+Svornost'
     },
     {
         id: 48,
@@ -503,7 +503,7 @@ const tripsData = [
         description: 'Tři kříže na vrcholu kopce připomínající historické události. Výhled do krajiny.',
         image: 'fotky/trikrize.webp',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Tři Kříže', 'Prameny')
+        mapsUrl: 'https://www.google.com/maps/search/Tři+Kříže+Slavkovský+les'
     },
     {
         id: 49,
@@ -513,7 +513,7 @@ const tripsData = [
         description: 'Gotický hrad nad meandrem řeky Ohře. Muzeum a expozice porcelánu. Jeden z nejkrásnějších hradů ČR.',
         image: 'fotky/loket.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Hrad Loket', 'Loket')
+        mapsUrl: 'https://www.google.com/maps/search/Hrad+Loket'
     },
     {
         id: 50,
@@ -523,7 +523,7 @@ const tripsData = [
         description: 'Historické pozůstatky těžby cínu. Naučná stezka s informacemi o hornické minulosti.',
         image: 'fotky/cinove.jpg',
         color: '#5a5a5a',
-        mapsUrl: getMapsUrl('Cínové doly', 'Přebuz')
+        mapsUrl: 'https://www.google.com/maps/search/Cínové+doly+Krušné+hory'
     },
     {
         id: 51,
@@ -533,7 +533,7 @@ const tripsData = [
         description: 'Etnografický skanzen s ukázkami života v Krušných horách. Tradiční řemesla a architektura.',
         image: 'fotky/doubrava.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Skanzen Doubrava', 'Lipová')
+        mapsUrl: 'https://www.google.com/maps/search/Skanzen+Doubrava'
     },
     {
         id: 52,
@@ -543,7 +543,7 @@ const tripsData = [
         description: 'Gotický hrad a barokní zámek. Místo nálezu slavného relikviáře svatého Maura.',
         image: 'fotky/becov.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Hrad Bečov', 'Bečov nad Teplou')
+        mapsUrl: 'https://www.google.com/maps/search/Hrad+a+zámek+Bečov+nad+Teplou'
     },
     {
         id: 53,
@@ -553,7 +553,7 @@ const tripsData = [
         description: 'Unikátní komplex 11 středověkých domů. Symbol města Cheb a jeho bohaté historie.',
         image: 'fotky/spalicek.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Špalíček', 'Cheb')
+        mapsUrl: 'https://www.google.com/maps/search/Chebský+Špalíček'
     },
     {
         id: 54,
@@ -563,7 +563,7 @@ const tripsData = [
         description: 'Romantický hrad a zámek s parkem. Prohlídky historických interiérů.',
         image: 'fotky/liba.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Zámek Libá', 'Libá')
+        mapsUrl: 'https://www.google.com/maps/search/Hrad+a+zámek+Libá'
     },
     {
         id: 55,
@@ -573,7 +573,7 @@ const tripsData = [
         description: 'Pozůstatky zaniklé obce po odsunu německého obyvatelstva. Místo připomínající historii.',
         image: 'fotky/rolava.jpg',
         color: '#5a5a5a',
-        mapsUrl: getMapsUrl('Rolava', 'Přebuz')
+        mapsUrl: 'https://www.google.com/maps/search/Zaniklá+obec+Rolava'
     },
     {
         id: 56,
@@ -583,7 +583,7 @@ const tripsData = [
         description: 'Klasicistní zámek s bohatými sbírkami. Nádherný anglický park a zámecká knihovna.',
         image: 'fotky/kynzvart.webp',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Zámek Kynžvart', 'Lázně Kynžvart')
+        mapsUrl: 'https://www.google.com/maps/search/Zámek+Kynžvart'
     },
     {
         id: 57,
@@ -593,7 +593,7 @@ const tripsData = [
         description: 'Nejvyšší hora Krušných hor s rozhlednou a hotelem. Nádherné výhledy a lyžování v zimě.',
         image: 'fotky/klinovec.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Klínovec', 'Boží Dar')
+        mapsUrl: 'https://www.google.com/maps/search/Klínovec'
     },
     {
         id: 58,
@@ -603,7 +603,7 @@ const tripsData = [
         description: 'Největší zpívající fontána v ČR s večerními hudebními a světelnými představeními.',
         image: 'fotky/fontana.webp',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Zpívající fontána', 'Mariánské Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Zpívající+fontána+Mariánské+lázně'
     },
     {
         id: 59,
@@ -613,7 +613,7 @@ const tripsData = [
         description: 'Vyhlídková věž s restaurací a motýlím domem. Přístupná lanovkou nebo pěšky.',
         image: 'fotky/dianarozhledna.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Rozhledna Diana', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Rozhledna+Diana'
     },
     {
         id: 60,
@@ -623,7 +623,7 @@ const tripsData = [
         description: 'Historická těžební štola s prohlídkami. Seznámení s hornickou historií města.',
         image: 'fotky/stola1.jpg',
         color: '#5a5a5a',
-        mapsUrl: getMapsUrl('Štola Jáchymov', 'Jáchymov')
+        mapsUrl: 'https://www.google.com/maps/search/Štola+č.+1+Jáchymov'
     },
     {
         id: 61,
@@ -633,7 +633,7 @@ const tripsData = [
         description: 'Památník připomínající oběti nucených prací. Místo s důležitou historickou hodnotou.',
         image: 'fotky/vezsmrti.webp',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Rudá věž smrti', 'Ostrov')
+        mapsUrl: 'https://www.google.com/maps/search/Rudá+věž+smrti'
     },
     {
         id: 62,
@@ -643,7 +643,7 @@ const tripsData = [
         description: 'Barokní zámek s muzeem a výstavami. Historické sídlo v centru města.',
         image: 'fotky/ostrov.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Zámek Ostrov', 'Ostrov')
+        mapsUrl: 'https://www.google.com/maps/search/Zámek+Ostrov'
     },
     {
         id: 63,
@@ -653,7 +653,7 @@ const tripsData = [
         description: 'Naučná stezka věnovaná obětem komunistického režimu. Důležité místo české historie.',
         image: 'fotky/peklo.jpg',
         color: '#5a5a5a',
-        mapsUrl: getMapsUrl('Jáchymovské peklo', 'Jáchymov')
+        mapsUrl: 'https://www.google.com/maps/search/Naučná+stezka+Jáchymovské+peklo'
     },
     {
         id: 64,
@@ -663,7 +663,7 @@ const tripsData = [
         description: 'Historická lázeňská budova s nádhernou architekturou. Důležité místo lázeňské historie.',
         image: 'fotky/cisarske.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Císařské lázně', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Císařské+lázně+Karlovy+Vary'
     },
     {
         id: 65,
@@ -673,7 +673,7 @@ const tripsData = [
         description: 'Historický cínový důl s prohlídkami. Seznámení s hornickou minulostí regionu.',
         image: 'fotky/jeronym.jpg',
         color: '#5a5a5a',
-        mapsUrl: getMapsUrl('Důl Jeroným', 'Rovná')
+        mapsUrl: 'https://www.google.com/maps/search/Důl+Jeroným'
     },
     {
         id: 66,
@@ -683,7 +683,7 @@ const tripsData = [
         description: 'Románský hrad s unikátní dvojitou kaplí. Jeden z nejvýznamnějších hradů v ČR.',
         image: 'fotky/chebskyhrad.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Chebský hrad', 'Cheb')
+        mapsUrl: 'https://www.google.com/maps/search/Chebský+hrad'
     },
     {
         id: 67,
@@ -693,7 +693,7 @@ const tripsData = [
         description: 'Historický cínový důl s prohlídkami. Skvělá ukázka hornické historie Krušných hor.',
         image: 'fotky/mauritius.jpg',
         color: '#5a5a5a',
-        mapsUrl: getMapsUrl('Důl Mauritius', 'Abertamy')
+        mapsUrl: 'https://www.google.com/maps/search/Důl+Mauritius'
     },
     {
         id: 68,
@@ -703,7 +703,7 @@ const tripsData = [
         description: 'Barokní poutní areál s kostelem a klášterem. Místo s působivou duchovní atmosférou.',
         image: 'fotky/loreta.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Loreta', 'Cheb')
+        mapsUrl: 'https://www.google.com/maps/search/Loreta+Starý+Hrozňatov'
     },
     {
         id: 69,
@@ -713,7 +713,7 @@ const tripsData = [
         description: 'Renesanční zámek s muzeem. Historické sídlo významného šlechtického rodu.',
         image: 'fotky/sokolov.webp',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Zámek Sokolov', 'Sokolov')
+        mapsUrl: 'https://www.google.com/maps/search/Zámek+Sokolov'
     },
 
     // Lázně a wellness
@@ -725,7 +725,7 @@ const tripsData = [
         description: 'Moderní aquapark s bazény a saunami. Relaxace a zábava pro celou rodinu.',
         image: 'fotky/agricola.jpg',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Aquacentrum Agricola', 'Jáchymov')
+        mapsUrl: 'https://www.google.com/maps/search/Aquacentrum+Agricola'
     },
     {
         id: 71,
@@ -735,7 +735,7 @@ const tripsData = [
         description: 'Luxusní wellness resort s bazénem na střeše. Nádherný výhled na město a okolí.',
         image: 'fotky/saunia.webp',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Saunia Thermal', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Saunia+Thermal+Karlovy+Vary'
     },
     {
         id: 72,
@@ -745,7 +745,7 @@ const tripsData = [
         description: 'První radonové lázně na světě. Tradiční lázeňská léčba v krásném horském prostředí.',
         image: 'fotky/jachymovlazne.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Lázně Jáchymov', 'Jáchymov')
+        mapsUrl: 'https://www.google.com/maps/search/Léčebné+lázně+Jáchymov'
     },
     {
         id: 73,
@@ -755,7 +755,7 @@ const tripsData = [
         description: 'Moderní aquapark s bazény, tobogány a wellness zónou. Skvělé pro celou rodinu.',
         image: 'fotky/aquaforum.jpg',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Aquaforum', 'Františkovy Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Aquaforum+Františkovy+Lázně'
     },
     {
         id: 74,
@@ -765,7 +765,7 @@ const tripsData = [
         description: 'Obnovené lázně s historickou atmosférou. Místo spojené se známou minerální vodou.',
         image: 'fotky/kyselka',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Mattoniho lázně', 'Kyselka')
+        mapsUrl: 'https://www.google.com/maps/search/Mattoniho+lázně+Kyselka'
     },
     {
         id: 75,
@@ -775,7 +775,7 @@ const tripsData = [
         description: 'Moderní bazénové centrum s plaveckými drahami a rekreačním bazénem.',
         image: 'fotky/arena.jpg',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('KV Arena bazén', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Bazénové+centrum+KV+Arena'
     },
     {
         id: 76,
@@ -785,7 +785,7 @@ const tripsData = [
         description: 'Symbolický pomník mladého chlapce s rybou. Známý symbol lázeňského města.',
         image: 'fotky/chlapec.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Chlapec s rybou', 'Františkovy Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Socha+Františka+Františkovy+Lázně'
     },
 
     // Letní sporty
@@ -797,7 +797,7 @@ const tripsData = [
         description: 'Krásná naučná stezka přes rašeliniště. Ideální pro turistiku a poznávání přírody.',
         image: 'fotky/kladska.webp',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Kladská', 'Mariánské Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Naučná+stezka+Kladská'
     },
     {
         id: 78,
@@ -807,7 +807,7 @@ const tripsData = [
         description: 'Lanovka vedoucí k vyhlídce. Nádherný výhled na lázeňské město a okolní krajinu.',
         image: 'fotky/lanovkami.webp',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Lanovka Mariánské Lázně', 'Mariánské Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Lanová+dráha+Mariánské+Lázně'
     },
     {
         id: 79,
@@ -817,7 +817,7 @@ const tripsData = [
         description: 'Lanovka na nejvyšší horu Krušných hor. Skvělý způsob, jak se dostat na vrchol.',
         image: 'fotky/lanovkaklinovec.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Lanovka Klínovec', 'Jáchymov')
+        mapsUrl: 'https://www.google.com/maps/search/Lanovka+Jáchymov+Klínovec'
     },
     {
         id: 80,
@@ -827,7 +827,7 @@ const tripsData = [
         description: 'Přehrada ideální pro koupání, rybaření a vodní sporty. Krásné okolí s možností turistiky.',
         image: 'fotky/jesenice.jpg',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Jesenice', 'Cheb')
+        mapsUrl: 'https://www.google.com/maps/search/Vodní+nádrž+Jesenice'
     },
     {
         id: 81,
@@ -837,7 +837,7 @@ const tripsData = [
         description: 'Velké přírodní koupaliště s písečnými plážemi. Skvělé místo pro letní relaxaci.',
         image: 'fotky/michal.jpg',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Jezero Michal', 'Sokolov')
+        mapsUrl: 'https://www.google.com/maps/search/Koupaliště+Jezero+Michal'
     },
     {
         id: 82,
@@ -847,7 +847,7 @@ const tripsData = [
         description: 'Přírodní plovárna s písečnou pláží. Ideální místo pro rodiny s dětmi.',
         image: 'fotky/drenice.jpg',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Plovárna Dřenice', 'Cheb')
+        mapsUrl: 'https://www.google.com/maps/search/Plovárna+Dřenice'
     },
     {
         id: 83,
@@ -857,7 +857,7 @@ const tripsData = [
         description: 'Krásné modrozelené jezírko v bývalém lomu. Ideální pro koupání a potápění.',
         image: 'fotky/jimlikov.jpg',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Jimlíkov', 'Božičany')
+        mapsUrl: 'https://www.google.com/maps/search/Lom+Jimlíkov'
     },
     {
         id: 84,
@@ -867,7 +867,7 @@ const tripsData = [
         description: 'Přírodní koupaliště v bývalém lomu. Krásné místo pro letní aktivity.',
         image: 'fotky/hroznetin.jpg',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Rybník Hroznětín', 'Hroznětín')
+        mapsUrl: 'https://www.google.com/maps/search/Velký+rybník+Hroznětín'
     },
     {
         id: 85,
@@ -877,7 +877,7 @@ const tripsData = [
         description: 'Krásné přírodní koupaliště v lesoparku. Ideální místo pro letní relaxaci.',
         image: 'fotky/lido.jpg',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Lido', 'Mariánské Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Koupaliště+Lido+Mariánské+Lázně'
     },
     {
         id: 86,
@@ -887,7 +887,7 @@ const tripsData = [
         description: 'Moderní koupaliště s tobogány a atrakcemi. Skvělé pro rodiny s dětmi.',
         image: 'fotky/rolavakoupaliste.webp',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Koupaliště Rolava', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Koupaliště+Rolava'
     },
     {
         id: 87,
@@ -897,7 +897,7 @@ const tripsData = [
         description: 'Krásné přírodní koupaliště s čistou vodou. Klidné místo pro letní odpočinek.',
         image: 'fotky/bilavoda.jpg',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Bílá voda', 'Chodov')
+        mapsUrl: 'https://www.google.com/maps/search/Bílá+voda+Chodov'
     },
     {
         id: 88,
@@ -907,7 +907,7 @@ const tripsData = [
         description: 'Krásná cyklostezka vedoucí po bývalé železniční trati. Ideální pro cyklisty všech úrovní.',
         image: 'fotky/cyklostezka.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Cyklostezka Loket', 'Loket')
+        mapsUrl: 'https://www.google.com/maps/search/Cyklostezka+Loket+Horní+Slavkov'
     },
     {
         id: 89,
@@ -917,7 +917,7 @@ const tripsData = [
         description: 'Via ferrata s krásnými výhledy. Náročná trasa pro zkušené horolezce.',
         image: 'fotky/viaferrata.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Via ferrata', 'Nové Hamry')
+        mapsUrl: 'https://www.google.com/maps/search/Seifertova+via+ferrata'
     },
     {
         id: 90,
@@ -927,7 +927,7 @@ const tripsData = [
         description: 'Dálková cyklostezka podél řeky Ohře. Krásná trasa vedoucí z Německa do Čech.',
         image: 'fotky/ohre.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Cyklostezka Ohře', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Cyklostezka+Ohře'
     },
     {
         id: 91,
@@ -937,7 +937,7 @@ const tripsData = [
         description: 'Moderní koupaliště s atrakcemi. Skvělé místo pro letní zábavu.',
         image: 'fotky/ostrovskekoupaliste.jpg',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Koupaliště Ostrov', 'Ostrov')
+        mapsUrl: 'https://www.google.com/maps/search/Koupaliště+Ostrov'
     },
     {
         id: 92,
@@ -947,7 +947,7 @@ const tripsData = [
         description: 'Dálková turistická trasa vedoucí celou republikou. Náročná, ale krásná túra.',
         image: 'fotky/stezkacasem.jpeg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Stezka Českem', 'Krásná')
+        mapsUrl: 'https://www.google.com/maps/search/Stezka+Českem'
     },
     {
         id: 93,
@@ -957,7 +957,7 @@ const tripsData = [
         description: 'Krásné jezírko v bývalém lomu. Ideální pro koupání a relaxaci.',
         image: 'fotky/dasnice.jpg',
         color: '#2c7dd6',
-        mapsUrl: getMapsUrl('Lom Dasnice', 'Dasnice')
+        mapsUrl: 'https://www.google.com/maps/search/Lom+Dasnice'
     },
     {
         id: 94,
@@ -967,7 +967,7 @@ const tripsData = [
         description: 'Park s cyklostezkami a možnostmi sportovního vyžití. Krásné místo pod hradem.',
         image: 'fotky/krajinka.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Krajinka', 'Cheb')
+        mapsUrl: 'https://www.google.com/maps/search/Krajinka+Cheb'
     },
 
     // Zážitky
@@ -979,7 +979,7 @@ const tripsData = [
         description: 'Park s miniaturami nejznámějších českých památek. Skvělé pro rodiny s dětmi.',
         image: 'fotky/boheminium.jpg',
         color: '#d4af37',
-        mapsUrl: getMapsUrl('Boheminium', 'Mariánské Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Park+Boheminium'
     },
     {
         id: 96,
@@ -989,7 +989,7 @@ const tripsData = [
         description: 'Prohlídky sklárny Moser s možností výroby vlastního skla. Unikátní zážitek.',
         image: 'fotky/moser.jpg',
         color: '#d4af37',
-        mapsUrl: getMapsUrl('Moser', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Návštěvnické+centrum+Moser'
     },
     {
         id: 97,
@@ -999,7 +999,7 @@ const tripsData = [
         description: 'Zoopark s domácími i exotickými zvířaty. Skvělé místo pro rodiny s dětmi.',
         image: 'fotky/zoopark.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Zoopark Amerika', 'Františkovy Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Zoopark+Amerika'
     },
     {
         id: 98,
@@ -1009,7 +1009,7 @@ const tripsData = [
         description: 'Muzeum a prohlídky výroby známého likéru. Degustace a nákup suvenýrů.',
         image: 'fotky/becherovka.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Becherovka', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/The+Home+of+Becherovka'
     },
     {
         id: 99,
@@ -1019,7 +1019,7 @@ const tripsData = [
         description: 'Prohlídka historické štoly s ukázkami těžby. Fascinující podzemní svět.',
         image: 'fotky/astoria.webp',
         color: '#5a5a5a',
-        mapsUrl: getMapsUrl('Štola Astoria', 'Jáchymov')
+        mapsUrl: 'https://www.google.com/maps/search/Štola+Astoria'
     },
     {
         id: 100,
@@ -1029,7 +1029,7 @@ const tripsData = [
         description: 'Zábavní labyrint se zrcadly. Skvělá zábava pro celou rodinu.',
         image: 'fotky/labyrint.jpg',
         color: '#d4af37',
-        mapsUrl: getMapsUrl('Zrcadlový labyrint', 'Mariánské Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Zrcadlový+labyrint+Mariánské+Lázně'
     },
     {
         id: 101,
@@ -1039,7 +1039,7 @@ const tripsData = [
         description: 'Historické sklepy s expozicí připomínající historii města. Zajímavé místo pro návštěvu.',
         image: 'fotky/pekelne.jpg',
         color: '#5a5a5a',
-        mapsUrl: getMapsUrl('Pekelné sklepy', 'Žlutice')
+        mapsUrl: 'https://www.google.com/maps/search/Pekelné+sklepy+Žlutice'
     },
     {
         id: 102,
@@ -1049,7 +1049,7 @@ const tripsData = [
         description: 'Zábavní park s 3D bludištěm a hřištěm pro děti. Skvělé místo pro rodinný výlet.',
         image: 'fotky/bludiste.jpg',
         color: '#d4af37',
-        mapsUrl: getMapsUrl('Bludiště Aš', 'Aš')
+        mapsUrl: 'https://www.google.com/maps/search/3D+bludiště+Aš'
     },
     {
         id: 103,
@@ -1059,7 +1059,7 @@ const tripsData = [
         description: 'Unikátní kuličková dráha v centru města. Zábavné místo pro děti i dospělé.',
         image: 'fotky/kluckova.jpg',
         color: '#d4af37',
-        mapsUrl: getMapsUrl('Kuličková dráha', 'Cheb')
+        mapsUrl: 'https://www.google.com/maps/search/Kuličková+dráha+Cheb'
     },
     {
         id: 104,
@@ -1069,7 +1069,7 @@ const tripsData = [
         description: 'Interaktivní muzeum s optickými iluzemi. Zábavné a poučné pro všechny věkové kategorie.',
         image: 'fotky/iluze.jpg',
         color: '#d4af37',
-        mapsUrl: getMapsUrl('Muzeum iluzí', 'Františkovy Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Muzeum+iluzí+Františkovy+Lázně'
     },
     {
         id: 105,
@@ -1079,7 +1079,7 @@ const tripsData = [
         description: 'Historická úzkorozchodná dráha s projížďkami. Romantická cesta přírodou.',
         image: 'fotky/katerina.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Dráha Kateřina', 'Františkovy Lázně')
+        mapsUrl: 'https://www.google.com/maps/search/Dráha+Kateřina+Soos'
     },
 
     // Kultura
@@ -1091,7 +1091,7 @@ const tripsData = [
         description: 'Romantický hrad s expozicí nábytku a keramiky. Kulturní akce a výstavy.',
         image: 'fotky/seebergkultura.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Hrad Seeberg', 'Poustka')
+        mapsUrl: 'https://www.google.com/maps/search/Hrad+Seeberg'
     },
     {
         id: 107,
@@ -1101,7 +1101,7 @@ const tripsData = [
         description: 'Prohlídky tradiční výroby porcelánu. Ukázky ruční práce a historie porcelánky.',
         image: 'fotky/thun.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Porcelánka Thun', 'Nová Role')
+        mapsUrl: 'https://www.google.com/maps/search/Porcelánka+Thun+Nová+Role'
     },
     {
         id: 108,
@@ -1111,7 +1111,7 @@ const tripsData = [
         description: 'Muzeum s expozicemi o historii města, lázeňství a regionální kultuře.',
         image: 'fotky/muzeumkv.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Muzeum Karlovy Vary', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Muzeum+Karlovy+Vary'
     },
     {
         id: 109,
@@ -1121,7 +1121,7 @@ const tripsData = [
         description: 'Ekofarma s prohlídkami a vzdělávacími programy. Tradiční řemesla a živá zvířata.',
         image: 'fotky/bernard.jpg',
         color: '#4a6741',
-        mapsUrl: getMapsUrl('Statek Bernard', 'Královské Poříčí')
+        mapsUrl: 'https://www.google.com/maps/search/Statek+Bernard'
     },
 
     // Gurmánská turistika
@@ -1133,7 +1133,7 @@ const tripsData = [
         description: 'Elegantní kavárna s výbornou kávou a domácími zákusky. Atmosféra starých časů.',
         image: 'fotky/parisienne.jpeg',
         color: '#d4af37',
-        mapsUrl: getMapsUrl('Parisienne', 'Karlovy Vary')
+        mapsUrl: 'https://www.google.com/maps/search/Parisienne+Karlovy+Vary'
     },
     {
         id: 111,
@@ -1143,7 +1143,7 @@ const tripsData = [
         description: 'Tradiční horská hospůdka s výbornou kuchyní. Autentická atmosféra Krušných hor.',
         image: 'fotky/chaloupka.jpg',
         color: '#8B7355',
-        mapsUrl: getMapsUrl('Chaloupka', 'Pernink')
+        mapsUrl: 'https://www.google.com/maps/search/Chaloupka+U+Červené+jámy'
     }
 ];
 
