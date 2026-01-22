@@ -1815,30 +1815,35 @@ body.menu-open {
 .trip-image-side {
     position: relative;
     overflow: hidden;
-    height: 280px;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-white);
 }
 
 .trip-image-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .trip-image-wrapper img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     display: block;
     transition: var(--transition);
 }
 
 .trip-card:hover .trip-image-wrapper img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
-/* Blur efekt v dolní polovině s přechodem do barvy */
+/* Gradient přechod z průhledné do barvy zdola */
 .trip-image-gradient {
     position: absolute;
     bottom: 0;
@@ -1847,21 +1852,6 @@ body.menu-open {
     height: 50%;
     z-index: 2;
     pointer-events: none;
-}
-
-/* Blur maska - efekt blur v dolní polovině */
-.trip-image-wrapper::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    z-index: 1;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    mask-image: linear-gradient(to bottom, transparent 0%, transparent 30%, black 40%, black 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 30%, black 40%, black 100%);
 }
 
 /* Gradient přechod z průhledné do barvy zdola */
@@ -1923,7 +1913,6 @@ body.menu-open {
     font-weight: 500;
     font-size: 0.9rem;
     transition: var(--transition);
-    backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.3);
     font-family: var(--font-body);
     width: 100%;
@@ -1967,7 +1956,7 @@ body.menu-open {
     }
     
     .trip-image-side {
-        height: 250px;
+        min-height: 250px;
     }
     
     .trip-name {
@@ -2118,19 +2107,25 @@ body.menu-open {
 .trip-image-side {
     position: relative;
     overflow: hidden;
-    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-white);
 }
 
 .trip-image-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .trip-image-wrapper img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     display: block;
 }
 
@@ -2140,7 +2135,6 @@ body.menu-open {
     bottom: 0;
     width: 50%;
     z-index: 2;
-    backdrop-filter: blur(10px);
 }
 
 .trip-image-left .trip-image-gradient {
@@ -2197,7 +2191,6 @@ body.menu-open {
     font-weight: 500;
     font-size: 1rem;
     transition: var(--transition);
-    backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -2235,6 +2228,9 @@ body.menu-open {
     .trip-image-side {
         min-height: 300px;
         order: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .trip-content-side {
