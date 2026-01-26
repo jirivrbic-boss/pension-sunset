@@ -500,7 +500,7 @@ async function loadRooms() {
                 'Zvuková izolace',
                 'Wi-Fi zdarma'
             ],
-            description: 'Bazén s výhledem a vířivka jsou speciálními prvky tohoto dvoulůžkového pokoje. Pokoje obsahují sdílenou koupelnu se sprchou, fénem a pantoflemi zdarma. Dvoulůžkový pokoj nabízí soukromý vchod, zvukově izolované stěny, rychlovarnou konvici, TV s plochou obrazovkou s kabelovými programy a výhled do zahrady.',
+            description: 'Dvoulůžkový pokoj nabízí soukromý vchod, zvukově izolované stěny, rychlovarnou konvici, TV s plochou obrazovkou s kabelovými programy a výhled do zahrady. Pokoje obsahují sdílenou koupelnu se sprchou, fénem a pantoflemi zdarma.',
             amenities: [
                 'Vířivka',
                 'Povlečení',
@@ -544,7 +544,7 @@ async function loadRooms() {
                 'Zvuková izolace',
                 'Wi-Fi zdarma'
             ],
-            description: 'Hosté zažijí výjimečný zážitek, protože tento třílůžkový pokoj nabízí bazén s výhledem a vířivku. Pokoje obsahují sdílenou koupelnu se sprchou, fénem a pantoflemi zdarma. Třílůžkový pokoj nabízí TV s plochou obrazovkou s kabelovými programy, soukromý vchod, zvukově izolované stěny, rychlovarnou konvici a výhled do zahrady.',
+            description: 'Třílůžkový pokoj nabízí TV s plochou obrazovkou s kabelovými programy, soukromý vchod, zvukově izolované stěny, rychlovarnou konvici a výhled do zahrady. Pokoje obsahují sdílenou koupelnu se sprchou, fénem a pantoflemi zdarma.',
             amenities: [
                 'Vířivka',
                 'Povlečení',
