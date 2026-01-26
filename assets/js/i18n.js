@@ -18,6 +18,7 @@ function initLanguage() {
 // Apply language to all elements with data-i18n attribute
 function applyLanguage(lang) {
     currentLang = lang;
+    window.currentLang = lang; // Make it globally available
     localStorage.setItem('preferredLanguage', lang);
     
     // Update all elements with data-i18n attribute
@@ -33,10 +34,19 @@ function applyLanguage(lang) {
                 tempDiv.innerHTML = translation;
                 element.innerHTML = tempDiv.innerHTML;
             } else {
-                element.textContent = translation;
+                // For buttons/links, update inner span if exists, otherwise textContent
+                const span = element.querySelector('span');
+                if (span && element.tagName === 'A') {
+                    span.textContent = translation;
+                } else {
+                    element.textContent = translation;
+                }
             }
         }
     });
+    
+    // Update room cards if they exist
+    updateRoomCards(lang);
     
     // Update active language button
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -74,6 +84,37 @@ function applyLanguage(lang) {
     
     // Update HTML lang attribute
     document.documentElement.lang = lang;
+}
+
+// Update room cards with translations
+function updateRoomCards(lang) {
+    const t = translations[lang] || translations.cs;
+    
+    // Update room names
+    document.querySelectorAll('[data-i18n-room-name="RD150721301"]').forEach(el => {
+        el.textContent = t['rooms.roomDouble'] || 'Dvoulůžkový pokoj Standard';
+    });
+    document.querySelectorAll('[data-i18n-room-name="RD150721302"]').forEach(el => {
+        el.textContent = t['rooms.roomTriple'] || 'Třílůžkový pokoj Standard';
+    });
+    
+    // Update room sizes
+    document.querySelectorAll('[data-i18n-room-size="RD150721301"]').forEach(el => {
+        const size = '25 ' + (t['rooms.size'] || 'm²');
+        el.innerHTML = `<i class="fas fa-expand-arrows-alt"></i> ${size}`;
+    });
+    document.querySelectorAll('[data-i18n-room-size="RD150721302"]').forEach(el => {
+        const size = '30 ' + (t['rooms.size'] || 'm²');
+        el.innerHTML = `<i class="fas fa-expand-arrows-alt"></i> ${size}`;
+    });
+    
+    // Update room beds
+    document.querySelectorAll('[data-i18n-room-beds="RD150721301"]').forEach(el => {
+        el.innerHTML = `<i class="fas fa-bed"></i> ${t['rooms.bedDouble'] || '1 manželská postel'}`;
+    });
+    document.querySelectorAll('[data-i18n-room-beds="RD150721302"]').forEach(el => {
+        el.innerHTML = `<i class="fas fa-bed"></i> ${t['rooms.bedTriple'] || '3 jednolůžkové postele'}`;
+    });
 }
 
 // Initialize language system when DOM is ready

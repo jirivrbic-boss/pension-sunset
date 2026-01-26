@@ -483,6 +483,12 @@ async function loadRooms() {
     const roomsGrid = document.getElementById('roomsGrid');
     if (!roomsGrid) return;
     
+    // Wait for translations to be available
+    if (typeof translations === 'undefined') {
+        setTimeout(loadRooms, 100);
+        return;
+    }
+    
     // Statická data pokojů z Booking.com
     const rooms = [
         {
@@ -596,16 +602,41 @@ function createRoomCard(room) {
     const cacheBuster = new Date().getTime();
     const imageUrl = (room.image || '/fotky/178484544.jpg') + '?v=' + cacheBuster;
     
+    // Get current language
+    const currentLang = window.currentLang || 'cs';
+    const t = translations[currentLang] || translations.cs;
+    
+    // Get room name translation
+    let roomName = room.name;
+    if (room.id === 'RD150721301') {
+        roomName = t['rooms.roomDouble'] || room.name;
+    } else if (room.id === 'RD150721302') {
+        roomName = t['rooms.roomTriple'] || room.name;
+    }
+    
+    // Get size and beds translation
+    let roomSize = room.size;
+    let roomBeds = room.beds;
+    if (room.id === 'RD150721301') {
+        roomSize = room.size.replace('m²', t['rooms.size'] || 'm²');
+        roomBeds = t['rooms.bedDouble'] || room.beds;
+    } else if (room.id === 'RD150721302') {
+        roomSize = room.size.replace('m²', t['rooms.size'] || 'm²');
+        roomBeds = t['rooms.bedTriple'] || room.beds;
+    }
+    
+    const bookButtonText = t['rooms.bookButton'] || 'Rezervovat na Booking.com';
+    
     card.innerHTML = `
-        <img src="${imageUrl}" alt="${room.name}" class="room-image" onerror="this.src='/fotky/178484544.jpg'">
+        <img src="${imageUrl}" alt="${roomName}" class="room-image" onerror="this.src='/fotky/178484544.jpg'">
         <div class="room-content">
-            <h3 class="room-name">${room.name}</h3>
+            <h3 class="room-name" data-i18n-room-name="${room.id}">${roomName}</h3>
             <div class="room-specs">
-                <span class="room-size"><i class="fas fa-expand-arrows-alt"></i> ${room.size}</span>
-                <span class="room-beds"><i class="fas fa-bed"></i> ${room.beds}</span>
+                <span class="room-size" data-i18n-room-size="${room.id}"><i class="fas fa-expand-arrows-alt"></i> ${roomSize}</span>
+                <span class="room-beds" data-i18n-room-beds="${room.id}"><i class="fas fa-bed"></i> ${roomBeds}</span>
             </div>
-            <a href="${room.bookingUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; margin-top: 1rem; text-decoration: none; display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;">
-                <span>Rezervovat na Booking.com</span>
+            <a href="${room.bookingUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; margin-top: 1rem; text-decoration: none; display: inline-flex; justify-content: center; align-items: center; gap: 0.5rem;" data-i18n="rooms.bookButton">
+                <span>${bookButtonText}</span>
                 <i class="fas fa-external-link-alt"></i>
             </a>
         </div>
