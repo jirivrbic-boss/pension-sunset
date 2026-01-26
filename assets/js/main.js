@@ -652,19 +652,16 @@ function createRoomCard(room) {
 // ============================================
 
 // Proměnné pro galerii (globální, aby byly dostupné pro resize listener)
+// Pouze fotky označené čísly
 const allGalleryImages = [
     '107276708.jpg',
     '119300806.jpg',
     '129898529.jpg',
     '129898757.jpg',
     '129899039.jpg',
-    '130040998.jpg',
     '130644941.jpg',
     '130645994.jpg',
     '130646422.jpg',
-    '143146327.jpg',
-    '143147259.jpg',
-    '143148468.jpg',
     '144696148.jpg',
     '144696484.jpg',
     '144699058.jpg',
@@ -673,11 +670,8 @@ const allGalleryImages = [
     '178479759.jpg',
     '178480294.jpg',
     '178480560.jpg',
-    '178480866.jpg',
     '178481221.jpg',
     '178482126.jpg',
-    '178482932.jpg',
-    '178483119.jpg',
     '178484544.jpg',
     '53954045.jpg',
     '61598806.jpg',
@@ -693,7 +687,6 @@ const allGalleryImages = [
 // Vyznačené fotky pro mobil (12 kusů)
 const mobileGalleryImages = [
     '73269680.jpg',
-    '130040998.jpg',
     '130645994.jpg',
     '129898529.jpg',
     '178478261.jpg',
@@ -703,7 +696,8 @@ const mobileGalleryImages = [
     '178480560.jpg',
     '178481221.jpg',
     '178482126.jpg',
-    '178482932.jpg'
+    '178484544.jpg',
+    '107276708.jpg'
 ];
 
 function initGallery() {
