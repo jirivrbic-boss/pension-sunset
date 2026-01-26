@@ -680,8 +680,7 @@ const allGalleryImages = [
     '73269987.jpg',
     '74401789.jpg',
     '88051428.jpg',
-    '88282651.jpg',
-    '96204493.jpg'
+    '88282651.jpg'
 ];
 
 // Vyznačené fotky pro mobil (12 kusů)
