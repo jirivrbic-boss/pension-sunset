@@ -55,6 +55,13 @@ const translations = {
         "section.amenities.title": "Vybavení a služby",
         "section.amenities.subtitle": "Vše, co potřebujete pro pohodlný pobyt",
         
+        "amenity.wifi": "Wi-Fi zdarma",
+        "amenity.parking": "Parkování zdarma",
+        "amenity.wellness": "Wellness",
+        "amenity.familyRooms": "Rodinné pokoje",
+        "amenity.pets": "Domácí mazlíčci",
+        "amenity.breakfast": "Snídaně",
+        
         "section.gallery.title": "Galerie",
         "section.gallery.subtitle": "Prohlédněte si naše prostory",
         
@@ -80,7 +87,14 @@ const translations = {
         "footer.events": "Události v okolí",
         "footer.languages": "Jazyky",
         "footer.rights": "Všechna práva vyhrazena.",
-        "footer.createdBy": "Web vytvořila"
+        "footer.createdBy": "Web vytvořila",
+        
+        // Aria labels
+        "aria.openMenu": "Otevřít menu",
+        "aria.closeMenu": "Zavřít menu",
+        "aria.sendEmail": "Odeslat email",
+        "aria.call": "Zavolat",
+        "aria.reserve": "Rezervovat"
     },
     
     en: {
@@ -135,6 +149,13 @@ const translations = {
         "section.amenities.title": "Amenities and services",
         "section.amenities.subtitle": "Everything you need for a comfortable stay",
         
+        "amenity.wifi": "Free Wi-Fi",
+        "amenity.parking": "Free parking",
+        "amenity.wellness": "Wellness",
+        "amenity.familyRooms": "Family rooms",
+        "amenity.pets": "Pets allowed",
+        "amenity.breakfast": "Breakfast",
+        
         "section.gallery.title": "Gallery",
         "section.gallery.subtitle": "View our spaces",
         
@@ -160,7 +181,14 @@ const translations = {
         "footer.events": "Events",
         "footer.languages": "Languages",
         "footer.rights": "All rights reserved.",
-        "footer.createdBy": "Web created by"
+        "footer.createdBy": "Web created by",
+        
+        // Aria labels
+        "aria.openMenu": "Open menu",
+        "aria.closeMenu": "Close menu",
+        "aria.sendEmail": "Send email",
+        "aria.call": "Call",
+        "aria.reserve": "Reserve"
     },
     
     de: {
@@ -215,6 +243,13 @@ const translations = {
         "section.amenities.title": "Ausstattung und Dienstleistungen",
         "section.amenities.subtitle": "Alles, was Sie für einen komfortablen Aufenthalt benötigen",
         
+        "amenity.wifi": "Kostenloses WLAN",
+        "amenity.parking": "Kostenlose Parkplätze",
+        "amenity.wellness": "Wellness",
+        "amenity.familyRooms": "Familienzimmer",
+        "amenity.pets": "Haustiere erlaubt",
+        "amenity.breakfast": "Frühstück",
+        
         "section.gallery.title": "Galerie",
         "section.gallery.subtitle": "Sehen Sie sich unsere Räume an",
         
@@ -240,7 +275,14 @@ const translations = {
         "footer.events": "Veranstaltungen",
         "footer.languages": "Sprachen",
         "footer.rights": "Alle Rechte vorbehalten.",
-        "footer.createdBy": "Web erstellt von"
+        "footer.createdBy": "Web erstellt von",
+        
+        // Aria labels
+        "aria.openMenu": "Menü öffnen",
+        "aria.closeMenu": "Menü schließen",
+        "aria.sendEmail": "E-Mail senden",
+        "aria.call": "Anrufen",
+        "aria.reserve": "Reservieren"
     },
     
     uk: {
@@ -295,6 +337,13 @@ const translations = {
         "section.amenities.title": "Зручності та послуги",
         "section.amenities.subtitle": "Все, що потрібно для комфортного перебування",
         
+        "amenity.wifi": "Безкоштовний Wi-Fi",
+        "amenity.parking": "Безкоштовна парковка",
+        "amenity.wellness": "Велнес",
+        "amenity.familyRooms": "Сімейні номери",
+        "amenity.pets": "Домашні тварини дозволені",
+        "amenity.breakfast": "Сніданок",
+        
         "section.gallery.title": "Галерея",
         "section.gallery.subtitle": "Перегляньте наші простори",
         
@@ -320,6 +369,13 @@ const translations = {
         "footer.events": "Події",
         "footer.languages": "Мови",
         "footer.rights": "Всі права захищені.",
-        "footer.createdBy": "Веб-сайт створено"
+        "footer.createdBy": "Веб-сайт створено",
+        
+        // Aria labels
+        "aria.openMenu": "Відкрити меню",
+        "aria.closeMenu": "Закрити меню",
+        "aria.sendEmail": "Надіслати email",
+        "aria.call": "Зателефонувати",
+        "aria.reserve": "Забронювати"
     }
 };

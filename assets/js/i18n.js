@@ -56,6 +56,22 @@ function applyLanguage(lang) {
         }
     });
     
+    // Update aria-label attributes
+    document.querySelectorAll('[aria-label]').forEach(element => {
+        const ariaKey = element.getAttribute('data-i18n-aria');
+        if (ariaKey && translations[lang] && translations[lang][ariaKey]) {
+            element.setAttribute('aria-label', translations[lang][ariaKey]);
+        }
+    });
+    
+    // Update title attributes
+    document.querySelectorAll('[title]').forEach(element => {
+        const titleKey = element.getAttribute('data-i18n-title');
+        if (titleKey && translations[lang] && translations[lang][titleKey]) {
+            element.setAttribute('title', translations[lang][titleKey]);
+        }
+    });
+    
     // Update HTML lang attribute
     document.documentElement.lang = lang;
 }

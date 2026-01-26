@@ -24,32 +24,32 @@
     <!-- Top Navigation Buttons -->
     <div class="top-nav-buttons">
         <!-- Hamburger Menu Button -->
-        <button class="menu-toggle" id="menuToggle" aria-controls="sideMenu" aria-expanded="false" aria-label="Otevřít menu">
+        <button class="menu-toggle" id="menuToggle" aria-controls="sideMenu" aria-expanded="false" aria-label="Otevřít menu" data-i18n-aria="aria.openMenu">
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
         </button>
         
         <!-- Email Button -->
-        <a href="mailto:designstav@centrum.cz" class="top-nav-btn" aria-label="Odeslat email">
+        <a href="mailto:designstav@centrum.cz" class="top-nav-btn" aria-label="Odeslat email" data-i18n-aria="aria.sendEmail">
             <i class="fas fa-envelope"></i>
         </a>
         
         <!-- Phone Button -->
-        <a href="tel:+420775560610" class="top-nav-btn" aria-label="Zavolat">
+        <a href="tel:+420775560610" class="top-nav-btn" aria-label="Zavolat" data-i18n-aria="aria.call">
             <i class="fas fa-phone"></i>
         </a>
     </div>
     
     <!-- Reservation Button (Top Right) -->
-    <a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="btn-reservation-top" aria-label="Rezervovat">
+    <a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="btn-reservation-top" aria-label="Rezervovat" data-i18n="menu.reserveBtn" data-i18n-aria="aria.reserve">
         Rezervovat
     </a>
 
     <!-- Side Menu -->
     <aside class="side-menu" id="sideMenu" role="navigation" aria-label="Hlavní navigace">
         <!-- Close Button (X) -->
-        <button class="menu-close-btn" id="menuCloseBtn" aria-label="Zavřít menu">
+        <button class="menu-close-btn" id="menuCloseBtn" aria-label="Zavřít menu" data-i18n-aria="aria.closeMenu">
             <i class="fas fa-times"></i>
         </button>
         
@@ -79,7 +79,7 @@
                     <button class="lang-btn" data-lang="de" title="Deutsch">🇩🇪</button>
                     <button class="lang-btn" data-lang="uk" title="Українська">🇺🇦</button>
                 </div>
-                <a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="btn-reservation" data-i18n="menu.reserve">
+                <a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="btn-reservation" data-i18n="menu.reserveBtn">
                     Rezervovat
                 </a>
             </div>
@@ -87,7 +87,7 @@
     </aside>
 
     <!-- Backdrop Overlay -->
-    <button class="backdrop" id="backdrop" aria-hidden="true" aria-label="Zavřít menu"></button>
+    <button class="backdrop" id="backdrop" aria-hidden="true" aria-label="Zavřít menu" data-i18n-aria="aria.closeMenu"></button>
 
     <!-- App Wrapper - ALL content goes here, will be transformed in 3D -->
     <div class="app" id="app">
@@ -302,34 +302,34 @@
     <section class="amenities" id="sluzby">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Vybavení a služby</h2>
-                <p class="section-subtitle">Vše, co potřebujete pro pohodlný pobyt</p>
+                <h2 class="section-title" data-i18n="section.amenities.title">Vybavení a služby</h2>
+                <p class="section-subtitle" data-i18n="section.amenities.subtitle">Vše, co potřebujete pro pohodlný pobyt</p>
             </div>
             
             <div class="amenities-grid">
                 <div class="amenity-item">
                     <i class="fas fa-wifi"></i>
-                    <span>Wi-Fi zdarma</span>
+                    <span data-i18n="amenity.wifi">Wi-Fi zdarma</span>
                 </div>
                 <div class="amenity-item">
                     <i class="fas fa-parking"></i>
-                    <span>Parkování zdarma</span>
+                    <span data-i18n="amenity.parking">Parkování zdarma</span>
                 </div>
                 <div class="amenity-item">
                     <i class="fas fa-hot-tub"></i>
-                    <span>Wellness</span>
+                    <span data-i18n="amenity.wellness">Wellness</span>
                 </div>
                 <div class="amenity-item">
                     <i class="fas fa-users"></i>
-                    <span>Rodinné pokoje</span>
+                    <span data-i18n="amenity.familyRooms">Rodinné pokoje</span>
                 </div>
                 <div class="amenity-item">
                     <i class="fas fa-paw"></i>
-                    <span>Domácí mazlíčci</span>
+                    <span data-i18n="amenity.pets">Domácí mazlíčci</span>
                 </div>
                 <div class="amenity-item">
                     <i class="fas fa-coffee"></i>
-                    <span>Snídaně</span>
+                    <span data-i18n="amenity.breakfast">Snídaně</span>
                 </div>
             </div>
         </div>
