@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/main.css?v=1737979200" id="main-css">
+    <link rel="stylesheet" href="assets/css/main.css?v=1737979500" id="main-css">
 </head>
 <body>
     <!-- Top Navigation Buttons -->
@@ -95,11 +95,11 @@
     <!-- Hero Section -->
     <section class="hero" id="uvod">
         <div class="hero-video-wrapper">
-            <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="fotky/178484544.jpg?v=1737979200">
-                <source src="fotky/VIDEOMAIN.mov?v=1737979200" type="video/mp4">
-                <source src="fotky/VIDEOMAIN.mov?v=1737979200" type="video/quicktime">
+            <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="fotky/178484544.jpg?v=1737979500">
+                <source src="fotky/VIDEOMAIN.mov?v=1737979500" type="video/mp4">
+                <source src="fotky/VIDEOMAIN.mov?v=1737979500" type="video/quicktime">
                 <!-- Fallback image if video doesn't load -->
-                <img src="fotky/178484544.jpg?v=1737979200" alt="Pension Sunset">
+                <img src="fotky/178484544.jpg?v=1737979500" alt="Pension Sunset">
             </video>
         </div>
         
@@ -159,7 +159,7 @@
                 </div>
                 
                 <div class="about-image">
-                    <img src="fotky/178479759.jpg?v=1737979200" alt="Pension Sunset">
+                    <img src="fotky/178479759.jpg?v=1737979500" alt="Pension Sunset">
                 </div>
             </div>
         </div>
@@ -474,31 +474,46 @@
     <!-- End App Wrapper -->
 
     <!-- Translations -->
-    <script src="assets/js/translations.js?v=1737979200" id="translations-js"></script>
-    <script src="assets/js/i18n.js?v=1737979200" id="i18n-js"></script>
+    <script src="assets/js/translations.js?v=1737979500" id="translations-js"></script>
+    <script src="assets/js/i18n.js?v=1737979500" id="i18n-js"></script>
     
     <!-- Firebase SDK -->
-    <script type="module" src="assets/js/firebase.js?v=1737979200" id="firebase-js"></script>
-    <script type="module" src="assets/js/main.js?v=1737979200" id="main-js"></script>
+    <script type="module" src="assets/js/firebase.js?v=1737979500" id="firebase-js"></script>
+    <script type="module" src="assets/js/main.js?v=1737979500" id="main-js"></script>
     
     <!-- Cache busting script - forces reload of assets -->
     <script>
-        // Force reload CSS and JS if cache is stale
+        // Force clear all caches
+        if ('caches' in window) {
+            caches.keys().then(function(names) {
+                for (let name of names) {
+                    caches.delete(name);
+                }
+            });
+        }
+        
+        // Force reload CSS and JS
+        const timestamp = new Date().getTime();
+        const css = document.getElementById('main-css');
+        if (css) {
+            css.href = css.href.split('?')[0] + '?v=' + timestamp;
+        }
+        
+        // Force reload all scripts
+        document.querySelectorAll('script[src]').forEach(script => {
+            const src = script.getAttribute('src');
+            if (src && !src.includes('?v=')) {
+                script.src = src + '?v=' + timestamp;
+            }
+        });
+        
+        // Unregister service workers
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.getRegistrations().then(function(registrations) {
                 for(let registration of registrations) {
                     registration.unregister();
                 }
             });
-        }
-        
-        // Clear cache on page load if needed
-        if (localStorage.getItem('clearCache') === 'true') {
-            localStorage.removeItem('clearCache');
-            // Force reload all assets
-            const timestamp = new Date().getTime();
-            const css = document.getElementById('main-css');
-            if (css) css.href = css.href.split('?')[0] + '?v=' + timestamp;
         }
     </script>
     
