@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/main.css?v=1737979500" id="main-css">
+    <link rel="stylesheet" href="assets/css/main.css?v=1737980000" id="main-css">
 </head>
 <body>
     <!-- Top Navigation Buttons -->
@@ -160,7 +160,7 @@
                 </div>
                 
                 <div class="about-image">
-                    <img src="fotky/178479759.jpg?v=1737979500" alt="Pension Sunset">
+                    <img src="fotky/178479759.jpg?v=1737980000" alt="Pension Sunset">
                 </div>
             </div>
         </div>
@@ -505,15 +505,15 @@
     <!-- End App Wrapper -->
 
     <!-- Translations -->
-    <script src="assets/js/translations.js?v=1737979500" id="translations-js"></script>
-    <script src="assets/js/i18n.js?v=1737979500" id="i18n-js"></script>
+    <script src="assets/js/translations.js?v=1737980000" id="translations-js"></script>
+    <script src="assets/js/i18n.js?v=1737980000" id="i18n-js"></script>
     
     <!-- Reviews -->
-    <script src="assets/js/reviews.js?v=1737979500"></script>
+    <script src="assets/js/reviews.js?v=1737980000"></script>
     
     <!-- Firebase SDK -->
-    <script type="module" src="assets/js/firebase.js?v=1737979500" id="firebase-js"></script>
-    <script type="module" src="assets/js/main.js?v=1737979500" id="main-js"></script>
+    <script type="module" src="assets/js/firebase.js?v=1737980000" id="firebase-js"></script>
+    <script type="module" src="assets/js/main.js?v=1737980000" id="main-js"></script>
     
     <!-- Cache busting script - forces reload of assets -->
     <script>
@@ -526,20 +526,26 @@
             });
         }
         
-        // Force reload CSS and JS
-        const timestamp = new Date().getTime();
+        // Force reload CSS and JS with new timestamp
+        const timestamp = Date.now();
         const css = document.getElementById('main-css');
         if (css) {
             css.href = css.href.split('?')[0] + '?v=' + timestamp;
         }
         
-        // Force reload all scripts
+        // Force reload all scripts with new timestamp
         document.querySelectorAll('script[src]').forEach(script => {
             const src = script.getAttribute('src');
-            if (src && !src.includes('?v=')) {
-                script.src = src + '?v=' + timestamp;
+            if (src) {
+                const newSrc = src.split('?')[0] + '?v=' + timestamp;
+                script.src = newSrc;
             }
         });
+        
+        // Clear localStorage cache
+        try {
+            localStorage.removeItem('booking_reviews_cache');
+        } catch(e) {}
         
         // Unregister service workers
         if ('serviceWorker' in navigator) {
@@ -549,6 +555,14 @@
                 }
             });
         }
+        
+        // Force reload images
+        document.querySelectorAll('img[src]').forEach(img => {
+            const src = img.getAttribute('src');
+            if (src && !src.includes('?v=')) {
+                img.src = src + '?v=' + timestamp;
+            }
+        });
     </script>
     
     <!-- Fallback: Initialize menu even if modules fail -->
