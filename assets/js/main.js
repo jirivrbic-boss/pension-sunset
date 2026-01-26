@@ -593,7 +593,8 @@ function createRoomCard(room) {
     card.className = 'room-card fade-in';
     
     // Použij lokální fotku - každý pokoj má svou vlastní fotku v lokálních souborech
-    const imageUrl = room.image || '/fotky/178484544.jpg';
+    const cacheBuster = new Date().getTime();
+    const imageUrl = (room.image || '/fotky/178484544.jpg') + '?v=' + cacheBuster;
     
     card.innerHTML = `
         <img src="${imageUrl}" alt="${room.name}" class="room-image" onerror="this.src='/fotky/178484544.jpg'">
@@ -703,7 +704,9 @@ function initGallery() {
         
         const img = document.createElement('img');
         // Use path relative to root (works on both local and Vercel)
-        img.src = `/fotky/${imageFile}`;
+        // Add cache busting timestamp
+        const cacheBuster = new Date().getTime();
+        img.src = `/fotky/${imageFile}?v=${cacheBuster}`;
         img.alt = `Galerie ${index + 1}`;
         img.loading = 'lazy';
         
@@ -781,7 +784,8 @@ function openLightbox(index, imageFiles) {
     function showImage() {
         if (lightboxState.imageFiles.length === 0) return;
         
-        const imagePath = `/fotky/${lightboxState.imageFiles[lightboxState.currentIndex]}`;
+        const cacheBuster = new Date().getTime();
+        const imagePath = `/fotky/${lightboxState.imageFiles[lightboxState.currentIndex]}?v=${cacheBuster}`;
         
         // Přidej loading třídu
         lightboxImage.classList.add('loading');
