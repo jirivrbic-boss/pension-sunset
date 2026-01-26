@@ -67,6 +67,7 @@
                     <li><a href="vyletu.html" class="menu-link" data-i18n="menu.trips">VÝLETY</a></li>
                     <li><a href="https://goout.net/cs/karlovy-vary/akce/lezblurkk/" target="_blank" rel="noopener noreferrer" class="menu-link" data-i18n="menu.events">UDÁLOSTI V OKOLÍ</a></li>
                     <li><a href="#galerie" class="menu-link" data-i18n="menu.gallery">GALERIE</a></li>
+                    <li><a href="#recenze" class="menu-link" data-i18n="menu.reviews">RECENZE</a></li>
                     <li><a href="#kontakt" class="menu-link" data-i18n="menu.contact">KONTAKT</a></li>
                     <li><a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="menu-link menu-reservation" data-i18n="menu.reserve">REZERVOVAT</a></li>
                 </ul>
@@ -331,6 +332,35 @@
         </div>
     </section>
 
+    <!-- Recenze -->
+    <section class="reviews" id="recenze">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="section.reviews.title">Recenze hostů</h2>
+                <p class="section-subtitle" data-i18n="section.reviews.subtitle">Co o nás říkají naši hosté</p>
+            </div>
+            
+            <div class="reviews-container">
+                <div class="reviews-widget-wrapper">
+                    <!-- Booking.com Reviews Widget -->
+                    <div id="booking-reviews-widget">
+                        <div class="reviews-loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p data-i18n="reviews.loading">Načítání recenzí...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reviews-link-wrapper">
+                    <a href="https://www.booking.com/hotel/cz/pension-sunset-meziroli.cs.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="reviews.viewAll">
+                        Zobrazit všechny recenze na Booking.com
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Galerie -->
     <section class="gallery" id="galerie">
         <div class="container">
@@ -437,6 +467,7 @@
                         <li><a href="#pokoje" data-i18n="footer.rooms">Pokoje</a></li>
                         <li><a href="vyletu.html" data-i18n="footer.trips">Výlety</a></li>
                         <li><a href="#galerie" data-i18n="footer.gallery">Galerie</a></li>
+                        <li><a href="#recenze" data-i18n="footer.reviews">Recenze</a></li>
                         <li><a href="#kontakt" data-i18n="footer.contact">Kontakt</a></li>
                     </ul>
                 </div>
@@ -476,6 +507,9 @@
     <!-- Translations -->
     <script src="assets/js/translations.js?v=1737979500" id="translations-js"></script>
     <script src="assets/js/i18n.js?v=1737979500" id="i18n-js"></script>
+    
+    <!-- Reviews -->
+    <script src="assets/js/reviews.js?v=1737979500"></script>
     
     <!-- Firebase SDK -->
     <script type="module" src="assets/js/firebase.js?v=1737979500" id="firebase-js"></script>
