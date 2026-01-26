@@ -15,33 +15,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/main.css?v=1737980000" id="main-css">
+    
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 </head>
 <body>
     <!-- Top Navigation Buttons -->
     <div class="top-nav-buttons">
         <!-- Hamburger Menu Button -->
-        <button class="menu-toggle" id="menuToggle" aria-controls="sideMenu" aria-expanded="false" aria-label="Otevřít menu">
+        <button class="menu-toggle" id="menuToggle" aria-controls="sideMenu" aria-expanded="false" aria-label="Otevřít menu" data-i18n-aria="aria.openMenu">
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
         </button>
         
         <!-- Email Button -->
-        <a href="mailto:info@pensionsunset.cz" class="top-nav-btn" aria-label="Odeslat email">
+        <a href="mailto:designstav@centrum.cz" class="top-nav-btn" aria-label="Odeslat email" data-i18n-aria="aria.sendEmail">
             <i class="fas fa-envelope"></i>
         </a>
         
         <!-- Phone Button -->
-        <a href="tel:+420775560610" class="top-nav-btn" aria-label="Zavolat">
+        <a href="tel:+420775560610" class="top-nav-btn" aria-label="Zavolat" data-i18n-aria="aria.call">
             <i class="fas fa-phone"></i>
         </a>
     </div>
+    
+    <!-- Reservation Button (Top Right) -->
+    <a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="btn-reservation-top" aria-label="Rezervovat" data-i18n="menu.reserveBtn" data-i18n-aria="aria.reserve">
+        Rezervovat
+    </a>
 
     <!-- Side Menu -->
     <aside class="side-menu" id="sideMenu" role="navigation" aria-label="Hlavní navigace">
         <!-- Close Button (X) -->
-        <button class="menu-close-btn" id="menuCloseBtn" aria-label="Zavřít menu">
+        <button class="menu-close-btn" id="menuCloseBtn" aria-label="Zavřít menu" data-i18n-aria="aria.closeMenu">
             <i class="fas fa-times"></i>
         </button>
         
@@ -53,30 +62,31 @@
             
             <nav class="menu-nav">
                 <ul>
-                    <li><a href="index.html#uvod" class="menu-link">ÚVOD</a></li>
-                    <li><a href="index.html#o-penzionu" class="menu-link">O PENZIONU</a></li>
-                    <li><a href="index.html#pokoje" class="menu-link">POKOJE</a></li>
-                    <li><a href="vyletu.html" class="menu-link active">VÝLETY</a></li>
-                    <li><a href="https://goout.net/cs/karlovy-vary/akce/lezblurkk/" target="_blank" rel="noopener noreferrer" class="menu-link">UDÁLOSTI V OKOLÍ</a></li>
-                    <li><a href="index.html#galerie" class="menu-link">GALERIE</a></li>
-                    <li><a href="index.html#kontakt" class="menu-link">KONTAKT</a></li>
-                    <li><a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="menu-link menu-reservation">REZERVOVAT</a></li>
+                    <li><a href="index.html#uvod" class="menu-link" data-i18n="menu.intro">ÚVOD</a></li>
+                    <li><a href="index.html#o-penzionu" class="menu-link" data-i18n="menu.about">O PENZIONU</a></li>
+                    <li><a href="index.html#pokoje" class="menu-link" data-i18n="menu.rooms">POKOJE</a></li>
+                    <li><a href="vyletu.html" class="menu-link active" data-i18n="menu.trips">VÝLETY</a></li>
+                    <li><a href="https://goout.net/cs/karlovy-vary/akce/lezblurkk/" target="_blank" rel="noopener noreferrer" class="menu-link" data-i18n="menu.events">UDÁLOSTI V OKOLÍ</a></li>
+                    <li><a href="index.html#galerie" class="menu-link" data-i18n="menu.gallery">GALERIE</a></li>
+                    <li><a href="index.html#recenze" class="menu-link" data-i18n="menu.reviews">RECENZE</a></li>
+                    <li><a href="index.html#kontakt" class="menu-link" data-i18n="menu.contact">KONTAKT</a></li>
+                    <li><a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="menu-link menu-reservation" data-i18n="menu.reserve">REZERVOVAT</a></li>
                 </ul>
             </nav>
             
             <div class="menu-footer">
                 <div class="language-switcher">
-                    <button class="lang-btn active" data-lang="cs">CS</button>
+                    <button class="lang-btn active" data-lang="cs" title="Čeština">🇨🇿</button>
+                    <button class="lang-btn" data-lang="en" title="English">🇬🇧</button>
+                    <button class="lang-btn" data-lang="de" title="Deutsch">🇩🇪</button>
+                    <button class="lang-btn" data-lang="uk" title="Українська">🇺🇦</button>
                 </div>
-                <a href="https://www.booking.com/Share-26creP" target="_blank" rel="noopener noreferrer" class="btn-reservation">
-                    Rezervovat
-                </a>
             </div>
         </div>
     </aside>
 
     <!-- Backdrop Overlay -->
-    <button class="backdrop" id="backdrop" aria-hidden="true" aria-label="Zavřít menu"></button>
+    <button class="backdrop" id="backdrop" aria-hidden="true" aria-label="Zavřít menu" data-i18n-aria="aria.closeMenu"></button>
 
     <!-- App Wrapper -->
     <div class="app" id="app">
@@ -236,10 +246,51 @@
     </div>
     <!-- End App Wrapper -->
 
+    <!-- Translations -->
+    <script src="assets/js/translations.js?v=1737980000" id="translations-js"></script>
+    <script src="assets/js/i18n.js?v=1737980000" id="i18n-js"></script>
+    
     <!-- Firebase SDK -->
-    <script type="module" src="assets/js/firebase.js"></script>
-    <script type="module" src="assets/js/main.js"></script>
-    <script src="assets/js/trips.js"></script>
+    <script type="module" src="assets/js/firebase.js?v=1737980000" id="firebase-js"></script>
+    <script type="module" src="assets/js/main.js?v=1737980000" id="main-js"></script>
+    <script src="assets/js/trips.js?v=1737980000"></script>
+    
+    <!-- Cache busting script -->
+    <script>
+        // Force clear all caches
+        if ('caches' in window) {
+            caches.keys().then(function(names) {
+                for (let name of names) {
+                    caches.delete(name);
+                }
+            });
+        }
+        
+        // Force reload CSS and JS with new timestamp
+        const timestamp = Date.now();
+        const css = document.getElementById('main-css');
+        if (css) {
+            css.href = css.href.split('?')[0] + '?v=' + timestamp;
+        }
+        
+        // Force reload all scripts with new timestamp
+        document.querySelectorAll('script[src]').forEach(script => {
+            const src = script.getAttribute('src');
+            if (src) {
+                const newSrc = src.split('?')[0] + '?v=' + timestamp;
+                script.src = newSrc;
+            }
+        });
+        
+        // Unregister service workers
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for(let registration of registrations) {
+                    registration.unregister();
+                }
+            });
+        }
+    </script>
     
     <!-- Fallback: Initialize menu even if modules fail -->
     <script>
