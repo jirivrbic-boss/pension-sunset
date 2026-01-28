@@ -975,42 +975,63 @@ body.menu-open {
     }
 }
 
-/* Booking Award Section */
-.booking-award {
-    padding: var(--spacing-md) 0;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    color: #fff;
-}
-.booking-award-inner {
+/* Booking award u recenzí – exkluzivní blok ve stylu webu */
+.reviews-award-block {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--spacing-md);
-    flex-wrap: wrap;
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--bg-white);
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }
-.booking-award-badge {
-    height: 80px;
+.reviews-award-block::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background: linear-gradient(180deg, var(--secondary-color), var(--accent-color));
+    border-radius: 0 2px 2px 0;
+}
+.reviews-award-badge {
+    height: 64px;
     width: auto;
     object-fit: contain;
+    flex-shrink: 0;
 }
-.booking-award-text {
-    text-align: center;
+.reviews-award-text {
+    text-align: left;
 }
-.booking-award-score {
+.reviews-award-score {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
+    font-size: 1.875rem;
     font-weight: 700;
     color: var(--secondary-color);
     display: block;
+    letter-spacing: 0.02em;
 }
-.booking-award-out-of {
-    font-size: 1rem;
-    opacity: 0.9;
+.reviews-award-out-of {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    font-weight: 400;
 }
-.booking-award-title {
-    font-size: 0.95rem;
-    margin-top: 0.25rem;
-    font-weight: 500;
+.reviews-award-title {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    letter-spacing: 0.03em;
 }
 
 /* Vizitka Section */
@@ -1091,9 +1112,8 @@ body.menu-open {
 }
 
 .rooms-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-md);
     max-width: 1200px;
     margin: 0 auto;
@@ -1106,7 +1126,12 @@ body.menu-open {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
     width: 100%;
-    max-width: 400px;
+}
+
+@media (max-width: 900px) {
+    .rooms-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .room-card:hover {
@@ -1456,15 +1481,15 @@ body.menu-open {
     font-size: 1.125rem;
 }
 
-/* Reviews Grid */
+/* Reviews Grid – 3 vedle sebe */
 #booking-reviews-widget {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     #booking-reviews-widget {
         grid-template-columns: 1fr;
     }
