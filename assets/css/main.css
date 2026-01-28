@@ -1058,26 +1058,48 @@ body.menu-open {
     padding: var(--spacing-lg) 0;
     background-color: var(--bg-light);
 }
-.vizitka-link {
+.vizitka-heading {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+.vizitka-image-wrap {
+    display: block;
+    margin: 0 auto var(--spacing-sm);
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+    max-width: 560px;
+}
+.vizitka-image-wrap:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+.vizitka-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    vertical-align: top;
+}
+.vizitka-download {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     color: var(--primary-color);
     text-decoration: none;
     font-weight: 500;
-    margin-bottom: var(--spacing-sm);
+    font-size: 0.95rem;
 }
-.vizitka-link:hover {
+.vizitka-download:hover {
     text-decoration: underline;
 }
-.vizitka-pdf {
-    width: 100%;
-    max-width: 600px;
-    height: 420px;
-    border: 0;
-    border-radius: 8px;
-    display: block;
-    margin: 0 auto;
+.vizitka-download i {
+    color: #c0392b;
 }
 
 /* About Section */
@@ -1173,6 +1195,14 @@ body.menu-open {
     margin-bottom: var(--spacing-md);
     color: var(--primary-color);
     text-align: center;
+}
+
+.room-name-sub {
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-light);
+    margin-top: 0.25rem;
 }
 
 .room-specs {
@@ -1917,6 +1947,26 @@ body.menu-open {
     background-color: var(--primary-color);
     color: var(--bg-white);
     padding: var(--spacing-lg) 0 var(--spacing-md);
+}
+
+.footer-vizitka-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.footer-vizitka-link:hover {
+    text-decoration: underline;
+    color: #ffffff;
+}
+
+.footer-vizitka-link i {
+    color: var(--secondary-color);
 }
 
 .footer-content {

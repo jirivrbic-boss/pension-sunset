@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initLanguageSwitcher();
     initScrollAnimations();
     initAwardImageLightbox();
+    initVizitkaLightbox();
     
     // Load rooms from Booking.com data (no longer needs Firebase)
     loadRooms();
@@ -630,6 +631,16 @@ function createRoomCard(room) {
     } else if (room.id === 'RD150721302') {
         roomName = t['rooms.roomTriple'] || room.name;
     }
+
+    // Special formatting: put "Standard" on a second line for the triple room
+    let roomNameHtml = roomName;
+    if (room.id === 'RD150721302' && typeof roomName === 'string' && roomName.includes('Standard')) {
+        const withoutStandard = roomName.replace(/\s*Standard\s*/g, ' ').trim();
+        // If we removed too much, fallback to original
+        roomNameHtml = withoutStandard && withoutStandard !== roomName
+            ? `${withoutStandard}<br><span class="room-name-sub">Standard</span>`
+            : roomName;
+    }
     
     // Get size and beds translation
     let roomSize = room.size;
@@ -650,7 +661,7 @@ function createRoomCard(room) {
     card.innerHTML = `
         <img src="${imageUrl}" alt="${roomName}" class="room-image" onerror="this.src='/fotky/178484544.jpg'">
         <div class="room-content">
-            <h3 class="room-name" data-i18n-room-name="${room.id}">${roomName}</h3>
+            <h3 class="room-name" data-i18n-room-name="${room.id}">${roomNameHtml}</h3>
             <div class="room-specs">
                 <span class="room-size" data-i18n-room-size="${room.id}"><i class="fas fa-expand-arrows-alt"></i> ${roomSize}</span>
                 <span class="room-beds" data-i18n-room-beds="${room.id}"><i class="fas fa-bed"></i> ${roomBeds}</span>
@@ -926,6 +937,14 @@ function initAwardImageLightbox() {
     const btn = document.getElementById('reviewsAwardImageBtn');
     if (btn) {
         btn.addEventListener('click', () => openLightbox(0, ['Digital-Award-TRA-2025.png']));
+    }
+}
+
+// Rozkliknutí vizitky v lightboxu
+function initVizitkaLightbox() {
+    const btn = document.getElementById('vizitkaImageBtn');
+    if (btn) {
+        btn.addEventListener('click', () => openLightbox(0, ['vizitka.png']));
     }
 }
 
