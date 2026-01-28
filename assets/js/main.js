@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initGallery();
     initLanguageSwitcher();
     initScrollAnimations();
+    initAwardImageLightbox();
     
     // Load rooms from Booking.com data (no longer needs Firebase)
     loadRooms();
@@ -903,10 +904,29 @@ function openLightbox(index, imageFiles) {
     
     document.addEventListener('keydown', lightboxState.handleKeyPress);
     
+    // U jednoho obrázku skrýt šipky
+    if (lightboxPrev && lightboxNext) {
+        if (imageFiles.length <= 1) {
+            lightboxPrev.style.display = 'none';
+            lightboxNext.style.display = 'none';
+        } else {
+            lightboxPrev.style.display = '';
+            lightboxNext.style.display = '';
+        }
+    }
+    
     // Zobraz první obrázek
     showImage();
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
+}
+
+// Rozkliknutí obrázku ocenění v lightboxu
+function initAwardImageLightbox() {
+    const btn = document.getElementById('reviewsAwardImageBtn');
+    if (btn) {
+        btn.addEventListener('click', () => openLightbox(0, ['Digital-Award-TRA-2025.png']));
+    }
 }
 
 // ============================================

@@ -1003,11 +1003,24 @@ body.menu-open {
     background: linear-gradient(180deg, var(--secondary-color), var(--accent-color));
     border-radius: 0 2px 2px 0;
 }
+.reviews-award-badge-wrap {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.reviews-award-badge-wrap:hover .reviews-award-badge {
+    opacity: 0.9;
+}
 .reviews-award-badge {
     height: 64px;
     width: auto;
     object-fit: contain;
-    flex-shrink: 0;
+    display: block;
+    transition: opacity 0.2s ease;
 }
 .reviews-award-text {
     text-align: left;
@@ -1019,6 +1032,12 @@ body.menu-open {
     color: var(--secondary-color);
     display: block;
     letter-spacing: 0.02em;
+}
+.reviews-award-score i {
+    font-size: 1rem;
+    vertical-align: middle;
+    margin-right: 0.25rem;
+    opacity: 0.95;
 }
 .reviews-award-out-of {
     font-size: 0.875rem;
