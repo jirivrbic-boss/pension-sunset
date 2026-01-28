@@ -975,6 +975,71 @@ body.menu-open {
     }
 }
 
+/* Booking Award Section */
+.booking-award {
+    padding: var(--spacing-md) 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #fff;
+}
+.booking-award-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+.booking-award-badge {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+}
+.booking-award-text {
+    text-align: center;
+}
+.booking-award-score {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    display: block;
+}
+.booking-award-out-of {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+.booking-award-title {
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+    font-weight: 500;
+}
+
+/* Vizitka Section */
+.vizitka-section {
+    padding: var(--spacing-lg) 0;
+    background-color: var(--bg-light);
+}
+.vizitka-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+}
+.vizitka-link:hover {
+    text-decoration: underline;
+}
+.vizitka-pdf {
+    width: 100%;
+    max-width: 600px;
+    height: 420px;
+    border: 0;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+}
+
 /* About Section */
 .about {
     padding: var(--spacing-xl) 0;

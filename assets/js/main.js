@@ -492,6 +492,20 @@ async function loadRooms() {
     // Statická data pokojů z Booking.com
     const rooms = [
         {
+            id: 'RD150721300',
+            name: 'Dvoulůžkový pokoj (modrý)',
+            size: '25 m²',
+            beds: '1 manželská postel',
+            capacity: 2,
+            bookingUrl: 'https://www.booking.com/Share-26creP',
+            features: ['Výhled do zahrady', 'TV s plochou obrazovkou', 'Wi-Fi zdarma'],
+            description: 'Dvoulůžkový pokoj s jednou manželskou postelí. Sdílená koupelna a záchod.',
+            amenities: ['Povlečení', 'TV', 'Wi-Fi zdarma', 'Topení'],
+            rating: '8,8',
+            ratingCount: '25',
+            image: '/fotky/097.JPG'
+        },
+        {
             id: 'RD150721301',
             name: 'Dvoulůžkový pokoj Standard',
             size: '25 m²',
@@ -539,7 +553,7 @@ async function loadRooms() {
             id: 'RD150721302',
             name: 'Třílůžkový pokoj Standard',
             size: '30 m²',
-            beds: '3 jednolůžkové postele',
+            beds: '1 manželská postel + 1 jednolůžko',
             capacity: 3,
             bookingUrl: 'https://www.booking.com/hotel/cz/pension-sunset-meziroli.cs.html?aid=304142&label=gen173nr-10CAEoggI46AdIM1gEaDqIAQGYATO4AQfIAQ3YAQPoAQH4AQGIAgGoAgG4AoelussGwAIB0gIkMDA2YzM3NjAtMGVmOS00Y2E1LWJhODgtMjhkMjQzZTBkMWNm2AIB4AIB&sid=8367012984e9b7276db77b2de7af6b66&dest_id=1507213&dest_type=hotel&dist=0&group_adults=2&group_children=0&hapos=1&hpos=1&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&srepoch=1768854167&srpvid=0ef28f492aa70b43&type=total&ucfs=1&#RD150721302',
             features: [
@@ -608,7 +622,9 @@ function createRoomCard(room) {
     
     // Get room name translation
     let roomName = room.name;
-    if (room.id === 'RD150721301') {
+    if (room.id === 'RD150721300') {
+        roomName = t['rooms.roomBlue'] || room.name;
+    } else if (room.id === 'RD150721301') {
         roomName = t['rooms.roomDouble'] || room.name;
     } else if (room.id === 'RD150721302') {
         roomName = t['rooms.roomTriple'] || room.name;
@@ -617,7 +633,10 @@ function createRoomCard(room) {
     // Get size and beds translation
     let roomSize = room.size;
     let roomBeds = room.beds;
-    if (room.id === 'RD150721301') {
+    if (room.id === 'RD150721300') {
+        roomSize = room.size.replace('m²', t['rooms.size'] || 'm²');
+        roomBeds = t['rooms.bedBlue'] || room.beds;
+    } else if (room.id === 'RD150721301') {
         roomSize = room.size.replace('m²', t['rooms.size'] || 'm²');
         roomBeds = t['rooms.bedDouble'] || room.beds;
     } else if (room.id === 'RD150721302') {
