@@ -509,7 +509,7 @@ async function loadRooms() {
         },
         {
             id: 'RD150721301',
-            name: 'Dvoulůžkový pokoj Standard',
+            name: 'Dvoulůžkový pokoj',
             size: '25 m²',
             beds: '1 manželská postel',
             capacity: 2,
@@ -553,7 +553,7 @@ async function loadRooms() {
         },
         {
             id: 'RD150721302',
-            name: 'Třílůžkový pokoj Standard',
+            name: 'Třílůžkový pokoj',
             size: '30 m²',
             beds: '1 manželská postel + 1 jednolůžko',
             capacity: 3,
@@ -632,16 +632,6 @@ function createRoomCard(room) {
         roomName = t['rooms.roomTriple'] || room.name;
     }
 
-    // Special formatting: put "Standard" on a second line for the triple room
-    let roomNameHtml = roomName;
-    if (room.id === 'RD150721302' && typeof roomName === 'string' && roomName.includes('Standard')) {
-        const withoutStandard = roomName.replace(/\s*Standard\s*/g, ' ').trim();
-        // If we removed too much, fallback to original
-        roomNameHtml = withoutStandard && withoutStandard !== roomName
-            ? `${withoutStandard}<br><span class="room-name-sub">Standard</span>`
-            : roomName;
-    }
-    
     // Get size and beds translation
     let roomSize = room.size;
     let roomBeds = room.beds;
@@ -661,7 +651,7 @@ function createRoomCard(room) {
     card.innerHTML = `
         <img src="${imageUrl}" alt="${roomName}" class="room-image" onerror="this.src='/fotky/178484544.jpg'">
         <div class="room-content">
-            <h3 class="room-name" data-i18n-room-name="${room.id}">${roomNameHtml}</h3>
+            <h3 class="room-name" data-i18n-room-name="${room.id}">${roomName}</h3>
             <div class="room-specs">
                 <span class="room-size" data-i18n-room-size="${room.id}"><i class="fas fa-expand-arrows-alt"></i> ${roomSize}</span>
                 <span class="room-beds" data-i18n-room-beds="${room.id}"><i class="fas fa-bed"></i> ${roomBeds}</span>

@@ -92,10 +92,10 @@ function updateRoomCards(lang) {
     
     // Update room names
     document.querySelectorAll('[data-i18n-room-name="RD150721301"]').forEach(el => {
-        el.textContent = t['rooms.roomDouble'] || 'Dvoulůžkový pokoj Standard';
+        el.textContent = t['rooms.roomDouble'] || 'Dvoulůžkový pokoj';
     });
     document.querySelectorAll('[data-i18n-room-name="RD150721302"]').forEach(el => {
-        el.textContent = t['rooms.roomTriple'] || 'Třílůžkový pokoj Standard';
+        el.textContent = t['rooms.roomTriple'] || 'Třílůžkový pokoj';
     });
     
     // Update room sizes
